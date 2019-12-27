@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4573f3e4-802d-4362-aa5b-d3c9e20ab6b8" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/BaiduNetdiskDownload/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="D:\BaiduNetdiskDownload\apache-maven-3.3.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1UB0vA8RpZ8hq5hqDb5S2ZpwKu0" />
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.blog.mapper" />
+      <recent name="com.blog.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\project\blog\src\main\resources\static\image" />
+      <recent name="D:\project\blog\src\main\java\com\blog\utils" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MyApplication">
+    <configuration name="BaseImage64.checkFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.apiBaidu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test.apiBaidu" />
+      <option name="MAIN_CLASS_NAME" value="com.test.apiBaidu.BaseImage64" />
+      <option name="METHOD_NAME" value="checkFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BaseImage64.getImageFromPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.apiBaidu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test.apiBaidu" />
+      <option name="MAIN_CLASS_NAME" value="com.test.apiBaidu.BaseImage64" />
+      <option name="METHOD_NAME" value="getImageFromPath" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ListTest.testList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.ListTest" />
+      <option name="METHOD_NAME" value="testList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sample.sample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.apiBaidu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.Sample" />
+      <option name="METHOD_NAME" value="sample" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.blog.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.blog.MyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.MyApplication" />
+        <item itemvalue="JUnit.ListTest.testList" />
+        <item itemvalue="JUnit.BaseImage64.checkFile" />
+        <item itemvalue="JUnit.Sample.sample" />
+        <item itemvalue="JUnit.BaseImage64.getImageFromPath" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4573f3e4-802d-4362-aa5b-d3c9e20ab6b8" name="Default Changelist" comment="" />
+      <created>1574814908882</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574814908882</updated>
+      <workItem from="1574814912670" duration="10272000" />
+      <workItem from="1574856445733" duration="4393000" />
+      <workItem from="1574862669272" duration="7012000" />
+      <workItem from="1574944380865" duration="7491000" />
+      <workItem from="1574988361251" duration="16653000" />
+      <workItem from="1575202225966" duration="6800000" />
+      <workItem from="1575211717230" duration="1042000" />
+      <workItem from="1575261159765" duration="7680000" />
+      <workItem from="1575337912822" duration="13297000" />
+      <workItem from="1575420070993" duration="8240000" />
+      <workItem from="1575430371163" duration="217000" />
+      <workItem from="1575430626864" duration="6313000" />
+      <workItem from="1575511967476" duration="16407000" />
+      <workItem from="1575705574747" duration="6788000" />
+      <workItem from="1575730140624" duration="2761000" />
+      <workItem from="1575805145890" duration="7862000" />
+      <workItem from="1576076667866" duration="671000" />
+      <workItem from="1576212415788" duration="1230000" />
+      <workItem from="1576329674949" duration="1471000" />
+      <workItem from="1576417979151" duration="4601000" />
+      <workItem from="1576456599805" duration="12560000" />
+      <workItem from="1576719948015" duration="29404000" />
+      <workItem from="1577080355796" duration="2229000" />
+      <workItem from="1577153997971" duration="9148000" />
+      <workItem from="1577321363090" duration="19859000" />
+      <workItem from="1577423412480" duration="6229000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>
