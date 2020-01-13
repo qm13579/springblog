@@ -23,10 +23,10 @@ public interface RoleMapper  {
     })
     Role findByUserRole(String roleName);
 
-    @Insert("insert into user_role(user_id,role_id) value(#{user_id},#{diffAddId})")
-    void addDiffRole(String diffAddId,String user_id);
+    @Insert("insert into user_role(user_id, role_id) values( #{user_id}, #{diffAddId} )")
+    void addDiffRole(@Param("diffAddId")String diffAddId,@Param("user_id")String user_id);
 
-    @Delete("delete from user_role where role_id=#{diffDeleteRoleId}")
+    @Delete("delete from user_role where role_id=#{diffDeleteRoleId} and user_id=#{id}")
     void deleteDiffRole(String diffDeleteRoleId, String id);
 
     @Insert("insert into role(id,role_name,status) values(#{id},#{roleName},#{status})")

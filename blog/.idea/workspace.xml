@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4573f3e4-802d-4362-aa5b-d3c9e20ab6b8" name="Default Changelist" comment="" />
+    <list default="true" id="4573f3e4-802d-4362-aa5b-d3c9e20ab6b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/blog.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/MyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/mapper/RoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/AdminManageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/AdminManageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/test/ListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/test/ListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/blog.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/MyApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/MyApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/blog.kotlin_module" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,29 +30,31 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="D:/BaiduNetdiskDownload/apache-maven-3.3.9" />
-        <option name="userSettingsFile" value="D:\BaiduNetdiskDownload\apache-maven-3.3.9\conf\settings.xml" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../apache-maven-3.3.9" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="1UB0vA8RpZ8hq5hqDb5S2ZpwKu0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -80,17 +95,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BaseImage64.getImageFromPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ListTest.DifferenceSet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.test.apiBaidu.*" />
+          <option name="PATTERN" value="com.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.test.apiBaidu" />
-      <option name="MAIN_CLASS_NAME" value="com.test.apiBaidu.BaseImage64" />
-      <option name="METHOD_NAME" value="getImageFromPath" />
+      <option name="PACKAGE_NAME" value="com.test" />
+      <option name="MAIN_CLASS_NAME" value="com.test.ListTest" />
+      <option name="METHOD_NAME" value="DifferenceSet" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -144,10 +159,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.MyApplication" />
+        <item itemvalue="JUnit.ListTest.DifferenceSet" />
         <item itemvalue="JUnit.ListTest.testList" />
         <item itemvalue="JUnit.BaseImage64.checkFile" />
         <item itemvalue="JUnit.Sample.sample" />
-        <item itemvalue="JUnit.BaseImage64.getImageFromPath" />
       </list>
     </recent_temporary>
   </component>
@@ -187,10 +202,27 @@
       <workItem from="1577153997971" duration="9148000" />
       <workItem from="1577321363090" duration="19859000" />
       <workItem from="1577423412480" duration="6229000" />
+      <workItem from="1578893520338" duration="102000" />
+      <workItem from="1578893641873" duration="4023000" />
+      <workItem from="1578897700223" duration="2833000" />
+      <workItem from="1578902779509" duration="11907000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

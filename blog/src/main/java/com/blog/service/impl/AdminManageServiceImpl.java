@@ -8,15 +8,18 @@ import com.blog.mapper.PermissionMapper;
 import com.blog.mapper.RoleMapper;
 import com.blog.service.IAdminManageService;
 import com.blog.utils.common.ListUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
  * admin管理员控制用户角色更新、角色CRUD、权限的CRUD
  */
+@Slf4j
 @Service
 public class AdminManageServiceImpl implements IAdminManageService {
 
@@ -32,33 +35,50 @@ public class AdminManageServiceImpl implements IAdminManageService {
         roleMapper.roleSave(role);
     }
 
+    /**
+     * 更新用户角色
+     * @param userInfo
+     */
+
     @Override
     public void saveUserByRoles(UserInfo userInfo) {
+        //查询用户角色，取差集
+
         //获取用户的所有角色ID
         List<Role> roleList = roleMapper.FindRoleByUserId(userInfo.getId());
-        List<String> roleIdList = new ArrayList<String>();
+        HashSet<String> roleSet = new HashSet<>();
         for (Role role:roleList) {
-            roleIdList.add(role.getId());
+            roleSet.add(role.getId());
         }
         //获取用户的更新角色ID
         List<Role> userRoles = userInfo.getRoles();
-        List<String> userRoleIdList = new ArrayList<String>();
+        HashSet<String> userSet = new HashSet<>();
+
         for (Role userRole:userRoles) {
-            userRoleIdList.add(userRole.getId());
+            userSet.add(userRole.getId());
         }
-        //角色列表中不包含用户角色时，添加角色,A差B，求B有A没有
-        ListUtils addRole = new ListUtils();
-        List<String> differenceSetAdd = addRole.DifferenceSet(roleIdList, userRoleIdList);
-        if(differenceSetAdd != null){
-            for (String diffAddRoleId :differenceSetAdd) {
+        //深copy userRole
+        HashSet<String> userSetCopy = new HashSet<>();
+        for (Role userRole:userRoles) {
+            userSetCopy.add(userRole.getId());
+        }
+        // 当用户角色 > 角色列表 ==> 新增用户
+        userSet.removeAll(roleSet);
+        if( userSet!= null){
+            for (String diffAddRoleId :userSet) {
+                log.info("用户角色"+diffAddRoleId);
                 roleMapper.addDiffRole(diffAddRoleId,userInfo.getId());
             }
         }
-        //用户角色不含有角色列表,删除角色
-        ListUtils deleteRole= new ListUtils();
-        List<String> differenceSetDelete = deleteRole.DifferenceSet(userRoleIdList, roleIdList);
-        if (differenceSetDelete != null){
-            for (String diffDeleteRoleId :differenceSetDelete) {
+        log.info(userSetCopy.toString());
+        log.info(roleSet.toString());
+        //恢复set
+
+        //当用户角色 < 角色列表 ==> 删除用户角色
+        roleSet.removeAll(userSetCopy);
+        if (roleSet != null){
+            for (String diffDeleteRoleId :roleSet) {
+                log.info("删除用户角色："+diffDeleteRoleId);
                 roleMapper.deleteDiffRole(diffDeleteRoleId,userInfo.getId());
             }
         }
@@ -93,6 +113,5 @@ public class AdminManageServiceImpl implements IAdminManageService {
     public List<Permission> permissionFindAll() {
         List<Permission> permissionList = permissionMapper.findAll();
         return permissionList;
-
     }
 }

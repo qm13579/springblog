@@ -7,6 +7,7 @@ import com.blog.mapper.UserMapper;
 import com.blog.mapper.UserToRoleMapper;
 import com.blog.service.IUserService;
 import com.blog.utils.IdWorker;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.filters.ExpiresFilter;
 import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Transactional
 @Service
 public class UserServiceImpl implements IUserService,UserDetailsService {
@@ -51,13 +53,14 @@ public class UserServiceImpl implements IUserService,UserDetailsService {
     @Override
     public void save(UserInfo user) {
         String id = idWorker.nextId()+"";
-
+        //用户信息
         Date newTime = new Date();
         user.setId(id);
         user.setRegisterDate(newTime);
         user.setPassword( passwordEncoder.encode(user.getPassword()) );
-
+        log.info(user.toString());
         Role role = roleMapper.findByUserRole("USER");
+        log.info(role.toString());
         userMapper.save(user);
         userToRoleMapper.saveUserIdRoleId(user.getId(),role.getId());
 
