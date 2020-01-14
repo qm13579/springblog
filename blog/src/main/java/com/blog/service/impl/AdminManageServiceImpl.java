@@ -9,9 +9,11 @@ import com.blog.mapper.RoleMapper;
 import com.blog.service.IAdminManageService;
 import com.blog.utils.common.ListUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,7 +31,8 @@ public class AdminManageServiceImpl implements IAdminManageService {
     private RoleMapper roleMapper;
     @Resource
     private PermissionMapper permissionMapper;
-
+    @Autowired
+    private HttpSession session;
     @Override
     public void roleSave(Role role) {
         roleMapper.roleSave(role);
@@ -44,8 +47,9 @@ public class AdminManageServiceImpl implements IAdminManageService {
     public void saveUserByRoles(UserInfo userInfo) {
         //查询用户角色，取差集
 
-        //获取用户的所有角色ID
-        List<Role> roleList = roleMapper.FindRoleByUserId(userInfo.getId());
+        //获取用户的所有角色ID，在session中获取用户信息，得到角色信息
+        UserInfo userSession = (UserInfo) session.getAttribute(userInfo.getUsername());
+        List<Role> roleList = userSession.getRoles();
         HashSet<String> roleSet = new HashSet<>();
         for (Role role:roleList) {
             roleSet.add(role.getId());
@@ -53,14 +57,12 @@ public class AdminManageServiceImpl implements IAdminManageService {
         //获取用户的更新角色ID
         List<Role> userRoles = userInfo.getRoles();
         HashSet<String> userSet = new HashSet<>();
+        //深copy userRole
+        HashSet<String> userSetCopy = new HashSet<>();
 
         for (Role userRole:userRoles) {
             userSet.add(userRole.getId());
-        }
-        //深copy userRole
-        HashSet<String> userSetCopy = new HashSet<>();
-        for (Role userRole:userRoles) {
-            userSetCopy.add(userRole.getId());
+            userSetCopy.add(userRole.getId());//深copy
         }
         // 当用户角色 > 角色列表 ==> 新增用户
         userSet.removeAll(roleSet);
