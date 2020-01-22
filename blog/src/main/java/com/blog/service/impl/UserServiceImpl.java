@@ -7,11 +7,13 @@ import com.blog.mapper.UserMapper;
 import com.blog.mapper.UserToRoleMapper;
 import com.blog.service.IUserService;
 import com.blog.utils.IdWorker;
+import com.blog.utils.common.UserUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.filters.ExpiresFilter;
 import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,9 +35,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+
 @Slf4j
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @Service
+
+/**
+ *
+ * @author fengzhi
+ * @date 2020/1/21
+ *
+ */
 public class UserServiceImpl implements IUserService,UserDetailsService {
     @Resource
     private UserMapper userMapper;
@@ -68,15 +78,22 @@ public class UserServiceImpl implements IUserService,UserDetailsService {
 
     @Override
     public void loadFile(MultipartFile file) throws IOException {
-
+        UserDetails currentUser = UserUtils.getCurrentUser();
+        log.info(currentUser.getUsername());
         String filename = file.getOriginalFilename();
         String substring = filename.substring(filename.lastIndexOf("."));
-        String filePath = "D:\\loadfile\\";
+        String filePath = "C:\\root\\dev\\stor\\";
         filename = UUID.randomUUID().toString()+substring;
         File dest = new File(filePath + filename);
         file.transferTo(dest);
     }
-    //验证登录操作
+
+    /**
+     * //验证登录操作
+     * @param s:username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserInfo userInfo=userMapper.loadUserByUsername(s);
