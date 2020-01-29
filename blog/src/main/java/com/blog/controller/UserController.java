@@ -6,6 +6,7 @@ import com.blog.utils.common.Result;
 import com.blog.utils.common.ResultCode;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,10 +22,13 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @RequestMapping(value="register",method = RequestMethod.POST)
     @ApiOperation(value = "用户注册")
     public Result register(@RequestBody UserInfo user){
+        redisTemplate.opsForValue().set("fengzhi","reg");
         userService.save(user);
         return new Result(ResultCode.SUCCESS);
     }

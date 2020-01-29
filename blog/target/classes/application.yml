@@ -6,6 +6,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: 01-securitu
+  redis:
+    host: 139.129.94.24
+    port: 6379
+    password: password
+    timeout: 1000
 #  security:
 #    user:
 #      name: admin
