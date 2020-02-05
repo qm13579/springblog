@@ -1,18 +1,24 @@
 package com.blog.controller;
 
+import com.blog.domain.UserInfo;
 import com.blog.utils.IdWorker;
 import com.blog.utils.common.Result;
 import com.blog.utils.common.ResultCode;
 import com.blog.utils.orcApi.Sample;
 import com.sun.net.httpserver.HttpsServer;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,6 +33,12 @@ public class ApiController {
     private IdWorker idWorker;
     @Autowired
     private Sample sample;
+    @Autowired
+    private HttpSession httpSession;
+
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     public Result reach(){
@@ -63,5 +75,23 @@ public class ApiController {
 
 //        sample.sample(filePath+newFileName);
         return new Result(ResultCode.SUCCESS);
+    }
+    @ApiOperation(value = "redis测试")
+    @RequestMapping(value = "redis/{username}",method = RequestMethod.GET)
+    public Result redisTest(@PathVariable("username") String username){
+        UserInfo user = (UserInfo) redisTemplate.opsForValue().get(username);
+        if (user != null){
+            // cache in user
+            log.info("this is redis ---->"+user);
+        }
+        else {
+            //musql findAll
+            log.info(" findAll mysql ------>");
+            user = (UserInfo) httpSession.getAttribute(username);
+            redisTemplate.opsForValue().set(username, user);
+        }
+        Result result = new Result(ResultCode.SUCCESS);
+        result.setData(user);
+        return result;
     }
 }

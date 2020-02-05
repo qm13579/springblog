@@ -42,7 +42,6 @@ public class UserController {
     @ApiOperation(value = "修改密码")
     @RequestMapping(value = "changePassword",method = RequestMethod.PUT)
     public Result changePassword(@RequestParam String password,@RequestParam String newPassword1 ,@RequestParam String newPassword2){
-        System.out.println("进来了");
         return new Result(ResultCode.SUCCESS);
     }
 
