@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.filters.ExpiresFilter;
 import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -59,6 +60,8 @@ public class UserServiceImpl implements IUserService,UserDetailsService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private HttpSession session;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public void save(UserInfo user) {
@@ -102,6 +105,7 @@ public class UserServiceImpl implements IUserService,UserDetailsService {
             throw new SecurityException("用户名不存在");
         }
         session.setAttribute(userInfo.getUsername(),userInfo);
+        redisTemplate.opsForValue().set(userInfo.getUsername(),userInfo);
         User user = new User(userInfo.getUsername(),userInfo.getPassword(),getAuthority(userInfo.getRoles()));
         return user;
     }
