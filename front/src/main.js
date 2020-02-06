@@ -16,7 +16,7 @@ Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el: '#app',  //把id为app的区域由vue接管
   router,
   components: { App },
   template: '<App/>'

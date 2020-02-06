@@ -1,7 +1,21 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+    <h1>{{message}}</h1>
+    <button v-on:click="fun1('hello')">v-on绑定事件</button>
+    <span>
+        <font :color="ys1">v-bing属性绑定-用于获取改变标签值</font>
+    </span>
+    键盘绑定<input type="text" v-on:keydown="funKey($event)"/>
+    <form @submit.prevent action="https:www.baidu.com" method="post">
+        <input type="submit" value="submit-baidu">
+    </form>
+    按键修饰符--回车<input @keydown.enter="keyDownEnter" type="text"/>
+    <form action="" method="post"> 
+      用户名：<input type="text" @keydown.enter="keyDownEnterModel" name="username" v-model="user.username"/><br/>
+      密  码：<input type="text" @keydown.enter="keyDownEnterModel" name="password" v-model="user.password"/><br/>
+    </form>
+    <h2 v-on:mouseover="funMouse">Essential Links</h2>
     <ul>
       <li>
         <a
@@ -88,9 +102,32 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      message: "｛差值表达式｝---支持js表达式,不支持变量声明",
+      ys1: "red",
+      user:{
+        username: "admin",
+        password: "admin"
+      }
     }
+  },
+  methods:{
+    fun1: function(args){
+      this.message = args;
+    },
+    funKey: function(event){
+      // event.preventDefault(); //阻止键盘事件的输入
+    },
+    funMouse: function(){
+      alert("鼠标悬停在Essential")
+    },
+    keyDownEnter: function(){
+      alert('回车已经按下')
+    },
+  keyDownEnterModel: function(){
+    alert(this.user.username)
   }
+  },
 }
 </script>
 
