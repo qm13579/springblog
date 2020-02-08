@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    <router-link to="login">登录</router-link>
+    <NavMenu></NavMenu>
     <router-view/>
   </div>
 </template>
 
 <script>
+import NavMenu from '@/components/navMenu/NavMenu'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    NavMenu
+  }
 }
 </script>
 
 <style>
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

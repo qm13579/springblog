@@ -2,20 +2,26 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import MyLogin from '@/components/login/MyLogin'
-
+import Main from '@/components/vMain'
+import Processing from '@/components/processing/Processing'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Main',
+      component: Main
     },
     {
       path: '/login',
       name: 'login',
       component: MyLogin
+    },
+    {
+      path: '/process',
+      name: 'process',
+      component: Processing,
     }
   ]
 })
