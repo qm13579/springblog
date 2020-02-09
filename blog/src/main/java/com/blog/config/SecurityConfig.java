@@ -37,7 +37,7 @@ public class SecurityConfig   extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/user/register")
                 .antMatchers("/websocket/**")
-                .antMatchers("/api/**")
+//                .antMatchers("/api/**")
                 .antMatchers("/");
     }
 
@@ -58,10 +58,8 @@ public class SecurityConfig   extends WebSecurityConfigurerAdapter {
         http
             .formLogin()
                 .usernameParameter("username")
-                .passwordParameter("password")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/swagger-ui.html");
-        //开启授权认证(不限制权限)
+                .passwordParameter("password");
+    //开启授权认证(不限制权限)
         //http.authorizeRequests().anyRequest().authenticated();
         //限制权限(role权限)
 //        http.authorizeRequests()

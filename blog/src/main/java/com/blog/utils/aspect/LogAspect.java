@@ -10,6 +10,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
@@ -43,21 +44,26 @@ public class LogAspect {
         log.info("befor LogBegin");
 
     }
+
+    /**
+     *
+     * 在使用security获取用户时，保证次方法要被filter过滤
+     * @param pjp
+     * @return
+     * @throws Throwable
+     */
     @Around("LogPointcut()")
     public Object logAround(ProceedingJoinPoint pjp) throws Throwable {
         long start = System.currentTimeMillis();
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         String url = request.getRequestURI().toString();
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        UserDetails user = (UserDetails) authentication.getPrincipal();
-//        String username = user.getUsername();
-
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Object proceed = pjp.proceed();
         log.info("url:"+url);
         log.info("time:"+(System.currentTimeMillis()-start));
-//        log.info("username:"+username);
         log.info("id:"+idWorker.nextId()+"" );
+        log.info("username:"+username);
         return proceed;
 
     }
