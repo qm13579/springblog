@@ -4,15 +4,15 @@
     <el-menu-item  index="/process" >管理员中心</el-menu-item>
     <el-submenu index="2">
         <template slot="title">电子设备中心</template>
-        <el-menu-item index="2-1">设备信息</el-menu-item>
-        <el-menu-item index="2-2">使用信息</el-menu-item>
+        <el-menu-item index="/equipment">设备信息</el-menu-item>
+        <el-menu-item index="/userEquipment">使用信息</el-menu-item>
     </el-submenu>
 
     <el-submenu index="3">
         <template slot="title">用户中心</template>
         <el-menu-item index="/user">用户管理</el-menu-item>
-        <el-menu-item index="3-2">角色管理</el-menu-item>
-        <el-menu-item index="3-3">访问管理</el-menu-item>
+        <el-menu-item index="/role">角色管理</el-menu-item>
+        <el-menu-item index="/permission">访问管理</el-menu-item>
     </el-submenu>
     
     <el-menu-item  index="/log" >日志中心</el-menu-item>

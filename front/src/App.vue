@@ -6,11 +6,18 @@
     <NavMenu></NavMenu>
   </el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header >
+        电子设备管理系统
+      </el-header>
+
       <el-main>
         <router-view></router-view>
       </el-main>
-      <el-footer>Footer</el-footer>
+
+      <el-footer>
+        Footer
+      </el-footer>
+
     </el-container>
   </el-container>
 </template>

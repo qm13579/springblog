@@ -102,6 +102,7 @@ export default {
         },
         buttunAdd(){
             this.showTable = false;
+            this.showFrom = false;
             this.add = true;
         }
     },

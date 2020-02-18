@@ -10,12 +10,26 @@
             <el-form-item label="地址" prop="address">
                 <el-input v-model="userInfo.address"></el-input>
             </el-form-item>
+            
+            <el-form-item label="选择部门">
+                <el-select v-model="group" placeholder="请选择活动区域">
+                    <el-option label="会计" value="1"></el-option>
+                    <el-option label="科技" value="2"></el-option>
+                </el-select>
+            </el-form-item>
+
+            <el-form-item label="分配角色">
+                <el-select v-model="roleName" placeholder="请选择活动区域">
+                    <el-option label="管理员" value="shanghai"></el-option>
+                    <el-option label="一般用户" value="baijing"></el-option>
+                </el-select>
+            </el-form-item>
+
             <el-form-item>
                 <el-button type="primary" @click="addSubmit">提交</el-button>
                 <el-button >重置</el-button>
             </el-form-item>
         </el-form>
-        {{showTable}}
     </div>
 </template>
 
@@ -24,7 +38,8 @@ export default {
     name: 'addUser',
     data() {
         return{
-            status:false,
+            roleName:'',
+            group:'',
             userInfo:{
                 date: '',
                 username: '',
@@ -41,7 +56,7 @@ export default {
         showTable:{
         }
     },
-    created:function(){
+    created(){
         console.log("初始化")
     },
     methods:{
@@ -50,6 +65,7 @@ export default {
             this.status = true
             //清空数据
             this.userInfo = this.$options.data().userInfo
+            this.roleName = this.$options.data().roleName
         }
     },
 }
