@@ -1,6 +1,7 @@
 package com.blog.controller;
 
 import com.blog.domain.UserInfo;
+import com.blog.service.IUserService;
 import com.blog.utils.IdWorker;
 import com.blog.utils.common.Result;
 import com.blog.utils.common.ResultCode;
@@ -35,7 +36,8 @@ public class ApiController {
     private Sample sample;
     @Autowired
     private HttpSession httpSession;
-
+    @Autowired
+    private IUserService userService;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -79,16 +81,20 @@ public class ApiController {
     @ApiOperation(value = "redis测试")
     @RequestMapping(value = "redis/{username}",method = RequestMethod.GET)
     public Result redisTest(@PathVariable("username") String username){
+        long begin = System.nanoTime();
         UserInfo user = (UserInfo) redisTemplate.opsForValue().get(username);
         if (user != null){
             // cache in user
-            log.info("this is redis ---->"+user);
+            long end = System.nanoTime();
+            log.info("this is redis ---->"+user+"time:--->"+(end-begin));
         }
         else {
             //musql findAll
-            log.info(" findAll mysql ------>");
-            user = (UserInfo) httpSession.getAttribute(username);
-            redisTemplate.opsForValue().set(username, user);
+            userService.loadUserByUsername(username);
+            user = (UserInfo) redisTemplate.opsForValue().get(username);
+            long end = System.nanoTime();
+            log.info(" findAll mysql ------>:"+(end-begin));
+
         }
         Result result = new Result(ResultCode.SUCCESS);
         result.setData(user);

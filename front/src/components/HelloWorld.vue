@@ -1,8 +1,13 @@
 <template>
   <div class="hello">
+
     <h1>{{ msg }}</h1>
     <h1>{{message}}</h1>
     <MyLogin></MyLogin>
+
+    <NavMenu></NavMenu>
+
+
     <button v-on:click="fun1('hello')">v-on绑定事件</button>
     <span>
         <font :color="ys1">v-bing属性绑定-用于获取改变标签值</font>
@@ -103,7 +108,8 @@ import MyLogin from './login/MyLogin'
 export default {
   name: 'HelloWorld',
   components:{
-    MyLogin
+    MyLogin,
+    
   },
   data () {
     return {
