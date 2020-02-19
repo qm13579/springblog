@@ -15,9 +15,11 @@
         <br>
         <br>
         <el-table v-show="showTable" :data="tableData" height="500" style="width: 100%">
-        <el-table-column prop="date" label="日期" width="180"></el-table-column>
-        <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-        <el-table-column prop="address" label="地址"></el-table-column>
+        <el-table-column prop="id" label="ID" width="180"></el-table-column>
+        <el-table-column prop="username" label="用户名" width="180"></el-table-column>
+        <el-table-column prop="createDate" label="创建时间"></el-table-column>
+        <el-table-column prop="group.groupName" label="部门"></el-table-column>
+        <el-table-column prop="status" label="用户状态"></el-table-column>
         <el-table-column  label="操作">
             <template slot-scope="scope">
                 <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
@@ -27,15 +29,32 @@
         </el-table>
         <div id="from-user" >
             <el-form v-show="showFrom" :model="user"  label-width="100px" class="demo-ruleForm">
-                <el-form-item label="日期" prop="date">
-                    <el-input  v-model="user.date" autocomplete="off"></el-input>
+                <el-form-item label="ID" prop="id">
+                    <el-input  v-model="user.id" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="姓名" prop="name">
-                    <el-input  v-model="user.name" autocomplete="off"></el-input>
+                <el-form-item label="用户名" prop="username">
+                    <el-input  v-model="user.username" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="地址" prop="address">
-                    <el-input v-model="user.address"></el-input>
+                <el-form-item label="创建时间" prop="createDate">
+                    <el-input v-model="user.createDate"></el-input>
                 </el-form-item>
+
+                <el-form-item label="部门">
+                    <el-select v-model="groupValue" placeholder="请选择活动区域">
+                        <el-option v-for="item in group" :key="item.id" :label="item.groupName" :value="item.id"></el-option>
+                    </el-select>
+                </el-form-item>
+
+                <el-form-item label="用户状态" prop="status">
+                    <el-input v-model="user.status"></el-input>
+                </el-form-item>
+
+                <el-form-item label="角色">
+                    <el-checkbox-group v-model="rolesValue" >
+                        <el-checkbox v-for="role in roles"  :label="role.id" :key="role.id">{{role.roleName}}</el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
+
                 <el-form-item>
                     <el-button type="primary"  @click="submit">提交</el-button>
                     <el-button >重置</el-button>
@@ -56,55 +75,70 @@ export default {
     },
     data() {
         return{
+            groupValue:'',
+            rolesValue:[],
             add:false,
             showTable: true,
             showFrom: false,
-            user:{
-                    date: '',
-                    username: '',
-                    address: '',
-                    id:'',
-                    status:''
-                },
-            showUser:[],
+            group:[],
+            user:{},
             title: 'this findAl;l User',
-            tableData: [{
-            date: '2016-05-02',
-            name: '王da虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
-          }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }]
+            tableData: [],
+            roles:[{
+                id:'1',
+                roleName:'ADMIN'
+            },{
+                id:'2',
+                roleName:'USER'
+            },{
+                id:'3',
+                roleName:'TEST'
+            },]
         }
     },
     methods:{
         handleCilck(data){
             this.showTable = false;
             this.showFrom = true;
-            this.showUser = this.user;
             this.user = data;
+            this.groupValue = this.user.group.id
+            this.rolesValue = this.user.roles
         },
         submit(){
-            this.user = this.showUser;
             this.showTable = true;
             this.showFrom = false;
+
+            for(var i=0;i<this.tableData.length;i++){
+                 var currentUser = this.tableData[i]
+                 if(currentUser.id == this.user.id){
+                     console.log(currentUser)
+                     currentUser.group.id = this.groupValue
+                     this.tableData[i] = currentUser
+                     break
+                 }
+            }
 
         },
         buttunAdd(){
             this.showTable = false;
             this.showFrom = false;
             this.add = true;
-        }
+        },
+    },
+    created(){
+        var _this = this;
+        //获取用户
+        this.$ajax.get("api/user/").then(res =>{
+            _this.tableData =  res.data.data
+        });
+        //获取用户分组
+        this.$ajax.get("api/user/group/").then(res =>{
+            _this.group =  res.data.data
+        });
+        //获取角色分组
+        // this.$ajax.get("api/user/group/").then(res =>{
+        //     _this.group =  res.data.data
+        // });
     },
     //监听数据是否发生变化
     watch:{
