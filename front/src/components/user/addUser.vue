@@ -1,33 +1,28 @@
 <template>
     <div id="from-user" >
         <el-form  :model="userInfo"  label-width="100px" class="demo-ruleForm">
-            <el-form-item label="日期" prop="date">
-                <el-input  v-model="userInfo.date" autocomplete="off"></el-input>
+            <el-form-item label="用户名" prop="username">
+                <el-input  v-model="userInfo.username" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="姓名" prop="name">
-                <el-input  v-model="userInfo.name" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="地址" prop="address">
-                <el-input v-model="userInfo.address"></el-input>
-            </el-form-item>
-            
-            <el-form-item label="选择部门">
-                <el-select v-model="group" placeholder="请选择活动区域">
-                    <el-option label="会计" value="1"></el-option>
-                    <el-option label="科技" value="2"></el-option>
+            <el-form-item label="密码" prop="password">
+                <el-input  v-model="userInfo.password" autocomplete="off"></el-input>
+            </el-form-item>   
+
+            <el-form-item label="部门">
+                <el-select v-model="groupValue" placeholder="请选择活动区域">
+                    <el-option v-for="item in group" :key="item.id" :label="item.groupName" :value="item.id"></el-option>
                 </el-select>
             </el-form-item>
 
-            <el-form-item label="分配角色">
-                <el-select v-model="roleName" placeholder="请选择活动区域">
-                    <el-option label="管理员" value="shanghai"></el-option>
-                    <el-option label="一般用户" value="baijing"></el-option>
-                </el-select>
-            </el-form-item>
+                <el-form-item label="角色">
+                    <el-checkbox-group v-model="rolesValue" >
+                        <el-checkbox v-for="role in roles"  :label="role.id" :key="role.id">{{role.roleName}}</el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
 
             <el-form-item>
                 <el-button type="primary" @click="addSubmit">提交</el-button>
-                <el-button >重置</el-button>
+                <el-button @click="back">返回</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -38,36 +33,59 @@ export default {
     name: 'addUser',
     data() {
         return{
+            status:true,
+            rolesValue:["user"],
             roleName:'',
-            group:'',
-            userInfo:{
-                date: '',
-                username: '',
-                address: '',
-                id:'',
-                status:''
+            groupValue:'',
+            userInfo:{},
+            roles:[{
+                id:'user',
+                roleName:'USER'   
             },
+            {
+                id:'admin',
+                roleName:'ADMIN'   
+            }]
         }
     },
     props:{
         tableData:{
             type:Array
         },
-        showTable:{
+        group:{
+            type:Array
+        },
+        watchaddUser:{
+            type:Array
         }
     },
     created(){
         console.log("初始化")
     },
     methods:{
-        addSubmit:function(){
+        addSubmit(){
             this.tableData.push(this.userInfo)
-            this.status = true
+            //角色增加
+            this.userInfo.roles=[]
+            this.rolesValue.forEach(element => {
+                console.log(element)
+                this.userInfo.roles.push({id:element})
+            });
+            //部门增加
+            this.userInfo.group = {id:this.groupValue}
+            //更新页面
+            this.$ajax.post("/api/user/",this.userInfo).then(res => {
+                console.log(res)
+            })
             //清空数据
             this.userInfo = this.$options.data().userInfo
             this.roleName = this.$options.data().roleName
-        }
+        },
+        back(){
+            this.watchaddUser.push(true)
     },
+    },
+
 }
 
 

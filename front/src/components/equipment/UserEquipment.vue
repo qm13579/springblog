@@ -10,7 +10,7 @@
                 <el-dropdown-item>办公室</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
-        <el-button type="seccess" style="float:right" @click="addUserEquipment">添加用户</el-button>
+        
         <br>
         <br>
         <br>

@@ -11,7 +11,8 @@
                 <el-input v-model="userEquipment.equipment"></el-input>
             </el-form-item>
             <el-form-item label="使用日期" prop="date">
-                <el-input v-model="userEquipment.date"></el-input>
+                <el-date-picker v-model="userEquipment.date" type="date" placeholder="选择日期"></el-date-picker>
+                <!-- <el-input v-model="userEquipment.date"></el-input> -->
             </el-form-item>                
             <el-form-item label="状态" prop="status">
                 <el-input v-model="userEquipment.status"></el-input>
