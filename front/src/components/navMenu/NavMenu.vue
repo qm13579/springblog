@@ -1,7 +1,7 @@
 <template>
     <el-menu background-color="#545c64" text-color="#fff" router :default-active="activeIndex"  class="el-menu-demo"  @select="handleSelect">
     <el-menu-item index="/" >首页</el-menu-item>
-    <el-menu-item  index="/process" >管理员中心</el-menu-item>
+    <el-menu-item  index="/maintenance" >维保信息</el-menu-item>
     <el-submenu index="2">
         <template slot="title">电子设备中心</template>
         <el-menu-item index="/equipment">设备信息</el-menu-item>

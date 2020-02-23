@@ -3,12 +3,12 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import MyLogin from '@/components/login/MyLogin'
 import Main from '@/components/vMain'
-import Processing from '@/components/processing/Processing'
+import Maintenance from '@/components/maintenance/Maintenance'
 import User from '@/components/user/User'
-import Role from '@/components/user/Role'
-import Permission from '@/components/user/Permission'
+import Role from '@/components/role/Role'
+import Permission from '@/components/permission/Permission'
 import Equipment from '@/components/equipment/Equipment'
-import UserEquipment from '@/components/equipment/UserEquipment'
+import UserEquipment from '@/components/useEquipment/UserEquipment'
 
 Vue.use(Router)
 
@@ -25,9 +25,9 @@ export default new Router({
       component: MyLogin
     },
     {
-      path: '/process',
-      name: 'process',
-      component: Processing,
+      path: '/maintenance',
+      name: 'maintenance',
+      component: Maintenance,
     },
     {
       path: '/user',

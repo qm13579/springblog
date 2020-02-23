@@ -57,7 +57,7 @@
   </template>
 
 <script>
-import addUserEquipment from '@/components/equipment/addUserEquipment'
+import addUserEquipment from './addUserEquipment'
 export default {
     name: "userEquipment",
     components:{

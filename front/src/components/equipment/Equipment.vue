@@ -3,8 +3,8 @@
         <el-dropdown  split-button type="primary" style="float:left">
         功能
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>维保</el-dropdown-item>
-                <el-dropdown-item>科技</el-dropdown-item>
+                <el-dropdown-item @click.native="toMmaintenance">维保详情</el-dropdown-item>
+                <el-dropdown-item>故障详情</el-dropdown-item>
                 <el-dropdown-item>人事</el-dropdown-item>
                 <el-dropdown-item>后勤</el-dropdown-item>
                 <el-dropdown-item>办公室</el-dropdown-item>
@@ -28,7 +28,7 @@
 
         <el-table-column  label="操作">
             <template slot-scope="scope">
-                <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
+                <el-button @click="handleCilck(scope.row)" type="text" size="small">编辑</el-button>
                 <el-button @click="handleEquipment(scope.row)" type="text" size="small">分配用户</el-button>
             </template>
         </el-table-column>   
@@ -76,24 +76,29 @@
         <!--父组件通过数据绑定传递值，子组件通过prop获取-->
         <addEquipment v-show="add" 
             :equipmentList="equipmentList" 
-            :equipmentTypeList="equipmentTypeList">
+            :equipmentTypeList="equipmentTypeList"
+            :watchaddData="watchaddData">
         </addEquipment>
         <UseEquipment v-show="equipmentShow" :watchaddData="watchaddData" :equipment="equipment" ></UseEquipment>
-
+        <maintenance v-show="maintenanceShow" :watchaddData="watchaddData" :maintenance="maintenance"></maintenance>
     </div>
   </template>
 
 <script>
 import UseEquipment from "./useEquipment-e"
 import addEquipment from '@/components/equipment/addEquipment'
+import maintenance from "../maintenance/maintenanceToEeqpment"
 export default {
     name: "equipment",
     components:{
         addEquipment,
         UseEquipment,
+        maintenance,
     },
     data() {
         return{
+            maintenance:[],
+            maintenanceShow:false,
             status:"",
             watchaddData:[],
             equipmentShow:false,
@@ -101,7 +106,9 @@ export default {
             add:false,
             showTable: true,
             showFrom: false,
-            equipment:{},
+            equipment:{
+                type:{}
+            },
             title: 'this findAl;l User',
             equipmentList: [],
             equipmentTypeList:[{
@@ -136,7 +143,6 @@ export default {
             this.equipment = data;
             this.equipmentValue = data.type.id
             this.status = data.status
-
         },
         submit(){
             this.showTable = true;
@@ -156,7 +162,17 @@ export default {
             this.showFrom = false;
             this.equipmentShow=true;
         },
-
+        toMmaintenance(){
+            if(this.showTable == false){
+                this.$ajax.get("api/maintenance/"+this.equipment.id).then(res =>{
+                    if (res.data.code == 10000) {
+                        this.maintenance = res.data.data
+                    }
+                })
+            }else{
+                this.$router.push("/maintenance")
+            }
+        },
 
     },
     //监听数据是否发生变化

@@ -32,7 +32,7 @@
 
             <el-form-item>
                 <el-button type="primary"  @click="addSubmit">提交</el-button>
-                <el-button >重置</el-button>
+                <el-button @click="back">返回</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -54,10 +54,10 @@ export default {
         },
         equipmentTypeList:{
             type:Array
+        },
+        watchaddData:{
+            type:Array
         }
-    },
-    created(){
-        console.log("初始化")
     },
     methods:{
         addSubmit(){
@@ -74,7 +74,11 @@ export default {
             //清空数据
             this.equipment = this.$options.data().equipment
             //增加id、状态生成
-        }
+        },
+        back(){
+            this.watchaddData.push(true)
+    }
+
     },
 }
 
