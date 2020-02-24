@@ -5,7 +5,7 @@
             <el-table-column prop="name" label="维保人员" width="180"></el-table-column>
             <el-table-column prop="mobile" label="电话"></el-table-column>
             <el-table-column prop="date" label="日期"></el-table-column>
-            <el-table-column prop="equipment" label="设备名称"></el-table-column>
+            <el-table-column prop="equipment.brand" label="设备名称"></el-table-column>
             <el-table-column prop="statusString" label="地址"></el-table-column>
             <el-table-column prop="describe" label="描述"></el-table-column>
         </el-table>

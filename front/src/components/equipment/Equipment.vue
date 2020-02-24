@@ -3,11 +3,7 @@
         <el-dropdown  split-button type="primary" style="float:left">
         功能
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item @click.native="toMmaintenance">维保详情</el-dropdown-item>
-                <el-dropdown-item>故障详情</el-dropdown-item>
-                <el-dropdown-item>人事</el-dropdown-item>
-                <el-dropdown-item>后勤</el-dropdown-item>
-                <el-dropdown-item>办公室</el-dropdown-item>
+                <el-dropdown-item v-for=" item in functionList" :key="item.id" @click.native="findEquipmentByGruop(item)">{{item.groupName}}</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
         <el-button type="seccess" style="float:right" @click="addEquipment">添加设备</el-button>
@@ -60,7 +56,6 @@
                 </el-form-item>
 
                 <el-form-item label="设备状态"  >
-                    <!-- <el-input v-model="equipment.statusString"></el-input> -->
                     <el-select v-model="status" placeholder="请选择活动区域">
                         <el-option v-for="item in statusList" :key="item.id" :label="item.name" :value="item.id"></el-option>
                     </el-select>
@@ -70,17 +65,16 @@
                     <el-button type="primary"  @click="submit">提交</el-button>
                     <el-button @click="back" >返回</el-button>
                 </el-form-item>
-
             </el-form>
         </div>
-        <!--父组件通过数据绑定传递值，子组件通过prop获取-->
-        <addEquipment v-show="add" 
-            :equipmentList="equipmentList" 
-            :equipmentTypeList="equipmentTypeList"
-            :watchaddData="watchaddData">
-        </addEquipment>
+        <!--添加设备-->
+        <addEquipment v-show="add" :equipmentList="equipmentList" :equipmentTypeList="equipmentTypeList" :watchaddData="watchaddData"></addEquipment>
+        <!-- 分配设备使用 -->
         <UseEquipment v-show="equipmentShow" :watchaddData="watchaddData" :equipment="equipment" ></UseEquipment>
+        <!-- 维保记录 -->
         <maintenance v-show="maintenanceShow" :watchaddData="watchaddData" :maintenance="maintenance"></maintenance>
+        <!-- 新增维保和报修 -->
+        <addMaintenance v-show="addMaintenanceShow" :equipment="equipment" :watchaddData="watchaddData"></addMaintenance>
     </div>
   </template>
 
@@ -88,15 +82,20 @@
 import UseEquipment from "./useEquipment-e"
 import addEquipment from '@/components/equipment/addEquipment'
 import maintenance from "../maintenance/maintenanceToEeqpment"
+import addMaintenance from "../maintenance/addMaintenance"
+
 export default {
     name: "equipment",
     components:{
         addEquipment,
         UseEquipment,
         maintenance,
+        addMaintenance,
     },
     data() {
         return{
+            addMaintenanceShow:false,
+            functionList:[],
             maintenance:[],
             maintenanceShow:false,
             status:"",
@@ -111,19 +110,7 @@ export default {
             },
             title: 'this findAl;l User',
             equipmentList: [],
-            equipmentTypeList:[{
-                "id":"5",
-                "groupName":"笔记本",
-                "gid":"2"
-            },{
-                "id":"6",
-                "groupName":"服务器",
-                "gid":"2"
-            },{
-                "id":"8",
-                "groupName":"路由器",
-                "gid":"2"
-            }],
+            equipmentTypeList:[],
             statusList:[
                 {id:0,name:"已启用"},
                 {id:1,name:"故障"},
@@ -132,47 +119,114 @@ export default {
         }
     },
     methods:{
+        //用于切换显示数据
         back(){
             this.showTable = true;
             this.showFrom = false;
+            this.findEquipmentGruop()
         },
+        //用户传递数据并切换 实现更新
         handleCilck(data){
             this.showTable = false;
             this.showFrom = true;
-            this.showUser = this.user;
             this.equipment = data;
             this.equipmentValue = data.type.id
             this.status = data.status
+            this.functionList=[
+                {id:"1",groupName:"维保记录"},
+                {id:"2",groupName:"新增维保"},
+                {id:"3",groupName:"故障申报"},
+                {id:"4",groupName:"查看设备"},
+
+            ]
         },
+        //更新组件中提交
         submit(){
             this.showTable = true;
             this.showFrom = false;
             this.$ajax.put("/api/equipment/",this.equipment).then(res =>{
-                console.log(data)
+                
             })
         },
+        //添加设备
         addEquipment(){
             this.showTable = false;
             this.showFrom = false;
             this.add = true;
+            this.findEquipmentGruop()
         },
         handleEquipment(data){
             this.equipment = data;
             this.showTable = false;
             this.showFrom = false;
             this.equipmentShow=true;
+            this.findEquipmentGruop()
         },
+        //当在维保历史组件时更新功能键
         toMmaintenance(){
             if(this.showTable == false){
+                var _this = this;
                 this.$ajax.get("api/maintenance/"+this.equipment.id).then(res =>{
                     if (res.data.code == 10000) {
-                        this.maintenance = res.data.data
+                        _this.maintenance = res.data.data
+                        _this.showTable = false;
+                        _this.showFrom = false;
+                        _this.equipmentShow=false;
+                        _this.maintenanceShow = true;
+
                     }
                 })
             }else{
-                this.$router.push("/maintenance")
+                // this.$router.push("/maintenance")
             }
         },
+        //当新增维保及报修中更新功能键
+        addToMmaintenance(){
+            if(this.showTable == false){
+                this.showTable = false;
+                this.showFrom = false;
+                this.equipmentShow=false;
+                this.maintenanceShow = false;
+                this.addMaintenanceShow=true;
+            }
+        },
+        //通过设备类型查找设备
+        findEquipmentByGruop(item){
+            console.log(item)
+            var _this =this
+            if (this.showTable == false) {
+                if (item.id == "1") {
+                    this.toMmaintenance()
+                }
+                if(item.id == "2" || item.id == "3"){
+                    this.addToMmaintenance()
+                }
+                else{
+                    this.showTable = false;
+                    this.showFrom = true;
+                    this.maintenanceShow = false;
+                    this.addMaintenanceShow=false;
+                }
+            }else{
+                this.$ajax.get("api/equipment/"+item.id).then(res => {
+                    if (res.data.code == 10000) {
+                        _this.equipmentList = res.data.data;
+                    }
+                })
+            }
+
+        },
+        //获取设备分类
+        findEquipmentGruop(){
+            var _this = this
+            this.$ajax.get("api/equipment/equipment/group").then(res => {
+                if (res.data.code == 10000) {
+                    _this.functionList = res.data.data
+                    _this.equipmentTypeList = res.data.data
+
+                }
+            })
+        }
 
     },
     //监听数据是否发生变化
@@ -180,11 +234,13 @@ export default {
         equipmentList(){
             this.showTable = true;
             this.add = false;
+            this.findEquipmentGruop()
         },
         watchaddData(){
             this.showTable = true;
             this.add = false;
             this.equipmentShow = false; 
+            this.findEquipmentGruop()
         }
     },
     created(){
@@ -192,14 +248,9 @@ export default {
         //获取用户
         this.$ajax.get("api/equipment/").then(res =>{
             _this.equipmentList =  res.data.data;
-            console.log(_this.equipmentList)
         });
-
-    },
-    mounted(){
-        for(var i=0;i<5;i++){
-            this.equipmentList.push(this.equipment)
-        }
+        //获取设备分类
+        this.findEquipmentGruop()
     },
     
 }
