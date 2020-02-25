@@ -1,13 +1,12 @@
 <template>
-    <!-- <NavMenu></NavMenu>
-    <router-view/> -->
   <el-container id="app">
     <el-aside width="200px">
     <NavMenu></NavMenu>
   </el-aside>
     <el-container>
       <el-header >
-        电子设备管理系统
+        电子设备管理系统 
+        <el-col :span="2">用户名</el-col>
       </el-header>
 
       <el-main>

@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <FindAllUser></FindAllUser>
-    </div>
-
+        <el-row type="flex" class="row-bg" justify="center">
+                <FindAllUser></FindAllUser>
+        </el-row>
 </template>
 
 <script>

@@ -1,48 +1,63 @@
   <template>
-  <!-- @click.native -->
-  <!-- :comman -->
-    <div>
-        <el-dropdown  split-button type="primary" style="float:left" @click="findAll">
-        部门
-            <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item v-for=" item in group" :key="item.id"  @click.native="selectGropu(item)">{{item.groupName}}</el-dropdown-item>
-            </el-dropdown-menu>
-        </el-dropdown>
+      <el-main>
+        <el-row>
+        
+            <el-col :span="6"><el-dropdown split-button type="primary" style="float:left" @click="findAll">
+            部门
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item v-for=" item in group" :key="item.id"  @click.native="selectGropu(item)">{{item.groupName}}</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown></el-col>
 
-        <el-button type="seccess" style="float:right" @click="buttunAdd">添加用户</el-button>
+            <el-col :span="6" :offset="12"><el-button type="seccess" style="float:right" @click="buttunAdd">添加用户</el-button></el-col>
+        </el-row>
+
         <br>
         <br>
-        <br>
-        <el-table v-show="showTable" :data="tableData" height="500" style="width: 100%">
-        <el-table-column prop="username" label="用户名" width="180"></el-table-column>
-        <el-table-column prop="createDate" label="创建时间"></el-table-column>
-        <el-table-column prop="group.groupName" label="部门"></el-table-column>
-        <el-table-column prop="statusString" label="用户状态"></el-table-column>
-        <el-table-column  label="操作">
-            <template slot-scope="scope">
-                <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
-                <el-button  @click="handleEquipment(scope.row)" type="text" size="small">分配设备</el-button>
-            </template>
-        </el-table-column>   
-        </el-table>
-        <div id="from-user" >
+
+        <el-row type="flex" class="row-bg" justify="center">
+
+            <el-table v-show="showTable" :data="tableData" height="500" style="width: 100%">
+            <el-table-column prop="username" label="用户名" ></el-table-column>
+            <el-table-column prop="createDate" label="创建时间"></el-table-column>
+            <el-table-column prop="group.groupName" label="部门"></el-table-column>
+            <el-table-column prop="statusString" label="用户状态"></el-table-column>
+            <el-table-column  label="操作" width="180">
+                <template slot-scope="scope" >
+                    <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
+                    <el-button  @click="handleEquipment(scope.row)" type="text" size="small">分配设备</el-button>
+                </template>
+            </el-table-column>   
+            </el-table>
+
             <el-form v-show="showFrom" :model="user"  label-width="100px" class="demo-ruleForm">
-                <el-form-item label="用户名" prop="username">
-                    <el-input  v-model="user.username" autocomplete="off"></el-input>
+                
+                <el-form-item label="用户名">
+                    <el-col :span="12">
+                        <el-input  v-model="user.username" autocomplete="off"></el-input>
+                    </el-col>
+                </el-form-item>
+
+                <el-form-item label="姓名" >
+                    <el-col :span="12">
+                        <el-input  v-model="user.name" autocomplete="off"></el-input>
+                    </el-col>
                 </el-form-item>
 
                 <el-form-item label="部门">
-                    <el-select v-model="groupValue" placeholder="请选择活动区域">
-                        <el-option v-for="item in group" :key="item.id" :label="item.groupName" :value="item.id"></el-option>
-                    </el-select>
+                    <el-col :span="12">
+                        <el-select v-model="groupValue" placeholder="请选择活动区域">
+                            <el-option v-for="item in group" :key="item.id" :label="item.groupName" :value="item.id"></el-option>
+                        </el-select>
+                    </el-col>
                 </el-form-item>
 
                 <el-form-item label="用户状态" prop="status">
-                    <!-- <el-input v-model="user.status"></el-input> -->
-
-                    <el-select v-model="statusValues" placeholder="请选择活动区域">
-                        <el-option v-for="item in statusList" :key="item.id" :label="item.name" :value="item.id"></el-option>
-                    </el-select>
+                    <el-col :span="12">
+                        <el-select v-model="statusValues" placeholder="请选择活动区域">
+                            <el-option v-for="item in statusList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+                        </el-select>
+                    </el-col>
                 </el-form-item>
 
                 <el-form-item label="角色">
@@ -56,11 +71,15 @@
                     <el-button @click="back">返回</el-button>
                 </el-form-item>
             </el-form>
-        </div>
-        <!--父组件通过数据绑定传递值，子组件通过prop获取-->
-        <addUser v-show="add" :tableData="tableData" :group="group" :watchaddUser="watchaddUser"></addUser>
-        <UseEquipment v-show="equipmentShow" :watchaddUser="watchaddUser" :user="user" ></UseEquipment>
-    </div>
+
+
+            <!--父组件通过数据绑定传递值，子组件通过prop获取-->
+            <addUser v-show="add" :tableData="tableData" :group="group" :watchaddUser="watchaddUser"></addUser>
+            <UseEquipment v-show="equipmentShow" :watchaddUser="watchaddUser" :user="user" ></UseEquipment>
+        
+        </el-row>    
+
+      </el-main>
   </template>
 
 <script>
@@ -193,9 +212,3 @@ export default {
 
 </script>
 
-<style scoped>
- #from-user{
-    width: 20%;
-    margin:0 auto
- }
-</style>

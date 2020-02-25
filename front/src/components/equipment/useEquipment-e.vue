@@ -1,5 +1,4 @@
 <template>
-    <div id="from-user" >
         <el-form  ref="form" :model="equipment"  label-width="100px" class="demo-ruleForm">
 
             <el-form-item label="品牌" prop="brand">
@@ -36,12 +35,11 @@
             </el-form-item> 
 
             <el-form-item>
-                <el-button type="primary"  @click="submit(false)">提交</el-button>
+                <!-- <el-button type="primary"  @click="submit(false)">提交</el-button> -->
                 <el-button type="primary"  @click="submit(true)">分配并激活</el-button>
                 <el-button  @click="back">返回</el-button>
             </el-form-item>
         </el-form>
-    </div>
 </template>
 
 <script>

@@ -1,27 +1,23 @@
 <template>
-    <div>
-        <div id="from-user" >
-            <el-form  :model="user"  label-width="100px" class="demo-ruleForm">
-                <el-form-item label="用户名" >
-                    <el-input  v-model="user.username" disabled autocomplete="off"></el-input>
-                </el-form-item>
+        <el-form  :model="user"  label-width="100px" class="demo-ruleForm">
+            <el-form-item label="用户名" >
+                <el-input  v-model="user.username" disabled autocomplete="off"></el-input>
+            </el-form-item>
 
-                <el-form-item label="部门" prop="group">
-                    <el-input  v-model="user.group.groupName" disabled autocomplete="off"></el-input>
-                </el-form-item>
+            <el-form-item label="部门" prop="group">
+                <el-input  v-model="user.group.groupName" disabled autocomplete="off"></el-input>
+            </el-form-item>
 
-                <el-form-item label="选择设备" prop="group">
-                    <el-cascader v-model="value" :options="equipemtList" :props="{ expandTrigger: 'hover' }" @change="handleChange"></el-cascader>
-                </el-form-item>
+            <el-form-item label="选择设备" prop="group">
+                <el-cascader v-model="value" :options="equipemtList" :props="{ expandTrigger: 'hover' }" @change="handleChange"></el-cascader>
+            </el-form-item>
 
-                <el-form-item>
-                    <el-button type="primary"  @click="submit(false)">分配</el-button>
-                    <el-button type="primary"  @click="submit(true)">分配并激活</el-button>
-                    <el-button @click="back">返回</el-button>
-                </el-form-item>
-            </el-form>
-        </div>
-    </div>
+            <el-form-item>
+                <el-button type="primary"  @click="submit(true)">分配并激活</el-button>
+                <el-button @click="back">返回</el-button>
+            </el-form-item>
+        </el-form>
+
 </template>
 <script>
 export default {

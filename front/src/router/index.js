@@ -4,11 +4,13 @@ import HelloWorld from '@/components/HelloWorld'
 import MyLogin from '@/components/login/MyLogin'
 import Main from '@/components/vMain'
 import Maintenance from '@/components/maintenance/Maintenance'
-import User from '@/components/user/User'
+import User from '@/components/user/findAllUser'
 import Role from '@/components/role/Role'
 import Permission from '@/components/permission/Permission'
 import Equipment from '@/components/equipment/Equipment'
 import UserEquipment from '@/components/useEquipment/UserEquipment'
+import Personal from '@/components/personal/Personal'
+import Department from '@/components/department/Department'
 
 Vue.use(Router)
 
@@ -31,7 +33,7 @@ export default new Router({
     },
     {
       path: '/user',
-      name: 'user',
+      name: 'findAllUser',
       component: User
     },
     {
@@ -53,6 +55,16 @@ export default new Router({
       path: '/userEquipment',
       name: 'userEquipment',
       component:UserEquipment
+    },
+    {
+      path:"/personal",
+      name:"personal",
+      component:Personal,
+    },
+    {
+      path:"/department",
+      name:"department",
+      component:Department,
     }
   ]
 })

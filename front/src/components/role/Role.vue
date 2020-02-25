@@ -8,6 +8,7 @@
             <el-table v-show="showTable" :data="roleList" height="500" style="width: 100%">
             <el-table-column prop="id" label="id" width="180"></el-table-column>
             <el-table-column prop="roleName" label="角色" width="180"></el-table-column>
+            <el-table-column prop="desc" label="角色描述" width="180"></el-table-column>
             <el-table-column  label="操作">
                 <template slot-scope="scope">
                     <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>

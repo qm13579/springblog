@@ -1,8 +1,9 @@
 <template>
-    <div id="from-user" >
-        <el-form  :model="equipment"  label-width="100px" class="demo-ruleForm">
+    <el-row type="flex" class="row-bg" justify="center">
+            
+        <el-form  :model="equipment" label-width="200px" class="demo-ruleForm">
 
-            <el-form-item label="品牌" prop="brand">
+            <el-form-item label="品牌"   prop="brand">
                 <el-input  v-model="equipment.brand" autocomplete="off"></el-input>
             </el-form-item>
 
@@ -35,7 +36,9 @@
                 <el-button @click="back">返回</el-button>
             </el-form-item>
         </el-form>
-    </div>
+    
+        <el-col :span="6"><div class="grid-content"></div></el-col>
+    </el-row>
 </template>
 
 <script>

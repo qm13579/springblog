@@ -1,6 +1,5 @@
 <template>
-    <div id="from-user" >
-        <el-form  :model="userInfo"  label-width="100px" class="demo-ruleForm">
+    <el-row type="flex" class="row-bg" justify="center">        <el-form  :model="userInfo"  label-width="100px" class="demo-ruleForm">
             <el-form-item label="用户名" prop="username">
                 <el-input  v-model="userInfo.username" autocomplete="off"></el-input>
             </el-form-item>
@@ -25,7 +24,7 @@
                 <el-button @click="back">返回</el-button>
             </el-form-item>
         </el-form>
-    </div>
+    </el-row>
 </template>
 
 <script>
