@@ -1,13 +1,16 @@
 <template>
-    <div>
-        <el-button type="seccess" style="float:right" @click="addPermission">添加访问路径</el-button>
+    <el-main>
+        <el-row>
+            <el-button type="seccess" style="float:right" @click="addDepartment">添加部门</el-button>
+        </el-row>
         <br>
         <br>
         <br>
+        <el-row type="flex" class="row-bg" justify="center">
+
         <el-table v-show="showTable" :data="permissionList" height="500" style="width: 100%">
         <el-table-column prop="id" label="id" width="180"></el-table-column>
-        <el-table-column prop="permissionName" label="权限" width="180"></el-table-column>
-        <el-table-column prop="url" label="URL" width="180"></el-table-column>
+        <el-table-column prop="groupName" label="部门" width="180"></el-table-column>
 
         <el-table-column  label="操作">
             <template slot-scope="scope">
@@ -18,12 +21,11 @@
         </el-table>
         <div id="from-user" >
             <el-form v-show="showFrom" :model="permission"  label-width="100px" class="demo-ruleForm">
-                <el-form-item label="id" prop="id">
-                    <el-input  v-model="permission.id" autocomplete="off"></el-input>
+                
+                <el-form-item label="部门" prop="groupName">
+                    <el-input  v-model="permission.groupName" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="角色" prop="permissionName">
-                    <el-input  v-model="permission.permissionName" autocomplete="off"></el-input>
-                </el-form-item>
+
                 <el-form-item>
                     <el-button type="primary"  @click="submitUpdate">提交</el-button>
                     <el-button >重置</el-button>
@@ -31,7 +33,8 @@
             </el-form>
         </div>
         <addPermission  v-show="add" :permissionList=permissionList></addPermission>
-    </div>
+        </el-row>
+    </el-main>
 </template>
 
 <script>
@@ -47,33 +50,13 @@ export default {
             add:false,
             showTable: true,
             showFrom: false,
-            permission:{
-                id:'',
-                permissionName:'',
-                url:''
-            },
-            permissionList:[
-                {
-                id:'1',
-                permissionName:'用户访问',
-                url:'/user'
-            },
-                {
-                id:'2',
-                permissionName:'角色访问',
-                url:'/role'
-            },
-                 {
-                id:'3',
-                permissionName:'权限访问',
-                url:'/permission'
-            },
-            ]
+            permission:{},
+            permissionList:[]
         }
     },
     methods:{
-        addPermission:function(){
-            console.log("this is add role")
+        addDepartment:function(){
+            console.log("this is add department")
             this.showTable = false;
             this.showFrom = false;
             this.add = true;
@@ -85,14 +68,31 @@ export default {
             this.permission = data;
         },
         submitUpdate:function(){
-            console.log("this is roleInfo Update")
-            this.showTable = true;
-            this.showFrom = false;
+            this.$ajax.post("api/user/group/",this.permission).then(res => {
+                if (res.data.code == 10000) {
+                    console.log("this is roleInfo Update")
+                    this.showTable = true;
+                    this.showFrom = false;
+                            
+                }else{
+                    console.log("更新失败")
+                }
 
+            })
+
+        },
+        getGroupData(){
+            var _this = this
+            this.$ajax.get("api/user/group/").then(res => {
+                console.log(res)
+                if (res.data.code == 10000) {
+                    _this.permissionList = res.data.data
+                }
+            })
         }
     },
     created(){
-        console.log("向后端请求数据，查询角色数据")
+        this.getGroupData()
     },
     watch:{
         permissionList(){

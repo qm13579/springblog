@@ -14,6 +14,20 @@ Vue.prototype.$ajax = Axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
+router.beforeEach((to, from, next) => {
+  const user = JSON.parse(sessionStorage.getItem("user"))
+  if (user || to.name == "login") {
+    next()
+  }else{
+    next({
+      name: "login",
+      query:{
+        redirect: to.path
+      }
+    })
+  }
+
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',  //把id为app的区域由vue接管

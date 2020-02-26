@@ -19,52 +19,20 @@ export default new Router({
     {
       path: '/',
       name: 'Main',
-      component: Main
+      component: Main,
+      children:[
+        {path: '/maintenance',name: 'maintenance',component: Maintenance,},
+        {path: '/user',name: 'findAllUser',component: User},
+        {path: '/role',name: 'role',component: Role},
+        {path: '/permission',name: 'permission',component:Permission},
+        {path:'/equipment',name:'equipment',component:Equipment},    
+        {path: '/userEquipment',name: 'userEquipment',component:UserEquipment},
+      ]
     },
     {
       path: '/login',
       name: 'login',
       component: MyLogin
     },
-    {
-      path: '/maintenance',
-      name: 'maintenance',
-      component: Maintenance,
-    },
-    {
-      path: '/user',
-      name: 'findAllUser',
-      component: User
-    },
-    {
-      path: '/role',
-      name: 'role',
-      component: Role
-    },
-    {
-      path: '/permission',
-      name: 'permission',
-      component:Permission
-    },
-    {
-      path:'/equipment',
-      name:'equipment',
-      component:Equipment
-    },
-    {
-      path: '/userEquipment',
-      name: 'userEquipment',
-      component:UserEquipment
-    },
-    {
-      path:"/personal",
-      name:"personal",
-      component:Personal,
-    },
-    {
-      path:"/department",
-      name:"department",
-      component:Department,
-    }
-  ]
+  ],
 })

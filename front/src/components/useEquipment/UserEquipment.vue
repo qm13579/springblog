@@ -3,11 +3,7 @@
         <el-dropdown  split-button type="primary" style="float:left">
         部门
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>会计</el-dropdown-item>
-                <el-dropdown-item>科技</el-dropdown-item>
-                <el-dropdown-item>人事</el-dropdown-item>
-                <el-dropdown-item>后勤</el-dropdown-item>
-                <el-dropdown-item>办公室</el-dropdown-item>
+                <el-dropdown-item v-for="item in functionList" :key="item.id" @click.native="func(item)">{{item.name}}</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
         
@@ -16,10 +12,12 @@
         <br>
         <el-table v-show="showTable" :data="userEquipmentList" height="500" style="width: 100%">
         <el-table-column prop="id" label="ID" width="180"></el-table-column>
-        <el-table-column prop="user" label="使用人" width="180"></el-table-column>
-        <el-table-column prop="equipment" label="机器类型"></el-table-column>
+        <el-table-column prop="user.name" label="使用人" width="180"></el-table-column>
+        <el-table-column prop="equipment.type.groupName" label="设备类型"></el-table-column>
+        <el-table-column prop="equipment.brand" label="设备品牌"></el-table-column>
+        <el-table-column prop="equipment.part" label="设备型号"></el-table-column>
         <el-table-column prop="date" label="使用日期"></el-table-column>
-        <el-table-column prop="status" label="状态"></el-table-column>
+        <el-table-column prop="statusString" label="状态"></el-table-column>
         <el-table-column  label="操作">
             <template slot-scope="scope">
                 <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
@@ -33,16 +31,16 @@
                     <el-input  v-model="userEquipment.id" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="用户" prop="user">
-                    <el-input  v-model="userEquipment.user" autocomplete="off"></el-input>
+                    <el-input  v-model="userEquipment.user.name" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="设备" prop="equipment">
-                    <el-input v-model="userEquipment.equipment"></el-input>
+                    <el-input v-model="userEquipment.equipment.brand"></el-input>
                 </el-form-item>
                 <el-form-item label="使用日期" prop="date">
                     <el-input v-model="userEquipment.date"></el-input>
                 </el-form-item>                
                 <el-form-item label="状态" prop="status">
-                    <el-input v-model="userEquipment.status"></el-input>
+                    <el-input v-model="userEquipment.statusString"></el-input>
                 </el-form-item>
                  
                 <el-form-item>
@@ -69,14 +67,14 @@ export default {
             showTable: true,
             showFrom: false,
             userEquipment:{
-                    id: '1',
-                    user: '冯志',
-                    equipment: '服务器',
-                    date:'2020-02-02',
-                    status:'1',
-                },
+                user:{},
+                equipment:{}
+            },
             title: 'this findAl;l User',
-            userEquipmentList: []
+            userEquipmentList: [],
+            functionList:[
+                {id:"1",name:"历史工单"},
+            ],
         }
     },
     methods:{
@@ -95,6 +93,26 @@ export default {
             this.showFrom = false;
             this.add = true;
         },
+        //请求数据
+        getUseEquipmentData(){
+            var _this = this
+            this.$ajax.get("api/useEquipment/").then(res => {
+                if(res.data.code == 10000){
+                    _this.userEquipmentList = res.data.data
+                    console.log(res.data.data)
+                }
+            });
+            console.log( _this.userEquipmentList)
+        },
+        //功能键跳转
+        func(){
+            var _this = this
+            this.$ajax.get("api/useEquipment/history").then(res => {
+                if(res.data.code == 10000){
+                    _this.userEquipmentList = res.data.data
+                }
+            });
+        }
 
     },
     //监听数据是否发生变化
@@ -104,12 +122,9 @@ export default {
             this.add = false;
         }
     },
-    mounted(){
-        for(var i=0;i<5;i++){
-            this.userEquipmentList.push(this.userEquipment)
-        }
-        
-    },
+    created(){
+        this.getUseEquipmentData()
+    }
     
 }
 

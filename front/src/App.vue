@@ -1,39 +1,33 @@
-<template>
-  <el-container id="app">
-    <el-aside width="200px">
-    <NavMenu></NavMenu>
-  </el-aside>
-    <el-container>
-      <el-header >
-        电子设备管理系统 
-        <el-col :span="2">用户名</el-col>
-      </el-header>
-
-      <el-main>
-        <router-view></router-view>
-      </el-main>
-
-      <el-footer>
-        Footer
-      </el-footer>
-
-    </el-container>
-  </el-container>
+<template id="app">
+    <router-view></router-view>
 </template>
 
 <script>
-import NavMenu from '@/components/navMenu/NavMenu'
-
 export default {
   name: 'App',
-  components: {
-    NavMenu,
-  }
 }
 </script>
 
 <style>
+  html,body,#app,.el-container{
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+  }
   .el-header, .el-footer {
+    background-color: #409EFF;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+    .el-aside {
+    background-color: #545c64;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+
+  /* .el-header, .el-footer {
     background-color: #409EFF;
     color: #333;
     text-align: center;
@@ -51,7 +45,7 @@ export default {
     background-color: #FFFFFF;
     color: #333;
     text-align: center;
-    /* line-height: 160px; */
+    line-height: 160px;
   }
   
   body > .el-container {
@@ -79,5 +73,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
+} */
 </style>
