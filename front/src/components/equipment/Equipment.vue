@@ -9,9 +9,10 @@
                     </el-dropdown-menu>
                 </el-dropdown>
            </el-col>
-            <el-col :span="6" :offset="12">
+            <el-col  :span="6" :offset="12">
                 <el-button type="seccess"  @click="addEquipment">添加设备</el-button>
             </el-col>
+
         </el-row>
 
         <br>
@@ -107,6 +108,7 @@ export default {
     },
     data() {
         return{
+            input:"",
             functionList:[],
             maintenance:[],
             status:"",
@@ -239,7 +241,7 @@ export default {
         //获取设备分类
         findEquipmentGruop(){
             var _this = this
-            this.$ajax.get("api/equipment/equipment/group").then(res => {
+            this.$ajax.get("api/equipment/group").then(res => {
                 if (res.data.code == 10000) {
                     _this.functionList = res.data.data
                     _this.equipmentTypeList = res.data.data

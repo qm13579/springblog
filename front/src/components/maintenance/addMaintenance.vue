@@ -48,6 +48,7 @@ export default {
 
         },
         addSubmit(){
+            var _this = this
             this.maintenance.id = "0321313"
             this.maintenance.status = this.statusValue
             this.maintenance.equipment={};
@@ -56,6 +57,7 @@ export default {
                 console.log(res)
                 if(res.data.code == 10000){
                     console.log("新增维保成功")
+                    _this.$router.go(0)
                 }
             })
             console.log(this.maintenance)

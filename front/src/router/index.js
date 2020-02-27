@@ -9,8 +9,8 @@ import Role from '@/components/role/Role'
 import Permission from '@/components/permission/Permission'
 import Equipment from '@/components/equipment/Equipment'
 import UserEquipment from '@/components/useEquipment/UserEquipment'
-import Personal from '@/components/personal/Personal'
-import Department from '@/components/department/Department'
+import equipmentGroup from '@/components/equipment/group/Group'
+import userGroup from '@/components/user/group/Group'
 
 Vue.use(Router)
 
@@ -27,6 +27,8 @@ export default new Router({
         {path: '/permission',name: 'permission',component:Permission},
         {path:'/equipment',name:'equipment',component:Equipment},    
         {path: '/userEquipment',name: 'userEquipment',component:UserEquipment},
+        {path: '/equipmentGroup',name:"equipmentGroup",component:equipmentGroup},
+        {path: '/userGroup',name : 'userGroup',component:userGroup}
       ]
     },
     {
