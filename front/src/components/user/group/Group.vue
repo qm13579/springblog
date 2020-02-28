@@ -1,7 +1,7 @@
 <template>
     <el-main>
         <el-row>
-            <el-button type="seccess" style="float:right" @click="addGroup">添加设备类型</el-button>
+            <el-button type="seccess" style="float:right" @click="addGroup">添加部门</el-button>
         </el-row>
         <br>
         <br>
