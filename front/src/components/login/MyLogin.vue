@@ -1,70 +1,94 @@
 <template>
-<main>
-  <br>
-    <br>
-  <br>
-  <br>
-  <br>
-
-<el-row >
-    <br>
-
-  <el-form id="from" :model="ruleForm" status-icon  label-width="100px" class="demo-ruleForm">
-    <el-form-item  label="用户名" id="label_top">
-      <el-input id="input" v-model.number="ruleForm.username"></el-input>
-    </el-form-item>
-    
-    <el-form-item label="密码" prop="password" id="label">
-      <el-input  id="input" type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
-    </el-form-item>
-    <!-- <el-row type="flex" class="row-bg" justify="center"> -->
-    <el-form-item>
-      <el-button type="primary" @click="submitForm">登陆</el-button>
-      <el-button >忘记密码</el-button>
-    
-    </el-form-item>
-    <!-- </el-row> -->
-  </el-form>  
-
-  <!-- </el-col> -->
-</el-row>
-</main>
+    <div>
+        <el-form
+                :rules="rules"
+                ref="loginForm"
+                v-loading="loading"
+                element-loading-text="正在登录..."
+                element-loading-spinner="el-icon-loading"
+                element-loading-background="rgba(0, 0, 0, 0.8)"
+                :model="loginForm"
+                class="loginContainer">
+            <h3 class="loginTitle">系统登录</h3>
+            <el-form-item prop="username">
+                <el-input size="normal" type="text" v-model="loginForm.username" auto-complete="off"
+                          placeholder="请输入用户名"></el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+                <el-input size="normal" type="password" v-model="loginForm.password" auto-complete="off"
+                          placeholder="请输入密码" @keydown.enter.native="submitLogin"></el-input>
+            </el-form-item>
+            <el-checkbox size="normal" class="loginRemember" v-model="checked"></el-checkbox>
+            <el-button size="normal" type="primary" style="width: 100%;" @click="submitLogin">登录</el-button>
+        </el-form>
+    </div>
 </template>
 
 <script>
-  export default {
-    data() {
-     
-      return {
-        ruleForm: {
+
+    export default {
+        name: "Login",
+        data() {
+            return {
+                loading: false,
+                loginForm: {
+                    username: 'admin',
+                    password: '123'
+                },
+                checked: true,
+                rules: {
+                    username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
+                    password: [{required: true, message: '请输入密码', trigger: 'blur'}]
+                }
+            }
         },
-      };
-    },
-    methods: {
-      submitForm(){
-        sessionStorage.setItem("user",JSON.stringify(this.ruleForm))
-        this.$router.push("/")
-      }
+        methods: {
+            submitLogin() {
+              var _this = this;
+                this.$refs.loginForm.validate((valid) => {
+                    if (valid) {
+                        this.loading = true;
+                        sessionStorage.setItem("user",JSON.stringify(valid))
+                        _this.$router.push("/")
+                        // this.postKeyValueRequest('/doLogin', this.loginForm).then(resp => {
+                        //     this.loading = false;
+                        //     if (resp) {
+                        //         this.$store.commit('INIT_CURRENTHR', resp.obj);
+                        //         window.sessionStorage.setItem("user", JSON.stringify(resp.obj));
+                        //         let path = this.$route.query.redirect;
+                        //         this.$router.replace((path == '/' || path == undefined) ? '/home' : path);
+                        //     }
+                        // })
+                    } else {
+                        this.$message.error('请输入所有字段');
+                        return false;
+                    }
+                });
+            }
+        }
     }
-  }
 </script>
 
 <style>
-  #from{
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.61), 0 0 6px rgba(0, 0, 0, .04);
-    height: 260px;
-    padding: 120px;
-    margin:0 auto;
-    text-align: center;
-    width:25%;
-  }
-  #input{
-    margin:0 auto;
-  }
-  #label_top{
-    padding: 40px 40px 0 0;
-  }
-  #label{
-    padding: 0 40px 0 0;
-  }
+    .loginContainer {
+        border-radius: 15px;
+        background-clip: padding-box;
+        margin: 180px auto;
+        width: 350px;
+        padding: 15px 35px 15px 35px;
+        background: #fff;
+        border: 1px solid #eaeaea;
+        box-shadow: 0 0 25px #cac6c6;
+    }
+
+    .loginTitle {
+        margin: 15px auto 20px auto;
+        text-align: center;
+        color: #505458;
+    }
+
+    .loginRemember {
+        text-align: left;
+        margin: 0px 0px 15px 0px;
+    }
 </style>

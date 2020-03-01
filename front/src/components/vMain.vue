@@ -6,21 +6,21 @@
     <el-container>
       <el-header >
           
-         <span>电子设备管理系统 </span>
+         <span class="title">电子设备管理系统 </span>
         
-        <el-col  :span="2">
+        <el-col :span="2" class="homeHeader">
           <span class="el-icon-user"></span>
         </el-col>
       </el-header>
 
       <el-main>
-        <div v-show="showContext">欢迎使用电子设备管理系统</div>
+        <div v-show="showContext" class="homeWelcome">欢迎使用电子设备管理系统</div>
         <router-view></router-view>
       </el-main>
 
-      <el-footer>
+      <!-- <el-footer>
         Footer
-      </el-footer>
+      </el-footer> -->
     </el-container>
   </el-container>
 </template>
@@ -84,4 +84,16 @@ export default {
     text-align: center;
     line-height: 200px;
   }
+.title {
+        font-size: 30px;
+        font-family: 华文行楷;
+        color: #ffffff
+    }
+  .homeWelcome {
+        text-align: center;
+        font-size: 30px;
+        font-family: 华文行楷;
+        color: #409eff;
+        padding-top: 50px;
+    }
 </style>
