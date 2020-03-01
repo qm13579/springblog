@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import MyLogin from '@/components/login/MyLogin'
 import Main from '@/components/vMain'
 import Maintenance from '@/components/maintenance/Maintenance'
-import User from '@/components/user/findAllUser'
+import User from '@/components/user/User'
 import Role from '@/components/role/Role'
 import Permission from '@/components/permission/Permission'
 import Equipment from '@/components/equipment/Equipment'
@@ -22,7 +22,7 @@ export default new Router({
       component: Main,
       children:[
         {path: '/maintenance',name: 'maintenance',component: Maintenance,},
-        {path: '/user',name: 'findAllUser',component: User},
+        {path: '/user',name: 'user',component: User},
         {path: '/role',name: 'role',component: Role},
         {path: '/permission',name: 'permission',component:Permission},
         {path:'/equipment',name:'equipment',component:Equipment},    

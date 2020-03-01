@@ -3,10 +3,9 @@
     
         <el-submenu index="1">
         <template slot="title">系统管理</template>
-        <el-menu-item index="/equipment">人员管理</el-menu-item>
-        <el-menu-item index="/userEquipment">部门管理</el-menu-item>
-        <el-menu-item index="/equipmentGroup">设备类型管理</el-menu-item>
-        <el-menu-item index="/equipmentGroup">日子管理</el-menu-item>
+        <el-menu-item index="/user">基础信息</el-menu-item>
+
+        <!-- <el-menu-item index="/equipmentGroup">日志管理</el-menu-item> -->
     </el-submenu>
 
     <el-menu-item  index="/maintenance" >维保信息</el-menu-item>
@@ -15,14 +14,6 @@
         <template slot="title">电子设备中心</template>
         <el-menu-item index="/equipment">设备信息</el-menu-item>
         <el-menu-item index="/userEquipment">使用信息</el-menu-item>
-        <el-menu-item index="/equipmentGroup">设备类型</el-menu-item>
-    </el-submenu>
-
-    <el-submenu index="3">
-        <template slot="title">用户中心</template>
-        <el-menu-item index="/user">用户管理</el-menu-item>
-        <el-menu-item index="/role">角色管理</el-menu-item>
-        <el-menu-item index="/userGroup">部门管理</el-menu-item>
     </el-submenu>
     
 

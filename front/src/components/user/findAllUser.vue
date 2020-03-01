@@ -2,16 +2,19 @@
       <el-main>
         <el-row>
         
-            <el-col :span="6"><el-dropdown split-button type="primary" style="float:left" @click="findAll">
-            部门
+            <el-dropdown split-button type="primary" style="float:left" @click="findAll">
+            部门查询
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item v-for=" item in group" :key="item.id"  @click.native="selectGropu(item)">{{item.groupName}}</el-dropdown-item>
                 </el-dropdown-menu>
-            </el-dropdown></el-col>
+            </el-dropdown>
 
-            <el-col :span="6" :offset="12"><el-button type="seccess" style="float:right" @click="buttunAdd">添加用户</el-button></el-col>
+            <el-button type="info" plain class="el-icon-plus butten"  @click="buttunAdd">添加用户</el-button>
+
+            <el-button type="primary" plain class="el-icon-download butten" >导出数据</el-button>
+            <el-button type="success" plain class="el-icon-upload2 butten" >导入数据</el-button>
+
         </el-row>
-
         <br>
         <br>
 
@@ -24,11 +27,13 @@
             <el-table-column prop="statusString" label="用户状态"></el-table-column>
             <el-table-column  label="操作" width="180">
                 <template slot-scope="scope" >
-                    <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
+                    <el-button @click="handleCilck(scope.row)" type="text" size="small">编辑</el-button>
                     <el-button  @click="handleEquipment(scope.row)" type="text" size="small">分配设备</el-button>
                 </template>
             </el-table-column>   
             </el-table>
+            
+            <el-dialog title="编辑用户" :visible.sync="showFrom">
 
             <el-form v-show="showFrom" :model="user"  label-width="100px" class="demo-ruleForm">
                 
@@ -74,9 +79,15 @@
 
 
             <!--父组件通过数据绑定传递值，子组件通过prop获取-->
-            <addUser v-show="add" :tableData="tableData" :group="group" :watchaddUser="watchaddUser"></addUser>
-            <UseEquipment v-show="equipmentShow" :watchaddUser="watchaddUser" :user="user" ></UseEquipment>
-        
+            </el-dialog>
+            
+            <el-dialog title="新增用户" :visible.sync="add">
+                <addUser v-show="add" :tableData="tableData" :group="group" :watchaddUser="watchaddUser"></addUser>
+            </el-dialog>
+            <el-dialog title="分配设备" :visible.sync="equipmentShow">
+                <UseEquipment v-show="equipmentShow" :watchaddUser="watchaddUser" :user="user" ></UseEquipment>
+            </el-dialog>
+
         </el-row>    
 
       </el-main>
@@ -117,7 +128,7 @@ export default {
     },
     methods:{
         handleCilck(data){
-            this.showTable = false;
+            // this.showTable = false;
             this.showFrom = true;
             this.user = data;
             this.groupValue = this.user.group.id
@@ -149,8 +160,8 @@ export default {
 
         },
         buttunAdd(){
-            this.showTable = false;
-            this.showFrom = false;
+            // this.showTable = false;
+            // this.showFrom = false;
             this.add = true;
         },
         selectGropu(group){
@@ -172,10 +183,12 @@ export default {
         },
         handleEquipment(data){
             this.user = data;
-            this.showTable = false;
-            this.showFrom = false;
+            // this.showTable = false;
+            // this.showFrom = false;
             this.equipmentShow=true;
         },
+
+
     },
     created(){
         var _this = this;
@@ -212,3 +225,8 @@ export default {
 
 </script>
 
+<style scoped>
+    .butten{
+        float:right
+    }
+</style>
