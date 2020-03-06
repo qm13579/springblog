@@ -1,17 +1,28 @@
   <template>
     <el-main >
         <el-row >
-           <el-col :span="6">
-                <el-dropdown  split-button type="primary" >
-                    功能
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item v-for=" item in functionList" :key="item.id" @click.native="findEquipmentByGruop(item)">{{item.groupName}}</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
-           </el-col>
-            <el-col  :span="6" :offset="12">
-                <el-button type="seccess"  @click="addEquipment">添加设备</el-button>
-            </el-col>
+            <el-dropdown  size="small" split-button type="primary" >
+                筛选
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item v-for=" item in functionList" :key="item.id" @click.native="findEquipmentByGruop(item)">{{item.groupName}}</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <el-upload
+                class="upload-demo butten"
+                action="api/equipment/file"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :before-remove="beforeRemove"
+                multiple
+                :limit="1"
+                :on-exceed="handleExceed"
+                :file-list="fileList">
+                <el-button size="small"  class="el-icon-upload2 butten"  type="primary">导入数据</el-button>
+                </el-upload>
+            <el-button type="primary" plain size="small" class="el-icon-download butten" @click="importFile">导出数据</el-button>
+
+
+            <el-button type="seccess" size="small" icon="el-icon-edit"  @click="addEquipment">新增设备</el-button>
 
         </el-row>
 
@@ -37,8 +48,9 @@
                     </template>
                 </el-table-column>   
                 </el-table>
-
-                <el-form v-show="showFrom" :model="equipment"  label-width="100px" class="demo-ruleForm">
+            <el-dialog title="编辑" :visible.sync="showFrom">
+                <el-row type="flex" class="row-bg" justify="center">
+                <el-form  :model="equipment"  label-width="100px" class="demo-ruleForm">
 
                     <el-form-item label="品牌" prop="brand" >
                         <el-input  v-model="equipment.brand" autocomplete="off"></el-input>
@@ -78,15 +90,25 @@
                         <el-button @click="back" >返回</el-button>
                     </el-form-item>
                 </el-form>
-                
+                </el-row>
+            </el-dialog>
+
+            <el-dialog title="新增设备" :visible.sync="add">
                 <!--添加设备-->
-                <addEquipment v-show="add" :equipmentList="equipmentList" :equipmentTypeList="equipmentTypeList" :watchaddData="watchaddData"></addEquipment>
+                <addEquipment  :equipmentList="equipmentList" :equipmentTypeList="equipmentTypeList" :watchaddData="watchaddData"></addEquipment>
+            </el-dialog>
                 <!-- 分配设备使用 -->
-                <UseEquipment v-show="equipmentShow" :watchaddData="watchaddData" :equipment="equipment" ></UseEquipment>
+            <el-dialog title="分配设备使用" :visible.sync="equipmentShow">
+                <UseEquipment  :watchaddData="watchaddData" :equipment="equipment" ></UseEquipment>
+            </el-dialog>
+            <el-dialog title="维保记录" :visible.sync="maintenanceShow">
                 <!-- 维保记录 -->
-                <maintenance v-show="maintenanceShow" :watchaddData="watchaddData" :maintenance="maintenance"></maintenance>
+                <maintenance  :watchaddData="watchaddData" :maintenance="maintenance"></maintenance>
+            </el-dialog>
+            <el-dialog title="新增维保和报修" :visible.sync="addMaintenanceShow">
                 <!-- 新增维保和报修 -->
                 <addMaintenance v-show="addMaintenanceShow" :equipment="equipment" :watchaddData="watchaddData" :functionList="functionList"></addMaintenance>
+            </el-dialog>
         </el-row>
     </el-main>
     
@@ -108,6 +130,7 @@ export default {
     },
     data() {
         return{
+            fileList:[],
             input:"",
             functionList:[],
             maintenance:[],
@@ -138,13 +161,13 @@ export default {
         back(){
             console.log("back --> 切换显示设备")
             this.showTable = true;
-            this.showFrom = false;
+            // this.showFrom = false;
             this.findEquipmentGruop()
         },
         //用户传递数据并切换 实现更新
         handleCilck(data){
             console.log("handle 设备数据，用于更新")
-            this.showTable = false;
+            // this.showTable = false;
             this.showFrom = true;
             this.equipment = data;
             this.equipmentValue = data.type.id
@@ -161,37 +184,37 @@ export default {
         submit(){
             console.log("提交数据后 显示设备数据")
             this.showTable = true;
-            this.showFrom = false;
+            // this.showFrom = false;
             this.$ajax.put("/api/equipment/",this.equipment).then(res =>{
                 
             })
         },
         //添加设备
         addEquipment(){
-            this.showTable = false;
-            this.showFrom = false;
+            // this.showTable = false;
+            // this.showFrom = false;
             this.add = true;
-            this.equipmentShow=false;
-            this.addMaintenanceShow = false;
-            this.maintenanceShow = false
+            // this.equipmentShow=false;
+            // this.addMaintenanceShow = false;
+            // this.maintenanceShow = false
             this.findEquipmentGruop()
         },
         handleEquipment(data){
             this.equipment = data;
-            this.showTable = false;
-            this.showFrom = false;
+            // this.showTable = false;
+            // this.showFrom = false;
             this.equipmentShow=true;
-            this.maintenanceShow = false
-            this.addMaintenanceShow = false;
+            // this.maintenanceShow = false
+            // this.addMaintenanceShow = false;
             this.findEquipmentGruop()
         },
         //当在维保历史组件时更新功能键，显示维保组件
         toMmaintenance(){
-            this.showTable = false;
-            this.showFrom = false;
-            this.equipmentShow=false;
+            // this.showTable = false;
+            // this.showFrom = false;
+            // this.equipmentShow=false;
             this.maintenanceShow = true;
-            this.addMaintenanceShow = false;
+            // this.addMaintenanceShow = false;
 
             console.log("已进入维保组件")
             var _this = this;
@@ -204,10 +227,10 @@ export default {
         },
         //当新增维保及报修中更新功能键
         addToMmaintenance(){
-                this.showTable = false;
-                this.showFrom = false;
-                this.equipmentShow=false;
-                this.maintenanceShow = false;
+                // this.showTable = false;
+                // this.showFrom = false;
+                // this.equipmentShow=false;
+                // this.maintenanceShow = false;
                 this.addMaintenanceShow=true;
         },
         //通过设备类型查找设备
@@ -222,10 +245,10 @@ export default {
             }else if(item.id == "addMaintenance" || item.id =="addMaintenance1"){
                 this.addToMmaintenance()
             }else if(item.id == "equipment"){
-                this.showTable = false;
+                // this.showTable = false;
                 this.showFrom = true;
-                this.maintenanceShow = false;
-                this.addMaintenanceShow=false;
+                // this.maintenanceShow = false;
+                // this.addMaintenanceShow=false;
             }else{
                 this.$ajax.get("api/equipment/"+item.id).then(res => {
                     if (res.data.code == 10000) {
@@ -247,7 +270,23 @@ export default {
                     _this.equipmentTypeList = res.data.data
                 }
             })
+        },
+        handleRemove(file, fileList) {
+            console.log(file, fileList);
+        },
+        handlePreview(file) {
+            console.log(file);
+        },
+        handleExceed(files, fileList) {
+            this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+        },
+        beforeRemove(file, fileList) {
+            return this.$confirm(`确定移除 ${ file.name }？`);
+        },
+        importFile(){
+            window.location.href="/api/equipment/file"
         }
+
 
     },
     //监听数据是否发生变化
@@ -255,13 +294,13 @@ export default {
         equipmentList(){
             console.log("设备数据发生变化")
             this.showTable = true;
-            this.add = false;
+            // this.add = false;
             this.findEquipmentGruop()
         },
         watchaddData(){
             this.showTable = true;
-            this.add = false;
-            this.equipmentShow = false; 
+            // this.add = false;
+            // this.equipmentShow = false; 
             this.findEquipmentGruop()
         }
     },
@@ -279,3 +318,8 @@ export default {
 
 </script>
 
+<style scoped>
+    .butten{
+        float:right;
+    }
+</style>

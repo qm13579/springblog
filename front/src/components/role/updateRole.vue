@@ -1,4 +1,5 @@
 <template>
+    <el-row type="flex" class="row-bg" justify="center">
     <el-form :model="role"  label-width="100px" class="demo-ruleForm">
         <el-form-item label="id" >
             <el-input  v-model="role.id" autocomplete="off"></el-input>
@@ -17,6 +18,7 @@
             <el-button @click="back">返回</el-button>
         </el-form-item>
     </el-form>
+    </el-row>
 </template>
 
 <script>

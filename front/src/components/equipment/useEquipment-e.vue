@@ -1,4 +1,6 @@
 <template>
+    <el-row type="flex" class="row-bg" justify="center">
+
         <el-form  ref="form" :model="equipment"  label-width="100px" class="demo-ruleForm">
 
             <el-form-item label="品牌" prop="brand">
@@ -40,6 +42,7 @@
                 <el-button  @click="back">返回</el-button>
             </el-form-item>
         </el-form>
+    </el-row>
 </template>
 
 <script>

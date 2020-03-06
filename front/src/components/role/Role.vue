@@ -1,29 +1,43 @@
 <template>
     <div>
-            <el-button type="seccess" style="float:right" @click="addRole">添加角色</el-button>
-            <br>
+        <div>
+                <el-form :model="roleForm" ref="roleForm" :rules="rules" status-icon>
+                <el-form-item  prop="roleName"  style="float:left;">
+                    <el-input v-model="roleForm.roleName"   style="float:left;width:320px;" placeholder="ROLE">
+                        <template  style="padding:0 5px 0 0" slot="prepend">ROLE_+</template>
+                    </el-input>
+                </el-form-item>
+
+                <el-form-item  prop="desc" style="float:left;padding:0 10px 0 0;">
+                    <el-input v-model="roleForm.desc"    placeholder="请输入角色描述"></el-input>
+                </el-form-item>
+
+                <el-button type="primary"   icon="el-icon-edit" @click="addRole('roleForm')">添加</el-button>
+                </el-form>
+        </div>
             <br>
             <br>
         <el-collapse-transition>
             <el-table v-show="showTable" :data="roleList" height="500" style="width: 100%">
-            <el-table-column prop="id" label="id" width="180"></el-table-column>
+            <el-table-column label="序号" type="index" width="180"></el-table-column>
             <el-table-column prop="roleName" label="角色" width="180"></el-table-column>
             <el-table-column prop="desc" label="角色描述" width="180"></el-table-column>
             <el-table-column  label="操作">
                 <template slot-scope="scope">
                     <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
-                    <el-button type="text" size="small">编辑</el-button>
                 </template>
             </el-table-column>   
             </el-table>
         </el-collapse-transition>
         
-        <transition name="el-zoom-in-top">
-            <addRole  v-show="add" :roleList="roleList" :watchRole="watchRole"></addRole>
-        </transition>
-        <transition name="el-zoom-in-center">
-            <updataRole v-show="update" :watchRole="watchRole" :role="role"></updataRole>
-        </transition>
+        <!-- <el-dialog title="增加角色" :visible.sync="add">
+            <addRole   :roleList="roleList" :watchRole="watchRole"></addRole>
+        </el-dialog> -->
+
+        <el-dialog title="更新角色" :visible.sync="update">
+            <updataRole  :watchRole="watchRole" :role="role"></updataRole>
+        </el-dialog>
+
     </div>
 </template>
 
@@ -39,6 +53,20 @@ export default {
         updataRole,
     },
     data(){
+        var chechRoleName = (rule, value,callback) => {
+            if (!value) {
+                return callback(new Error("角色名不能为空"))
+            }else{
+                callback();
+            }
+        }
+        var checkDesc = (rule ,value ,callback) => {
+            if(!value){
+                return callback(new Error("角色描述不能为空"))
+            }else{
+                callback()
+            }
+        }
         return{
             update:false,
             watchRole:[],
@@ -46,36 +74,77 @@ export default {
             showTable: true,
             showFrom: false,
             role:{},
-            roleList:[
-            ]
+            roleForm:{
+                id:'',
+                roleName: '',
+                desc: '',
+
+            },
+            roleList:[],
+
+            rules:{
+                roleName:[
+                    { validator: chechRoleName, trigger: 'blur'}
+                ],
+                desc:[
+                    { validator: checkDesc, trigger: 'blur'}
+                ]
+            },
         }
     },
     methods:{
-        addRole:function(){
-            console.log("this is add role")
-            this.showTable = false;
-            this.update = false;
-            this.add = true;
+        addRole(formName){
+            // const ROLE = this.roleForm
+            console.log(this.roleForm)
+            this.roleForm.id= this.roleForm.roleName.toLowerCase()
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.$ajax.post("api/role/",this.roleForm).then(res => {
+                        if (res.data.code == 10000) {
+                            // console.log(ROLE)
+                            // this.roleList.push(ROLE)
+                            this.open2()
+                            this.$refs[formName].resetFields();
+                        }else{
+                            this.open4()
+                        }
+                    })
+                }else{
+                    return false;
+                }
+            })
 
         },
         handleCilck(data){
-            this.showTable = false;
+            // this.showTable = false;
             this.update = true;
-            this.add = false;
+            // this.add = false;
             this.showUser = this.user;
             this.role = data;
         },
         submitUpdate:function(){
-            console.log("this is roleInfo Update")
             this.showTable = true;
-            this.showFrom = false;
+            // this.showFrom = false;
 
-        }
+        },
+        open4() {
+          this.$message({
+          showClose: true,
+          message: '错了哦，新增角色失败',
+          type: 'error'
+        });
+      },
+      open2() {
+          this.$message({
+          showClose: true,
+          message: '成功，新增角色成功',
+          type: 'success'
+        });
+      },
     },
     created(){
          var _this = this;
          this.$ajax.get("api/role/").then(res => {
-             console.log(res)
              if(res.data.code == 10000){
                  _this.roleList = res.data.data
              }
@@ -83,8 +152,8 @@ export default {
     },
     watch:{
         watchRole(){
-            this.showTable = true;
-            this.add = false;
+            // this.showTable = true;
+            // this.add = false;
             this.update = false
         }
     }

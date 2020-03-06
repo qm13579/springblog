@@ -8,7 +8,7 @@
             </el-form-item>
 
             <el-form-item label="设备类型">
-                <el-select v-model="equipmentValue" placeholder="请选择活动区域">
+                <el-select v-model="equipmentValue" placeholder="请选择设备类型">
                     <el-option v-for="item in equipmentTypeList" :key="item.id" :label="item.groupName" :value="item.id"></el-option>
                 </el-select>
             </el-form-item>
@@ -19,7 +19,6 @@
 
             <el-form-item label="登记日期" prop="registerDate">
                 <el-date-picker v-model="equipment.registerDate5" type="date" placeholder="选择日期"></el-date-picker>
-                <!-- <el-input v-model="equipment.registerDate"></el-input> -->
             </el-form-item>                
             <el-form-item label="生产商" prop="producers">
                 <el-input v-model="equipment.producers"></el-input>

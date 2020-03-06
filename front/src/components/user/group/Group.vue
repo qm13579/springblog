@@ -1,27 +1,29 @@
 <template>
     <el-main>
         <el-row>
-            <el-button type="seccess" style="float:right" @click="addGroup">添加部门</el-button>
+            <el-button type="info" plain size="small" class="el-icon-plus butten" style="float:right" @click="addGroup">添加部门</el-button>
         </el-row>
-        <br>
-        <br>
         <br>
         <el-row type="flex" class="row-bg" justify="center">
 
-        <el-table v-show="groupShow" :data="groupList" height="500" style="width: 100%">
-        <el-table-column prop="id" label="id" width="180"></el-table-column>
+        <el-table v-show="groupShow" :data="groupList" height="500">
+        <el-table-column label="序号" type="index" width="180"></el-table-column>
         <el-table-column prop="groupName" label="设备类型" width="180"></el-table-column>
 
         <el-table-column  label="操作">
             <template slot-scope="scope">
-                <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
-                <el-button type="text" size="small">编辑</el-button>
+                <el-button @click="handleCilck(scope.row)" type="text" size="small">编辑</el-button>
             </template>
         </el-table-column>   
         </el-table>
-            <addGroup v-show="addShow" :watchData="watchData" ></addGroup>
-            <updateGroup v-show="updateShow" :watchData="watchData" :group="group"></updateGroup>
         </el-row>
+            <el-dialog title="新增部门" :visible.sync="addShow">
+                <addGroup  :watchData="watchData" ></addGroup>            
+            </el-dialog>
+
+            <el-dialog title="更新部门" :visible.sync="updateShow">
+                <updateGroup  :watchData="watchData" :group="group"></updateGroup>
+            </el-dialog>
     </el-main>
 </template>
 
@@ -57,15 +59,15 @@ export default {
     methods:{
         handleCilck(data){
             this.group = data
-            this.addShow = false
+            // this.addShow = false
             this.updateShow = true
-            this.groupShow = false
+            // this.groupShow = false
         },
         //添加设备类型
         addGroup(){
             this.addShow = true
-            this.updateShow = false
-            this.groupShow = false
+            // this.updateShow = false
+            // this.groupShow = false
         },
     },
     watch:{
