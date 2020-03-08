@@ -2,12 +2,12 @@
         <el-form  :model="group"  label-width="100px" class="demo-ruleForm">
             
             <el-form-item label="部门" prop="groupName">
-                <el-input  v-model="group.groupName" autocomplete="off"></el-input>
+                <el-input  v-model="group.groupName" style="width:200px;" autocomplete="off"></el-input>
             </el-form-item>
 
             <el-form-item>
                 <el-button type="primary" @click="addSubmit">提交</el-button>
-                <el-button @click="back">重置</el-button>
+                <el-button @click="back">返回</el-button>
             </el-form-item>
         </el-form>
 </template>

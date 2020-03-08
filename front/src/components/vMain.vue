@@ -7,10 +7,16 @@
       <el-header >
           
          <span class="title">电子设备管理系统 </span>
-        
-        <el-col :span="2" class="homeHeader">
-          <span class="el-icon-user"></span>
-        </el-col>
+
+          <!-- <span class="el-icon-user head"></span> -->
+        <el-dropdown style="float: right;">
+          <span class="el-dropdown-link">
+            <i class="el-icon-user head"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click.native ="cancellation">注销</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </el-header>
 
       <el-main>
@@ -43,6 +49,11 @@ export default {
     getUserName(){
       var user = JSON.parse(sessionStorage.getItem("user"))
       this.username = user.username
+    },
+    cancellation(){
+      console.log("asda")
+      sessionStorage.removeItem("user");
+      this.$router.push("/login")
     }
   },
   created(){
@@ -96,4 +107,8 @@ export default {
         color: #409eff;
         padding-top: 50px;
     }
+  .head{
+    float: right;
+    padding: 20px 0 0 0;
+  }
 </style>

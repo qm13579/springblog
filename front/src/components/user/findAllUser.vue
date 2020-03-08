@@ -20,7 +20,7 @@
                 :limit="1"
                 :on-exceed="handleExceed"
                 :file-list="fileList">
-                <el-button size="small"  class="el-icon-upload2 butten"  type="primary">导入数据</el-button>
+                <el-button size="small"  class="el-icon-upload2"  type="primary" >导入数据</el-button>
                 </el-upload>
             <el-button type="primary" plain size="small" class="el-icon-download butten" @click="importFile">导出数据</el-button>
 
@@ -30,7 +30,7 @@
         <el-row type="flex" class="row-bg" justify="center">
 
             <el-table v-show="showTable" :data="tableData" height="500" style="width: 100%">
-            <el-table-column label="序号" type="index" ></el-table-column>
+            <el-table-column label="序号" type="index" width="100px" ></el-table-column>
             <el-table-column prop="name" label="用户名" ></el-table-column>
             <el-table-column prop="createDate" label="创建时间"></el-table-column>
             <el-table-column prop="group.groupName" label="部门"></el-table-column>
@@ -272,6 +272,6 @@ export default {
 <style scoped>
     .butten{
         float:right;
-        
+        margin:1px;
     }
 </style>

@@ -1,18 +1,18 @@
 <template>
-    <div>
+    <main>
         <div>
-                <el-form :model="roleForm" ref="roleForm" :rules="rules" status-icon>
-                <el-form-item  prop="roleName"  style="float:left;">
-                    <el-input v-model="roleForm.roleName"   style="float:left;width:320px;" placeholder="ROLE">
+            <el-form :model="roleForm" ref="roleForm" :rules="rules" status-icon class="aa">
+                <el-form-item  prop="roleName" class="padd" style="float:left;">
+                    <el-input v-model="roleForm.roleName" size="small" class="padd" style="float:left;width:320px;" placeholder="ROLE">
                         <template  style="padding:0 5px 0 0" slot="prepend">ROLE_+</template>
                     </el-input>
                 </el-form-item>
 
                 <el-form-item  prop="desc" style="float:left;padding:0 10px 0 0;">
-                    <el-input v-model="roleForm.desc"    placeholder="请输入角色描述"></el-input>
+                    <el-input v-model="roleForm.desc"  size="small" class="padd" placeholder="请输入角色描述"></el-input>
                 </el-form-item>
 
-                <el-button type="primary"   icon="el-icon-edit" @click="addRole('roleForm')">添加</el-button>
+                <el-button type="primary" size="small"  icon="el-icon-edit" @click="addRole('roleForm')">添加</el-button>
                 </el-form>
         </div>
             <br>
@@ -38,7 +38,7 @@
             <updataRole  :watchRole="watchRole" :role="role"></updataRole>
         </el-dialog>
 
-    </div>
+    </main>
 </template>
 
 <script>
@@ -159,3 +159,14 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .aa >>> .el-form-item__content {
+        line-height: 20px;
+        /* position: relative;
+        font-size: 14px; */
+    }
+    .padd{
+        padding: 0 10px 0 0;
+    }
+
+</style>

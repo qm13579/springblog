@@ -3,7 +3,6 @@
         <el-row>
             <el-button type="info" plain size="small" class="el-icon-plus butten" style="float:right" @click="addGroup">添加部门</el-button>
         </el-row>
-        <br>
         <el-row type="flex" class="row-bg" justify="center">
 
         <el-table v-show="groupShow" :data="groupList" height="500">

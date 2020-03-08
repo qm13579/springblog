@@ -1,7 +1,7 @@
 <template>
     <el-form  :model="group"  :rules="rules" ref="group" label-width="100px" class="demo-ruleForm">
         <el-form-item label="部门" prop="groupName">
-            <el-input  v-model="group.groupName" autocomplete="off"></el-input>
+            <el-input size="small" style="width:200px" v-model="group.groupName" autocomplete="off"></el-input>
         </el-form-item>
 
         <el-form-item>

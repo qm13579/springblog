@@ -2,14 +2,14 @@
     <el-row type="flex" class="row-bg" justify="center">        
         <el-form  :model="userInfo"  :rules="rules" ref="userInfo" label-width="100px" class="demo-ruleForm">
             <el-form-item label="用户名" prop="username">
-                <el-input  v-model="userInfo.username" autocomplete="off"></el-input>
+                <el-input  size="small" style="width:200px" v-model="userInfo.username" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-                <el-input  v-model="userInfo.password" autocomplete="off"></el-input>
+                <el-input size="small" v-model="userInfo.password" style="width:200px" autocomplete="off"></el-input>
             </el-form-item>   
 
             <el-form-item label="部门" prop="groupValue">
-                <el-select v-model="groupValue" placeholder="请选择活动区域">
+                <el-select size="small" v-model="groupValue" style="width:200px"  placeholder="请选择活动区域">
                     <el-option v-for="item in group" :key="item.id" :label="item.groupName" :value="item.id"></el-option>
                 </el-select>
             </el-form-item>
@@ -116,6 +116,10 @@ export default {
     },
 
 }
-
-
 </script>
+
+<style scoped>
+.input{
+    width:100px;
+}
+</style>

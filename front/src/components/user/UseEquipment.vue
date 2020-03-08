@@ -83,7 +83,7 @@ export default {
             equipemt.forEach(element => {
                 this.equipemtList.forEach(type => {
                     if (element.type.id == type.value){
-                        type.children.push({"value":element.id,"label":element.brand})                  
+                        type.children.push({"value":element.id,"label":element.brand+"/"+element.part})                  
                     }
                 })
             });

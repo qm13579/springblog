@@ -19,7 +19,7 @@
                 :file-list="fileList">
                 <el-button size="small"  class="el-icon-upload2 butten"  type="primary">导入数据</el-button>
                 </el-upload>
-            <el-button type="primary" plain size="small" class="el-icon-download butten" @click="importFile">导出数据</el-button>
+            <el-button type="primary" plain size="small" class="el-icon-download" @click="importFile">导出数据</el-button>
 
 
             <el-button type="seccess" size="small" icon="el-icon-edit"  @click="addEquipment">新增设备</el-button>
@@ -321,5 +321,6 @@ export default {
 <style scoped>
     .butten{
         float:right;
+        margin: 1px;
     }
 </style>
