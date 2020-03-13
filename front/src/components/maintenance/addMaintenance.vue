@@ -54,14 +54,23 @@ export default {
             this.maintenance.equipment={};
             this.maintenance.equipment.id=this.equipment.id;
             this.$ajax.post("api/maintenance/",this.maintenance).then(res => {
-                console.log(res)
                 if(res.data.code == 10000){
-                    console.log("新增维保成功")
                     _this.$router.go(0)
+                    this.open2()
+                }else{
+                    this.open4()
                 }
             })
-            console.log(this.maintenance)
-        }
+        },
+        open4() {
+            this.$message.error('错了哦，更新失败');
+        },
+        open2() {
+            this.$message({
+            message: '设备更新成功',
+            type: 'success'
+            });
+        },
     },
     props:{
         equipment:{

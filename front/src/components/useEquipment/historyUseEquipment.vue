@@ -34,7 +34,7 @@
                 </el-form-item>
                  
                 <el-form-item>
-                    <el-button type="primary"  @click="submit">提交</el-button>
+                    <el-button type="primary"  >提交</el-button>
                     <el-button >重置</el-button>
                 </el-form-item>
             </el-form>

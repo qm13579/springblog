@@ -34,14 +34,25 @@ export default {
             this.$ajax.put("api/user/group",this.group).then(res => {
                 console.log(res)
                 if (res.data.code == 10000) {
+                    this.open2()
                     _this.$router.go(0)
-
+                }else{
+                    this.open4()
                 }
             })
         },
         back(){
             this.watchData.push(true)
-        }
+        },
+        open4() {
+            this.$message.error('错了哦，更新失败');
+        },
+        open2() {
+            this.$message({
+            message: '部门更新成功',
+            type: 'success'
+            });
+        },
     },
 }
 

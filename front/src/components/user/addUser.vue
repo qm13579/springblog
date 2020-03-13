@@ -4,12 +4,12 @@
             <el-form-item label="用户名" prop="username">
                 <el-input  size="small" style="width:200px" v-model="userInfo.username" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password">
-                <el-input size="small" v-model="userInfo.password" style="width:200px" autocomplete="off"></el-input>
+            <el-form-item label="姓名" prop="name">
+                <el-input size="small" v-model="userInfo.name" style="width:200px" autocomplete="off"></el-input>
             </el-form-item>   
 
             <el-form-item label="部门" prop="groupValue">
-                <el-select size="small" v-model="groupValue" style="width:200px"  placeholder="请选择活动区域">
+                <el-select size="small" v-model="groupValue" style="width:200px"  placeholder="请选择部门">
                     <el-option v-for="item in group" :key="item.id" :label="item.groupName" :value="item.id"></el-option>
                 </el-select>
             </el-form-item>
@@ -39,9 +39,9 @@ export default {
                 callback()
             }
         }
-        var checkpassword=(rule,value,callback) =>{
+        var checkName=(rule,value,callback) =>{
             if (!value) {
-                callback(new Error("密码不能为空"))
+                callback(new Error("姓名不能为空"))
             }else{
                 callback()
             }
@@ -54,7 +54,6 @@ export default {
             }
         }
         return{
-            
             status:true,
             rolesValue:["user"],
             roleName:'',
@@ -62,7 +61,7 @@ export default {
             userInfo:{},
             rules:{
                 username:[{validator: checkUsername, trigger: 'blur'}],
-                password:[{validator: checkpassword, trigger: 'blur'}],
+                name:[{validator: checkName, trigger: 'blur'}],
                 groupValue:[{validator: checkgroupValue, trigger: 'blur'}],
             }
         }
@@ -100,7 +99,11 @@ export default {
                     //更新页面
 
                     this.$ajax.post("/api/user/",this.userInfo).then(res => {
-                        console.log(res)
+                        if (res.data.code == 10000) {
+                            this.open2()
+                        }else{
+                            this.open4()
+                        }
                     })
                     //清空数据
                     this.userInfo = this.$options.data().userInfo
@@ -112,7 +115,16 @@ export default {
         },
         back(){
             this.watchaddUser.push(true)
-    },
+        },
+        open4() {
+            this.$message.error('错了哦，添加失败');
+        },
+        open2() {
+            this.$message({
+            message: '用户更新成功',
+            type: 'success'
+            });
+        },
     },
 
 }

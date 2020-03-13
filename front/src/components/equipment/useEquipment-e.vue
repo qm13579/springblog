@@ -90,6 +90,7 @@ export default {
             this.useEquipment.equipment = {}
             this.useEquipment.equipment.id = this.equipment.id
             if(value){
+                console.log(this.useEquipment)
                 this.$ajax.post("api/useEquipment/metrics",this.useEquipment).then(res =>{
                     console.log(res)
                     this.watchaddData.push(true)

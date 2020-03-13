@@ -41,7 +41,10 @@ export default {
                     var _this = this
                     this.$ajax.post("api/user/group",this.group).then(res => {
                         if (res.data.code == 10000) {
+                            this.open2()
                             _this.$router.go(0)
+                        }else{
+                            this.open4()
                         }
                     })
                 }else{
@@ -54,12 +57,14 @@ export default {
             this.watchData.push(true)
         },
         open4() {
-          this.$message({
-          showClose: true,
-          message: '错了哦,内容必须要有哦',
-          type: 'error'
-        });
-      }
+            this.$message.error('错了哦，添加失败');
+        },
+        open2() {
+            this.$message({
+            message: '部门添加成功',
+            type: 'success'
+            });
+        },
     },
 }
 

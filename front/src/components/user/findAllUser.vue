@@ -9,6 +9,7 @@
             </el-dropdown>
 
             <el-button type="info" size="small" plain class="el-icon-plus butten"  @click="buttunAdd">添加用户</el-button>
+            <el-button type="info" size="small" plain class="el-icon-printer butten" @click="printer" >信息打印</el-button>
 
             <el-upload
                 class="upload-demo butten"
@@ -234,6 +235,9 @@ export default {
         },
         importFile(){
             window.location.href="/api/user/file"
+        },
+        printer(){
+            window.open("/api/info/pdf")
         }
 
 

@@ -4,7 +4,7 @@
         <el-submenu index="1">
         <template slot="title"> <span class="el-icon-s-platform"></span>系统管理</template>
         <el-menu-item index="/user">基础信息</el-menu-item>
-        <!-- <el-menu-item index="/equipmentGroup">日志管理</el-menu-item> -->
+        <el-menu-item index="/log">日志管理</el-menu-item>
     </el-submenu>
 
     <el-menu-item  index="/maintenance" ><span class="el-icon-loading"></span>维保信息</el-menu-item>

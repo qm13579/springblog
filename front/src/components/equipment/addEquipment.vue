@@ -71,11 +71,25 @@ export default {
             //发送请求
             var _this = this
             this.$ajax.post("/api/equipment/",this.equipment).then(res =>{
-                console.log(res)
+                if (res.data.code == 10000) {
+                    this.open2()
+                }else{
+                    this.open4()
+                }
             })
             //清空数据
             this.equipment = this.$options.data().equipment
             //增加id、状态生成
+            this.watchaddData.push(true)
+        },
+        open4() {
+            this.$message.error('错了哦，添加失败');
+        },
+        open2() {
+            this.$message({
+            message: '设备添加成功',
+            type: 'success'
+            });
         },
         back(){
             this.watchaddData.push(true)

@@ -9,8 +9,7 @@ import Role from '@/components/role/Role'
 import Permission from '@/components/permission/Permission'
 import Equipment from '@/components/equipment/Equipment'
 import UserEquipment from '@/components/useEquipment/UserEquipment'
-import equipmentGroup from '@/components/equipment/group/Group'
-import userGroup from '@/components/user/group/Group'
+import Log from '@/components/system/Log'
 
 Vue.use(Router)
 
@@ -23,13 +22,12 @@ export default new Router({
       children:[
         {path: '/maintenance',name: 'maintenance',component: Maintenance,},
         {path: '/user',name: 'user',component: User},
-        {path: '/role',name: 'role',component: Role},
-        {path: '/permission',name: 'permission',component:Permission},
         {path:'/equipment',name:'equipment',component:Equipment},    
         {path: '/userEquipment',name: 'userEquipment',component:UserEquipment},
-        {path: '/equipmentGroup',name:"equipmentGroup",component:equipmentGroup},
-        {path: '/userGroup',name : 'userGroup',component:userGroup}
+        {path: '/log',name: 'log',component:Log},
+
       ]
+
     },
     {
       path: '/login',
