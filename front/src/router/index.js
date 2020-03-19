@@ -10,6 +10,8 @@ import Permission from '@/components/permission/Permission'
 import Equipment from '@/components/equipment/Equipment'
 import UserEquipment from '@/components/useEquipment/UserEquipment'
 import Log from '@/components/system/Log'
+import Contract from '@/components/contract/Contract'
+
 
 Vue.use(Router)
 
@@ -25,7 +27,7 @@ export default new Router({
         {path:'/equipment',name:'equipment',component:Equipment},    
         {path: '/userEquipment',name: 'userEquipment',component:UserEquipment},
         {path: '/log',name: 'log',component:Log},
-
+        {path: '/contract',name:'contract',component:Contract},
       ]
 
     },

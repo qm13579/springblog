@@ -7,12 +7,17 @@ import App from './App'
 import router from './router'
 import Axios from 'axios'
 import Qs from 'qs'
+import ECharts from 'vue-echarts'
+import 'echarts/lib/chart/line'
+import echarts from 'echarts'
 
+Vue.prototype.$echarts = echarts
 Axios.defaults.withCredentials = true
 Vue.prototype.qs = Qs
 Vue.prototype.$ajax = Axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.component('chart', ECharts)
 
 router.beforeEach((to, from, next) => {
   const user = JSON.parse(sessionStorage.getItem("user"))
