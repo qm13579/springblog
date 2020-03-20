@@ -3,7 +3,7 @@
         <el-button type="success"   size="small" round  class="el-icon-plus butten font"  @click="buttunAdd">添加合同</el-button>
         <!-- <el-button type="info" size="small" plain class="el-icon-printer butten" @click="printer" >信息</el-button> -->
         <el-table :data="equipmentContract" height="500" style="width: 100%">
-            <el-table-column label="序号" type="index" width="100px" ></el-table-column>
+            <el-table-column label="序号" type="index"  ></el-table-column>
             <el-table-column prop="contractName" label="合同名称" ></el-table-column>
             <el-table-column prop="money" label="合同金额"></el-table-column>
             <el-table-column prop="startTime" label="签订时间"></el-table-column>
@@ -22,9 +22,10 @@
                 </template>
             </el-table-column>   
 
-            <el-table-column  label="合同" >
+            <el-table-column  label="合同" width="100">
                 <template slot-scope="scope" >
-                    <el-button @click="handleCilck(scope.row)" type="text" size="small">查看合同</el-button>
+                    <el-button @click="handlePreview(scope.row)" type="text" size="small">预览</el-button>
+                    <el-button @click="handleUpload(scope.row)" type="text" size="small">上传</el-button>
                 </template>
             </el-table-column>   
         </el-table>
@@ -37,16 +38,22 @@
             <update :watchList="watchList" 
                  :updatEquipmentContract="updatEquipmentContract"></update>
         </el-dialog>
+        <el-dialog title="上传合同" :visible.sync="showUpload">
+            <upload :watchList="watchList" 
+                 :cid="cid"></upload>
+        </el-dialog>
     </el-row>
 </template>
 <script>
 import add from './add'
 import update from './update'
-
+import upload from './Upload'
 export default {
     name:'find',
     data () {
         return{
+            showUpload:false,
+            cid:"",
             showUpdate:false,
             watchList:[],
             showTable:false,
@@ -74,15 +81,26 @@ export default {
                     _this.equipmentContract = res.data.data                     
                 }
             })
+        },
+        handleUpload(data){
+            this.showUpload = true;
+            this.cid = "api/contract/equipment/"+data.cid
+            console.log(data)
+        },
+        handlePreview(data){
+
+            window.open("/api/contract/download/"+data.file)
         }
     },
     components:{
        add,
        update,
+       upload,
     },
     watch:{
         watchList(){
             this.showTable = false
+            this.showUpdate = false 
         }
     },
     created(){
