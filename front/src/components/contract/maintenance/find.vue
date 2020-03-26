@@ -2,7 +2,7 @@
     <el-row>
         <el-button type="info"  size="small" plain class="el-icon-plus butten font"  @click="buttunAdd">添加合同</el-button>
         <!-- <el-button type="info" size="small" plain class="el-icon-printer butten" @click="printer" >信息</el-button> -->
-        <el-table :data="maintenanceContract" height="500" style="width: 100%">
+        <el-table v-loading="loading" :data="maintenanceContract" height="500" style="width: 100%">
             <el-table-column label="序号" type="index" width="100px" ></el-table-column>
             <el-table-column prop="contractName" label="合同名称" ></el-table-column>
             <el-table-column prop="money" label="合同金额"></el-table-column>
@@ -16,12 +16,21 @@
             <el-table-column prop="partyBLegal" label="乙方负责人"></el-table-column>
             <el-table-column prop="partyBLinkman" label="乙方联系人"></el-table-column>
             <el-table-column prop="partyBLinkmanMobile" label="乙方联系人电话"></el-table-column>
-            <el-table-column  label="操作" width="180">
+            
+            <el-table-column  label="操作" width="100">
                 <template slot-scope="scope" >
                     <el-button @click="handleCilck(scope.row)" type="text" size="small">编辑</el-button>
                     <el-button  @click="handleEquipment(scope.row)" type="text" size="small">废止</el-button>
                 </template>
             </el-table-column>   
+
+            <el-table-column  label="合同" width="100">
+                <template slot-scope="scope" >
+                    <el-button  @click="handleUpload(scope.row)" type="text" size="small">上传</el-button>
+                    <el-button v-if="scope.row.file" @click="handlePreview(scope.row)" type="text" size="small">预览</el-button>
+                </template>
+            </el-table-column>
+
         </el-table>
         
         <el-dialog title="新增合同" :visible.sync="showTable">
@@ -32,16 +41,22 @@
             <update :watchList="watchList" 
                  :updatMaintenanceContract="updatMaintenanceContract"></update>
         </el-dialog>
-
+        <el-dialog title="上传合同" :visible.sync="showUpload">
+            <upload :watchList="watchList" 
+                 :cid="cid"></upload>
+        </el-dialog>
     </el-row>
 </template>
 <script>
 import add from './add'
 import update from './update'
+import upload from '@/components/contract/equipment/Upload'
 export default {
     name:'find',
     data () {
         return{
+            showUpload:false,
+            loading: true,
             showUpdate:false,
             watchList:[],
             showTable:false,
@@ -64,12 +79,23 @@ export default {
             var _this = this;
             this.$ajax.get("api/contract/maintenance").then(res => {
                 _this.maintenanceContract = res.data.data 
+                _this.loading = false
             })
+        },
+        handleUpload(data){
+            this.showUpload = true;
+            this.cid = "api/contract/maintenance/"+data.cid
+            console.log(data)
+        },
+        handlePreview(data){
+
+            window.open("/api/contract/preview/"+data.file)
         }
     },
     components:{
        add,
        update,
+       upload,
     },
     watch:{
         watchList(){

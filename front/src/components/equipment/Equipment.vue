@@ -29,7 +29,7 @@
         <br>
         <br>
         <el-row type="flex" class="row-bg" justify="center">
-                <el-table v-show="showTable" :data="equipmentList" height="500" style="width: 100%">
+                <el-table v-loading="loading" v-show="showTable" :data="equipmentList" height="500" style="width: 100%">
                 
                 <el-table-column label="序号" type="index"></el-table-column>
                 <el-table-column prop="brand" label="品牌"></el-table-column>
@@ -167,6 +167,7 @@ export default {
     },
     data() {
         return{
+            loading: true,
             equipmentTimeLine:[],
             drawer:false,
             fileList:[],
@@ -264,7 +265,6 @@ export default {
             this.$ajax.get("api/maintenance/"+this.equipment.id).then(res =>{
                 if (res.data.code == 10000) {
                     _this.maintenance = res.data.data
-                    console.log("asda")
                 }
             })
         },
@@ -365,6 +365,7 @@ export default {
         //获取设备数据
         this.$ajax.get("api/equipment/").then(res =>{
             _this.equipmentList =  res.data.data;
+            _this.loading = false
         });
         //获取设备分类
         this.findEquipmentGruop()

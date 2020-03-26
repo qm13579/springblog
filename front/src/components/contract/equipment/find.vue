@@ -2,7 +2,7 @@
     <el-row>
         <el-button type="success"   size="small" round  class="el-icon-plus butten font"  @click="buttunAdd">添加合同</el-button>
         <!-- <el-button type="info" size="small" plain class="el-icon-printer butten" @click="printer" >信息</el-button> -->
-        <el-table :data="equipmentContract" height="500" style="width: 100%">
+        <el-table v-loading="loading" :data="equipmentContract" height="500" style="width: 100%">
             <el-table-column label="序号" type="index"  ></el-table-column>
             <el-table-column prop="contractName" label="合同名称" ></el-table-column>
             <el-table-column prop="money" label="合同金额"></el-table-column>
@@ -24,8 +24,8 @@
 
             <el-table-column  label="合同" width="100">
                 <template slot-scope="scope" >
-                    <el-button @click="handlePreview(scope.row)" type="text" size="small">预览</el-button>
-                    <el-button @click="handleUpload(scope.row)" type="text" size="small">上传</el-button>
+                    <el-button  @click="handleUpload(scope.row)" type="text" size="small">上传</el-button>
+                    <el-button v-if="scope.row.file" @click="handlePreview(scope.row)" type="text" size="small">预览</el-button>
                 </template>
             </el-table-column>   
         </el-table>
@@ -52,6 +52,7 @@ export default {
     name:'find',
     data () {
         return{
+            loading: true,
             showUpload:false,
             cid:"",
             showUpdate:false,
@@ -78,7 +79,9 @@ export default {
             var _this = this;
             this.$ajax.get("/api/contract/equipment/").then(res => {
                 if (res.data.code = 10000) {
-                    _this.equipmentContract = res.data.data                     
+                    _this.equipmentContract = res.data.data   
+                    _this.loading = false
+                    console.log(res.data.data)
                 }
             })
         },
@@ -89,7 +92,7 @@ export default {
         },
         handlePreview(data){
 
-            window.open("/api/contract/download/"+data.file)
+            window.open("/api/contract/preview/"+data.file)
         }
     },
     components:{

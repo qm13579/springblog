@@ -1,6 +1,6 @@
 <template>
     <main>
-    <el-table :data="logInfoList" style="width: 100%" :row-class-name="tableRowClassName">
+    <el-table v-loading="loading" :data="logInfoList" style="width: 100%" :row-class-name="tableRowClassName">
         <el-table-column prop="url" label="访问地址" width="180"></el-table-column>
         <el-table-column prop="method" label="请求方式" width="180"> </el-table-column>
         <el-table-column prop="user" label="访问用户" width="180"> </el-table-column>
@@ -31,7 +31,8 @@ export default {
                 pageNum:1,
                 pageSize:10,
                 total:null,
-            }
+            },
+            loading: true
         }
     },
     methods:{
@@ -41,6 +42,7 @@ export default {
                 _this.logInfoList = res.data.data.list
                 _this.pageInfo.total = res.data.data.total
                  _this.pageInfo.pageNum = res.data.data.pageNum
+                 _this.loading = false
             })
         },
         tableRowClassName({row, rowIndex}) {

@@ -26,7 +26,7 @@
     <el-submenu index="4">
         <template slot="title"><span class="el-icon-document-copy"></span>合同管理</template>
         <el-menu-item index="/contract">设备合同</el-menu-item>
-        <el-menu-item index="/userEquipment">合同备份</el-menu-item>
+        <el-menu-item index="/contractDraft">起草合同</el-menu-item>
     </el-submenu>
     </el-menu>
 

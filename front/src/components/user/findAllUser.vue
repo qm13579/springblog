@@ -30,7 +30,7 @@
 
         <el-row type="flex" class="row-bg" justify="center">
 
-            <el-table v-show="showTable" :data="tableData" height="500" style="width: 100%">
+            <el-table v-loading="loading" v-show="showTable" :data="tableData" height="500" style="width: 100%">
             <el-table-column label="序号" type="index" width="100px" ></el-table-column>
             <el-table-column prop="name" label="用户名" ></el-table-column>
             <el-table-column prop="createDate" label="创建时间"></el-table-column>
@@ -129,6 +129,7 @@ export default {
         }
 
         return{
+            loading: true,
             fileList:[],
             statusValues:"",
             equipmentShow:false,
@@ -248,6 +249,7 @@ export default {
         this.$ajax.get("/api/user/").then(res =>{
             _this.tableData =  res.data.data;
             console.log(_this.tableData)
+            _this.loading = false
         });
         //获取用户分组
         this.$ajax.get("/api/user/group/").then(res =>{

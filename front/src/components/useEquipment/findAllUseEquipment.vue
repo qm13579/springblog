@@ -1,7 +1,7 @@
   <template>
     <el-row type="flex" class="row-bg" justify="center">
         <br>
-        <el-table v-show="showTable" :data="userEquipmentList" height="500" style="width: 100%">
+        <el-table v-loading="loading" v-show="showTable" :data="userEquipmentList" height="500" style="width: 100%">
         <el-table-column label="序号" type="index" ></el-table-column>
         <el-table-column prop="user.name" label="使用人" ></el-table-column>
         <el-table-column prop="equipment.type.groupName" label="设备类型"></el-table-column>
@@ -51,6 +51,7 @@ export default {
     name: "findAllUserEquipment",
     data() {
         return{
+            loading: true,
             add:false,
             showTable: true,
             showFrom: false,
@@ -87,7 +88,7 @@ export default {
             this.$ajax.get("api/useEquipment/").then(res => {
                 if(res.data.code == 10000){
                     _this.userEquipmentList = res.data.data
-                    console.log(res.data.data)
+                    _this.loading = false
                 }
             });
             console.log( _this.userEquipmentList)
