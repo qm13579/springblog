@@ -55,6 +55,7 @@ export default {
     name:'find',
     data () {
         return{
+            cid:"",
             showUpload:false,
             loading: true,
             showUpdate:false,
