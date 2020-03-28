@@ -7,7 +7,7 @@
             <el-radio-button label="模板"></el-radio-button>
             <el-radio-button label="正文"></el-radio-button>
         </el-radio-group>
-        <el-select v-model="value" size="small"  style="width:15%" clearable placeholder="请选择合同范本">
+        <el-select v-model="value" size="small" @change="draftDemo" style="width:15%" clearable placeholder="请选择合同范本">
             <el-option
             v-for="item in contractList"
             :key="item.id"
@@ -105,18 +105,23 @@ export default {
             type: 'success'
             });
         },
-        draftDemo(){
-            var _this = this
-            console.log(this.value)
-            this.$ajax.get("api/contract/draft/"+this.value).then(res =>{
-                if (res.data.code == 10000) {
-                    console.log(res)
-                    this.input=res.data.data.title
-                    this.content=res.data.data.context
-                }else{
-                    this.$message.error('错了哦，获取范本失败');
-                }
-            })
+        draftDemo(event,item){
+            if (event == "") {
+                this.input = ""
+                this.content = ""
+            }else{
+                var _this = this
+                this.$ajax.get("api/contract/draft/"+event).then(res =>{
+                    if (res.data.code == 10000) {
+                        console.log(res)
+                        this.input=res.data.data.title
+                        this.content=res.data.data.context
+                    }else{
+                        this.$message.error('错了哦，获取范本失败');
+                    }
+                })
+            }
+
         }
 
     },
