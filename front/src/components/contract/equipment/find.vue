@@ -18,7 +18,7 @@
             <el-table-column  label="操作" width="100">
                 <template slot-scope="scope" >
                     <el-button @click="handleCilck(scope.row)" type="text" size="small">编辑</el-button>
-                    <el-button  @click="handleEquipment(scope.row)" type="text" size="small">废止</el-button>
+                    <el-button  @click="stopEquipment(scope.row)" type="text" size="small">废止</el-button>
                 </template>
             </el-table-column>   
 
@@ -28,6 +28,13 @@
                     <el-button v-if="scope.row.file" @click="handlePreview(scope.row)" type="text" size="small">预览</el-button>
                 </template>
             </el-table-column>   
+
+            <el-table-column  label="关联设备" width="100">
+                <template slot-scope="scope" >
+                    <el-button  @click="handleEquipment(scope.row)" type="text" size="small">查看</el-button>
+                </template>
+            </el-table-column> 
+
         </el-table>
         
         <el-dialog title="新增合同" :visible.sync="showTable">
@@ -42,16 +49,23 @@
             <upload :watchList="watchList" 
                  :cid="cid"></upload>
         </el-dialog>
+        <el-dialog title="查看设备" :visible.sync="showEquipment">
+            <equipment :watchList="watchList" 
+                 :cid="cid"></equipment>
+        </el-dialog>
     </el-row>
 </template>
 <script>
 import add from './add'
 import update from './update'
 import upload from './Upload'
+import equipment from './equipment'
+
 export default {
     name:'find',
     data () {
         return{
+            showEquipment:false,
             loading: true,
             showUpload:false,
             cid:"",
@@ -69,7 +83,7 @@ export default {
             this.updatEquipmentContract = data;
             this.showUpdate = true;
         },
-        handleEquipment(){
+        stopEquipment(){
 
         },
         buttunAdd(){
@@ -93,12 +107,16 @@ export default {
         handlePreview(data){
 
             window.open("/api/contract/preview/"+data.file)
-        }
+        },
+        handleEquipment(){
+            this.showEquipment = true
+        },
     },
     components:{
        add,
        update,
        upload,
+       equipment,
     },
     watch:{
         watchList(){
