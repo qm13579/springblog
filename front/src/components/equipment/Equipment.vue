@@ -111,7 +111,7 @@
             </el-dialog>
                 <!-- 分配设备使用 -->
             <el-dialog title="分配设备使用" :visible.sync="equipmentShow">
-                <UseEquipment  :watchaddData="watchaddData" :equipment="equipment" ></UseEquipment>
+                <UseEquipment  :watchaddData="watchaddData" :key="timer" :equipment="equipment" ></UseEquipment>
             </el-dialog>
             <el-dialog title="维保记录" :visible.sync="maintenanceShow">
                 <!-- 维保记录 -->
@@ -139,9 +139,10 @@
                     <span v-if="TimeLine.name == 'user'">管理员</span>
                     <span v-if="TimeLine.operation == 'add'">新增了设备</span>
                     <span v-if="TimeLine.operation == 'update'">{{TimeLine.name}}使用了设备</span>
-                    <span v-if="TimeLine.operation == '2'">调整了设备状态为故障</span>
-                    <span v-if="TimeLine.operation == '1'">调整了设备状态为启用</span>
-                    <span v-if="TimeLine.operation == '0'">调整了设备状态为未启用</span>
+                    <span v-if="TimeLine.operation == '4'">调整了设备状态为已停用</span>
+                    <span v-if="TimeLine.operation == '2'">调整了设备状态为未启用</span>
+                    <span v-if="TimeLine.operation == '1'">调整了设备状态为待维修</span>
+                    <span v-if="TimeLine.operation == '0'">调整了设备状态为启用</span>
                     </el-timeline-item>
                 </el-timeline>
                 </div>
@@ -167,6 +168,7 @@ export default {
     },
     data() {
         return{
+            timer:"",
             loading: true,
             equipmentTimeLine:[],
             drawer:false,
@@ -191,12 +193,17 @@ export default {
             equipmentTypeList:[],
             statusList:[
                 {id:0,name:"已启用"},
-                {id:1,name:"故障"},
-                {id:2,name:"未启用"}
+                {id:1,name:"待维修"},
+                {id:2,name:"未启用"},
+                {id:4,name:"已停用"},
             ],
         }
     },
     methods:{
+        //Refresh 强制刷新组件
+        reload() {
+            this.$forceUpdate()
+        },
         //用于切换显示数据
         back(){
             console.log("back --> 切换显示设备")
@@ -227,7 +234,8 @@ export default {
             this.equipment.status = this.status
             this.$ajax.put("/api/equipment/",this.equipment).then(res =>{
                 if(res.data.code == 10000){
-                    this.open2()
+                    this.$router.go(0)
+                    this.open2();
                 }else{
                     this.open4()
                 }
@@ -251,6 +259,7 @@ export default {
             // this.maintenanceShow = false
             // this.addMaintenanceShow = false;
             this.findEquipmentGruop()
+            this.timer = new Date().getTime();
         },
         //当在维保历史组件时更新功能键，显示维保组件
         toMmaintenance(){

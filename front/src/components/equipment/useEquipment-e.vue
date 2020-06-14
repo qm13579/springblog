@@ -29,15 +29,14 @@
             </el-form-item>   
 
             <el-form-item label="分配状态">
-                <el-input disabled v-model="equipment.metricsString"></el-input>
+                <el-input  disabled v-model="equipment.metricsString"></el-input>
             </el-form-item> 
 
             <el-form-item label="分配用户">
-                <el-cascader v-model="value" :options="equipemtList" :props="{ expandTrigger: 'hover' }" @change="handleChange"></el-cascader>
+                <el-cascader  v-model="value" :options="equipemtList" :props="{ expandTrigger: 'hover' }" @change="handleChange"></el-cascader>
             </el-form-item> 
 
             <el-form-item>
-                <!-- <el-button type="primary"  @click="submit(false)">提交</el-button> -->
                 <el-button type="primary"  @click="submit(true)">分配并激活</el-button>
                 <el-button  @click="back">返回</el-button>
             </el-form-item>
@@ -67,7 +66,9 @@ export default {
     },
     created(){
         var _this = this;
-        //获取用户
+        //获取设备中的用户
+        this.getUserId();
+        //获取用户列表
         this.$ajax.get("/api/user/").then(res =>{
             _this.userList =  res.data.data;
                     //获取用户分组
@@ -80,6 +81,18 @@ export default {
         });
     },
     methods:{
+        getUserId(){
+            var _this = this;
+            //获取当前设备的使用用户
+            if (_this.equipment.metrics == 0) {
+                console.log("this equipment")
+                _this.$ajax.get("/api/useEquipment/equipment/"+_this.equipment.id).then(res => {
+                    if (res.data.code==10000) {
+                        _this.value = res.data.data.user.id
+                    } 
+                })
+            }
+        },
         back(){
             this.watchaddData.push(true)
         },
@@ -92,12 +105,12 @@ export default {
             if(value){
                 console.log(this.useEquipment)
                 this.$ajax.post("api/useEquipment/metrics",this.useEquipment).then(res =>{
-                    console.log(res)
+                    console.log("分配用户并激活")
                     this.watchaddData.push(true)
+                    this.$router.go(0);
                     }) 
                 }else{
                 this.$ajax.post("api/useEquipment/",this.useEquipment).then(res =>{
-                    console.log(res)
                     this.watchaddData.push(true)
                 })
             }
@@ -118,6 +131,12 @@ export default {
         },
         handleChange(){
         },
+    },
+    watch:{
+        equipemt(){
+            console.log("tis ")
+        }
     }
+    
 }
 </script>

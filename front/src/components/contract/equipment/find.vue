@@ -15,10 +15,10 @@
             <el-table-column prop="partyBLegal" label="乙方负责人"></el-table-column>
             <el-table-column prop="partyBLinkman" label="乙方联系人"></el-table-column>
             <el-table-column prop="partyBLinkmanMobile" label="乙方联系人电话"></el-table-column>
-            <el-table-column  label="操作" width="100">
+            <el-table-column  label="操作" >
                 <template slot-scope="scope" >
                     <el-button @click="handleCilck(scope.row)" type="text" size="small">编辑</el-button>
-                    <el-button  @click="stopEquipment(scope.row)" type="text" size="small">废止</el-button>
+                    <!-- <el-button  @click="stopEquipment(scope.row)" type="text" size="small">废止</el-button> -->
                 </template>
             </el-table-column>   
 
@@ -51,7 +51,7 @@
         </el-dialog>
         <el-dialog title="查看设备" :visible.sync="showEquipment">
             <equipment :watchList="watchList" 
-                 :cid="cid"></equipment>
+                 :cid="cid" :key="timer"></equipment>
         </el-dialog>
     </el-row>
 </template>
@@ -65,6 +65,7 @@ export default {
     name:'find',
     data () {
         return{
+            timer:"",
             showEquipment:false,
             loading: true,
             showUpload:false,
@@ -102,14 +103,15 @@ export default {
         handleUpload(data){
             this.showUpload = true;
             this.cid = "api/contract/equipment/"+data.cid
-            console.log(data)
         },
         handlePreview(data){
 
             window.open("/api/contract/preview/"+data.file)
         },
-        handleEquipment(){
+        handleEquipment(data){
+            this.cid = data.cid
             this.showEquipment = true
+            this.timer = new Date().getTime();
         },
     },
     components:{
@@ -120,8 +122,9 @@ export default {
     },
     watch:{
         watchList(){
-            this.showTable = false
-            this.showUpdate = false 
+            this.showTable = false;
+            this.showUpdate = false ;
+            this.showEquipment =false;
         }
     },
     created(){

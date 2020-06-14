@@ -72,7 +72,8 @@ export default {
             var _this = this
             this.$ajax.post("/api/equipment/",this.equipment).then(res =>{
                 if (res.data.code == 10000) {
-                    this.open2()
+                    this.$router.go(0);
+                    this.open2();
                 }else{
                     this.open4()
                 }

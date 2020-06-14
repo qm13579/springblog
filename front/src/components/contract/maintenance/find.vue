@@ -3,7 +3,7 @@
         <el-button type="info"  size="small" plain class="el-icon-plus butten font"  @click="buttunAdd">添加合同</el-button>
         <!-- <el-button type="info" size="small" plain class="el-icon-printer butten" @click="printer" >信息</el-button> -->
         <el-table v-loading="loading" :data="maintenanceContract" height="500" style="width: 100%">
-            <el-table-column label="序号" type="index" width="100px" ></el-table-column>
+            <el-table-column label="序号" type="index" ></el-table-column>
             <el-table-column prop="contractName" label="合同名称" ></el-table-column>
             <el-table-column prop="money" label="合同金额"></el-table-column>
             <el-table-column prop="startTime" label="签订时间"></el-table-column>
@@ -17,10 +17,10 @@
             <el-table-column prop="partyBLinkman" label="乙方联系人"></el-table-column>
             <el-table-column prop="partyBLinkmanMobile" label="乙方联系人电话"></el-table-column>
             
-            <el-table-column  label="操作" width="100">
+            <el-table-column  label="操作">
                 <template slot-scope="scope" >
                     <el-button @click="handleCilck(scope.row)" type="text" size="small">编辑</el-button>
-                    <el-button  @click="handleEquipment(scope.row)" type="text" size="small">废止</el-button>
+                    <!-- <el-button  @click="stopContract(scope.row)" type="text" size="small">废止</el-button> -->
                 </template>
             </el-table-column>   
 
@@ -30,6 +30,12 @@
                     <el-button v-if="scope.row.file" @click="handlePreview(scope.row)" type="text" size="small">预览</el-button>
                 </template>
             </el-table-column>
+            <el-table-column  label="关联设备" width="100">
+                <template slot-scope="scope" >
+                    <el-button  @click="handleEquipment(scope.row)" type="text" size="small">查看</el-button>
+                </template>
+            </el-table-column> 
+
 
         </el-table>
         
@@ -45,12 +51,20 @@
             <upload :watchList="watchList" 
                  :cid="cid"></upload>
         </el-dialog>
+
+        <el-dialog title="查看设备" :visible.sync="showEquipment">
+            <equipment :watchList="watchList" 
+                 :cid="cid" :key="timer"></equipment>
+        </el-dialog>
+
     </el-row>
 </template>
 <script>
 import add from './add'
 import update from './update'
 import upload from '@/components/contract/equipment/Upload'
+import equipment from './equipment'
+
 export default {
     name:'find',
     data () {
@@ -63,6 +77,8 @@ export default {
             showTable:false,
             maintenanceContract:[],
             updatMaintenanceContract:'',
+            showEquipment:false,
+            timer:""
         }
     },
     methods:{
@@ -70,8 +86,10 @@ export default {
             this.updatMaintenanceContract = data;
             this.showUpdate = true;
         },
-        handleEquipment(){
-
+        handleEquipment(data){
+            this.cid = data.cid;
+            this.timer = new Date().getTime();
+            this.showEquipment= true;
         },
         buttunAdd(){
             this.showTable=true
@@ -86,10 +104,8 @@ export default {
         handleUpload(data){
             this.showUpload = true;
             this.cid = "api/contract/maintenance/"+data.cid
-            console.log(data)
         },
         handlePreview(data){
-
             window.open("/api/contract/preview/"+data.file)
         }
     },
@@ -97,10 +113,12 @@ export default {
        add,
        update,
        upload,
+       equipment,
     },
     watch:{
         watchList(){
-            this.showTable = false
+            this.showTable = false;
+            this.showUpdate = false;
         }
     },
     created(){

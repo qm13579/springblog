@@ -1,6 +1,6 @@
 <template>
-    <el-row >
     <el-form  :model="updatMaintenanceContract"   label-width="100px" class="demo-ruleForm">
+    <el-row>
       <el-col :span="8">
         <el-form-item label="合同名称" prop="contractName">
             <el-input  size="small"  v-model="updatMaintenanceContract.contractName" autocomplete="off"></el-input>
@@ -49,14 +49,18 @@
         <el-form-item label="乙方联系电话" prop="partBlinkMobile">
             <el-input size="small" v-model="updatMaintenanceContract.partyBLinkmanMobile"  autocomplete="off"></el-input>
         </el-form-item> 
-
+        </el-col>
+      </el-row>
+      <el-row>
+      <el-col :span="10" :offset="6">
         <el-form-item>
             <el-button type="primary" size="small" @click="addSubmit">提交</el-button>
             <el-button @click="back" size="small">返回</el-button>
         </el-form-item>
       </el-col>
+      </el-row>
+
     </el-form>
-    </el-row>
 </template>
 <script>
 // import Upload from './Upload'
@@ -71,13 +75,25 @@ export default {
         addSubmit(){
             var _this = this;
             this.$ajax.put("api/contract/maintenance/",this.updatMaintenanceContract).then(res => {
-                console.log("编辑合同成功")
-                _this.watchList.push(true)
-                // _this.showTable = true;
+                if (res.data.code ==10000) {
+                    _this.watchList.push(true);
+                    _this.successMes();                    
+                }else{
+                    _this.errorMes();   
+                }
             })
         },
         back(){
             this.watchList.push(true)
+        },
+        errorMes(){
+            this.$message.error("错了哦，更新失败")
+        },
+        successMes(){
+            this.$message({
+                message:"设备更新成功",
+                type:"success"
+            })
         }
     },
     props:{

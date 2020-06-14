@@ -12,7 +12,6 @@
         <el-table-column  label="操作">
             <template slot-scope="scope">
                 <el-button @click="handleCilck(scope.row)" type="text" size="small">查看</el-button>
-                <el-button type="text" size="small">编辑</el-button>
             </template>
         </el-table-column>   
         </el-table>
@@ -33,10 +32,6 @@
                     <el-input v-model="userEquipment.statusString"></el-input>
                 </el-form-item>
                  
-                <el-form-item>
-                    <el-button type="primary"  >提交</el-button>
-                    <el-button >重置</el-button>
-                </el-form-item>
             </el-form>
             
             </el-row>
