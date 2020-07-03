@@ -105,6 +105,7 @@ export default {
                             // this.roleList.push(ROLE)
                             this.open2()
                             this.$refs[formName].resetFields();
+                            this.$router.go(0);
                         }else{
                             this.open4()
                         }

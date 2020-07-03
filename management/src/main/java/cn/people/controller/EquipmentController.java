@@ -5,8 +5,10 @@ import cn.people.domain.GroupDict;
 import cn.people.domain.UseEquipmentInfo;
 import cn.people.service.IEquipmentService;
 import cn.people.utils.common.ExcelUtil;
+import cn.people.utils.common.ExcelUtils;
 import cn.people.utils.common.Result;
 import cn.people.utils.common.ResultCode;
+import cn.people.utils.factory.FileFactory;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -40,6 +42,14 @@ public class EquipmentController {
         Result result = new Result(ResultCode.SUCCESS);
         result.setData(EquipmentList);
         return result;
+    }
+    @ApiOperation(value = "获取未使用的设备")
+    @RequestMapping(value = "metrics",method = RequestMethod.GET)
+    public Result findAllEquipmentMetrics(){
+        List<Equipment> equipments = equipmentService.findAllEquipmentMetricsIsNot();
+        Result success = Result.SUCCESS();
+        success.setData(equipments);
+        return success;
     }
 
     @ApiOperation(value = "查找同类型的设备")
@@ -136,10 +146,10 @@ public class EquipmentController {
     public void getExcel(HttpServletResponse response) throws IllegalAccessException, IOException, NoSuchMethodException, InvocationTargetException {
         List<Equipment> allEquipment = equipmentService.findAllEquipment();
 
-        Workbook workbook = excelUtil.exportExcel(allEquipment, "test");
-
-        excelUtil.setHeard(workbook,response);
-
+//        Workbook workbook = excelUtil.exportExcel(allEquipment, "test");
+//        excelUtil.setHeard(workbook,response);
+        ExcelUtils excel = FileFactory.getExcel();
+        excel.export("equipment",allEquipment,response);
     }
     @ApiOperation(value = "上传文件")
     @RequestMapping(value = "/file",method = RequestMethod.POST)

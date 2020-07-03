@@ -159,6 +159,11 @@ public class EquipmentServiceImpl implements IEquipmentService, ObserverInfo {
     }
 
     @Override
+    public List<Equipment> findAllEquipmentMetricsIsNot() {
+        return equipmentMapper.findAllEquipmentMetricsIsNot();
+    }
+
+    @Override
     public void update(String equipmentId) {
         equipmentMapper.faultEquipment(equipmentId);
     }

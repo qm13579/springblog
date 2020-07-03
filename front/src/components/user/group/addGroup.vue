@@ -42,7 +42,7 @@ export default {
                     this.$ajax.post("api/user/group",this.group).then(res => {
                         if (res.data.code == 10000) {
                             this.open2()
-                            _this.$router.go(0)
+                            this.$router.go(0)
                         }else{
                             this.open4()
                         }

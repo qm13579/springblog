@@ -73,8 +73,10 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
         roleMapper.deleteRoleByUserId(user.getId());
         //建立用户和角色对应冠旭
         List<String> collect = user.getAuthorities().stream().map(Role::getId).collect(Collectors.toList());
-        roleMapper.insertRoleList(collect,user.getId());
-
+//        roleMapper.insertRoleList(collect,user.getId());
+        for (Role role :user.getAuthorities()) {
+            roleMapper.insertRoleList(user.getId(),role.getId());
+        };
 //        for (Role role:user.getRoles()) {
 //            roleMapper.insertRole(role.getId(),user.getId());
 //        }
@@ -115,7 +117,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
         try {
             user.setId(idWorker.nextId()+"");
             user.setCreateDate(DATE.format(new Date()));
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setPassword(passwordEncoder.encode("123456"));
             user.setStatus(0);
             userMapping.addUser(user);
             List<Role> roles = user.getAuthorities();

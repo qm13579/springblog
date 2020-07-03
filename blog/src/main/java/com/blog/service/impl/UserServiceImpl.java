@@ -9,12 +9,8 @@ import com.blog.service.IUserService;
 import com.blog.utils.IdWorker;
 import com.blog.utils.common.UserUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.filters.ExpiresFilter;
-import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,11 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +52,7 @@ public class UserServiceImpl implements IUserService,UserDetailsService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private HttpSession session;
-    @Autowired
+    @Resource
     private RedisTemplate redisTemplate;
 
     @Override

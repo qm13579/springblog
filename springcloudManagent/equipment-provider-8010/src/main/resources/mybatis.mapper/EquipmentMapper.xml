@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="people.cn.dao.EquipmentMapper" >
+    <insert id="saveEquipment"></insert>
+    <insert id="saveUseEquipment"></insert>
+    <insert id="addGroupToEquipment"></insert>
+    <update id="updateEquipment"></update>
+    <update id="stopUseEquipmentById"></update>
+    <update id="updateUseEquipment"></update>
+    <update id="changeMetrics"></update>
+    <update id="changeMetricsAndStatus"></update>
+    <update id="updateGroupToEquipment"></update>
+    <update id="faultEquipment"></update>
+    <update id="stopMetrics"></update>
+
+    <select id="findAllEquipment" resultType="people.cn.bean.Equipment"></select>
+    <select id="findEquipmentById" resultType="people.cn.bean.Equipment"></select>
+    <select id="findEquipmentByGroupId" resultType="people.cn.bean.Equipment"></select>
+    <select id="findAllUseEquipment" resultType="people.cn.bean.UseEquipmentInfo"></select>
+    <select id="findStatusUseEquipment" resultType="people.cn.bean.UseEquipmentInfo"></select>
+    <select id="findEquipmentGroup" resultType="people.cn.bean.GroupDict"></select>
+    <select id="likeEquepment" resultType="people.cn.bean.Equipment"></select>
+    <select id="findEquipmentByCodeAndBrand" resultType="people.cn.bean.Equipment"></select>
+    <select id="findAllEquipmentMetricsIsNot" resultType="people.cn.bean.Equipment"></select>
+</mapper>

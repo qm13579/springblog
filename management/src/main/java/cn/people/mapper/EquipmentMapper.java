@@ -125,4 +125,7 @@ public interface EquipmentMapper {
      */
     @Update("update equipment set metrics=1 where id=#{id}")
     void stopMetrics(String id);
+
+    @Select("SELECT * FROM equipment WHERE status=2")
+    List<Equipment> findAllEquipmentMetricsIsNot();
 }

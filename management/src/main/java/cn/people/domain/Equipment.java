@@ -1,5 +1,7 @@
 package cn.people.domain;
 
+import cn.people.utils.annotation.Excel;
+import cn.people.utils.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,16 +19,27 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Equipment implements Serializable {
+public class Equipment extends BaseEntity implements Serializable {
+    public static final String KEY = "equipment";
+    @Excel(name = "ID")
     private String id;
+
+    @Excel(name = "品牌")
     private String brand;
+
     private GroupDict type;
+
+    @Excel(name = "型号")
     private String part;
     @DateTimeFormat(pattern = "yyyy-MM-DD")
     private String registerDate;
+    @Excel(name = "生产商")
     private String producers;
+    @Excel(name = "销售商")
     private String seller;
+    @Excel(name = "联系电话")
     private String mobile;
+
     private String code;
     /**状态*/
     private Integer status;

@@ -1,5 +1,7 @@
 package cn.people.domain;
 
+import cn.people.utils.annotation.Excel;
+import cn.people.utils.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,12 +21,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInfo implements UserDetails {
+public class UserInfo extends BaseEntity implements UserDetails{
 
     public static final String KEY = "user";
-
+    @Excel(name = "ID")
     private String id;
+
+    @Excel(name = "用户名")
     private String username;
+
     private String password;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String createDate;
@@ -32,6 +37,7 @@ public class UserInfo implements UserDetails {
     private GroupDict group;
     private Integer status;
     private String statusString;
+    @Excel(name = "姓名")
     private String name;
 
     public String getStatusString() {

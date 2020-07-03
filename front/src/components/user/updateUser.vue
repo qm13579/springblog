@@ -85,12 +85,16 @@ export default {
                      currentUser.group.id = this.groupValue
                      this.tableData[i] = this.user
                      this.tableData[i] = currentUser
-                     currentUser.roles=[]
+                     currentUser.authorities=[]
+
                      this.rolesValue.forEach(element => {
-                         currentUser.roles.push({"id":element})
+                         console.log(element)
+                         currentUser.authorities.push({"id":this.element})
                      });
                      this.$ajax.put("api/user/",currentUser).then(res => {
-                         console.log(res)
+                        if (res.data.code ==10000) {
+                            this.open2();
+                        }
                      })
                      break
                  }
@@ -99,7 +103,13 @@ export default {
         back(){
             console.log("asadadas")
             this.watchaddUser.push(true)
-        }
+        },
+        open2() {
+            this.$message({
+            message: '用户更新成功',
+            type: 'success'
+            });
+        },
     }
 }
 </script>

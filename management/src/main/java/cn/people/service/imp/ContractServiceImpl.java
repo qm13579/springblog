@@ -12,6 +12,7 @@ import cn.people.utils.factory.PdfUtilFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.HtmlUtils;
 import javax.annotation.Resource;
@@ -52,7 +53,9 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public void uploadEquipmentContract(MultipartFile file, String cid) throws IOException {
-        String path = "/tmp/"+"file/";
+//        String path = "/";
+        String path = ResourceUtils.getURL("classpath:").getPath();
+
         log.info("file path:"+path);
         File dir = new File(path);
         if (!dir.exists()){
@@ -100,8 +103,8 @@ public class ContractServiceImpl implements ContractService {
     public void previewFile(HttpServletResponse response, String fileId) throws IOException {
         PdfUtilFactory pdfUtilFactory = new PdfUtilFactory();
 
-//        String filePath = ResourceUtils.getURL("classpath:").getPath()+fileId;
-        String filePath = "/tmp/"+"file/"+fileId;
+        String filePath = ResourceUtils.getURL("classpath:").getPath()+fileId;
+//        String filePath = "./tmp/"+"file/"+fileId;
         pdfUtilFactory.getUserPdfUtil().preview(filePath,response);
     }
 
@@ -135,12 +138,13 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public void uploadMaintenanceContract(MultipartFile file, String cid) throws IOException {
 
-        String path = "/tmp/"+"file/";
+        String path = ResourceUtils.getURL("classpath:").getPath();
         log.info("file path:"+path);
         File dir = new File(path);
         if (!dir.exists()){
             dir.mkdir();
         }
+        System.out.println("file create");
         String filename = file.getOriginalFilename();
         String substring = filename.substring(filename.lastIndexOf("."));
         String fileId = idWorker.nextId() + ""+substring;

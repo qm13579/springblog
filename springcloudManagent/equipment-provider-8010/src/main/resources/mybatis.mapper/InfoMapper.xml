@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="people.cn.dao.InfoMapper">
+    <insert id="insertInfo"></insert>
+    <insert id="logInsert"></insert>
+    <insert id="insertEquipmentInfo"></insert>
+
+    <select id="findAllInfo" resultType="people.cn.bean.InfoPojo"></select>
+    <select id="findAllStatus" resultType="people.cn.bean.InfoPojo"></select>
+    <select id="findLog" resultType="people.cn.bean.LogPojo"></select>
+    <select id="findEquipmentInfo"></select>
+    <select id="getEquipmentInfo" resultType="people.cn.bean.EquipmentInfo"></select>
+    <select id="getWeekNumber" resultType="java.lang.String"></select>
+</mapper>

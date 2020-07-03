@@ -57,6 +57,7 @@ public class InfoServiceImpl implements IInfoService {
         List<UserInfo> allUser = userMapper.findAllUser();
         PdfUtilFactory pdfUtilFactory = new PdfUtilFactory();
         pdfUtilFactory.getUserPdfUtil().setHeader(response,allUser);
+
     }
 
     @Override

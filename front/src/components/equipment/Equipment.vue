@@ -7,7 +7,7 @@
                     <el-dropdown-item v-for=" item in functionList" :key="item.id" @click.native="findEquipmentByGruop(item)">{{item.groupName}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <el-upload
+            <!-- <el-upload
                 class="upload-demo butten"
                 action="api/equipment/file"
                 :on-preview="handlePreview"
@@ -18,7 +18,7 @@
                 :on-exceed="handleExceed"
                 :file-list="fileList">
                 <el-button size="small"  class="el-icon-upload2 butten"  type="primary">导入数据</el-button>
-                </el-upload>
+                </el-upload> -->
             <el-button type="primary" plain size="small" class="el-icon-download" @click="importFile">导出数据</el-button>
 
 

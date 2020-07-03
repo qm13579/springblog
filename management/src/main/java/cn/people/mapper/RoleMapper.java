@@ -17,8 +17,9 @@ public interface RoleMapper {
     @Insert("insert into user_role(role_id,user_id) values(#{role_id},#{user_id})")
     public void insertRole(String role_id,String user_id);
 
-    @InsertProvider(type = UserProvider.class,method = "insertRoleByUseId")
-    public void insertRoleList(List<String> list,String userId);
+//    @InsertProvider(type = UserProvider.class,method = "insertRoleByUseId")
+    @Insert("INSERT INTO user_role(user_id,role_id) VALUES(#{uid},#{rid}) ")
+    void insertRoleList(@Param("uid") String uId,@Param("rid") String rid);
 
     @Select("select * from role where roleName = #{roleName}")
     @Results({

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="people.cn.dao.IUseEquipmentInfoMapper">
+    <insert id="addUseEquipment"></insert>
+    <update id="updateUseEquipment"></update>
+    <update id="stopUseEquipmentById"></update>
+    <update id="stopUseEquipmentByEId"></update>
+
+    <select id="findAllUseEquipment" resultType="people.cn.bean.UseEquipmentInfo"></select>
+    <select id="findHistoryUseEquipment" resultType="people.cn.bean.UseEquipmentInfo"></select>
+    <select id="findUseEquipmentByEquipmentByid" resultType="people.cn.bean.UseEquipmentInfo"></select>
+    <select id="findUseEquipmentByEId" resultType="people.cn.bean.UseEquipmentInfo"></select>
+</mapper>

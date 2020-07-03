@@ -11,7 +11,7 @@
             <el-button type="info" size="small" plain class="el-icon-plus butten"  @click="buttunAdd">添加用户</el-button>
             <el-button type="info" size="small" plain class="el-icon-printer butten" @click="printer" >信息打印</el-button>
 
-            <el-upload
+            <!-- <el-upload
                 class="upload-demo butten"
                 action="api/user/file/"
                 :on-preview="handlePreview"
@@ -22,7 +22,7 @@
                 :on-exceed="handleExceed"
                 :file-list="fileList">
                 <el-button size="small"  class="el-icon-upload2"  type="primary" >导入数据</el-button>
-                </el-upload>
+                </el-upload> -->
             <el-button type="primary" plain size="small" class="el-icon-download butten" @click="importFile">导出数据</el-button>
 
         </el-row>
@@ -39,7 +39,7 @@
             <el-table-column  label="操作" width="180">
                 <template slot-scope="scope" >
                     <el-button @click="handleCilck(scope.row)" type="text" size="small">编辑</el-button>
-                    <el-button  @click="handleEquipment(scope.row)" type="text" size="small">分配设备</el-button>
+                    <!-- <el-button  @click="handleEquipment(scope.row)" type="text" size="small">分配设备</el-button> -->
                 </template>
             </el-table-column>   
             </el-table>
@@ -94,9 +94,9 @@
             <el-dialog title="新增用户" :visible.sync="add">
                 <addUser v-show="add" :tableData="tableData" :group="group" :watchaddUser="watchaddUser" :roles="roles"></addUser>
             </el-dialog>
-            <el-dialog title="分配设备" :visible.sync="equipmentShow">
+            <!-- <el-dialog title="分配设备" :visible.sync="equipmentShow">
                 <UseEquipment v-show="equipmentShow" :watchaddUser="watchaddUser" :user="user" ></UseEquipment>
-            </el-dialog>
+            </el-dialog> -->
 
         </el-row>    
 
@@ -149,7 +149,7 @@ export default {
             roles:[],
             statusList:[
                 {id:0,name:"启用"},
-                {id:2,name:"停用"},
+                {id:1,name:"停用"},
             ],
             rules:{
                 username:[{validator: checkUserId, trigger: 'blur'}],
@@ -165,7 +165,8 @@ export default {
             this.groupValue = this.user.group.id
             // this.rolesValue = this.user.roles
             this.rolesValue=[]
-            data.roles.forEach(role => {
+            console.log(data.authorities)
+            data.authorities.forEach(role => {
                 this.rolesValue.push(role.id)
             });
             this.statusValues = data.status;
@@ -181,12 +182,17 @@ export default {
                             currentUser.group.id = this.groupValue
                             this.tableData[i] = this.user
                             this.tableData[i] = currentUser
-                            currentUser.roles=[]
+                            currentUser.authorities=[]
                             this.rolesValue.forEach(element => {
-                                currentUser.roles.push({"id":element})
+                                currentUser.authorities.push({"id":element})
                             });
+                            currentUser.status =this.statusValues;
                             this.$ajax.put("api/user/",currentUser).then(res => {
-                                console.log(res)
+                                if (res.data.code == 10000) {
+                                    this.open2();
+                                    this.$router.go(0);
+                                    // this.$router.push({name:"findUser"})
+                                }
                             })
                             break
                         }
@@ -239,7 +245,13 @@ export default {
         },
         printer(){
             window.open("/api/info/pdf")
-        }
+        },
+        open2() {
+            this.$message({
+            message: '用户更新成功',
+            type: 'success'
+            });
+        },
 
 
     },

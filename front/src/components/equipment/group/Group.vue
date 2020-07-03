@@ -100,7 +100,9 @@ export default {
                         this.open2();
                         this.$refs[form].resetFields();
                         _this.groupList.push(_this.dataForm)
-                        console.log(_this.dataForm)
+                        console.log(_this.dataForm);
+                        this.$router.go(0);
+
                     }
                 })
             }else{

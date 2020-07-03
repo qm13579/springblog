@@ -68,17 +68,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
                 .usernameParameter("username")
                 .passwordParameter("password")
-//                .successHandler(new LoginSuccessHandler())  //未使用jwt
-                .successHandler(new cn.people.utils.jwt.LoginSuccessHandler())//使用jwt
+                .successHandler(new LoginSuccessHandler())  //未使用jwt
+//                .successHandler(new cn.people.utils.jwt.LoginSuccessHandler())//使用jwt
                 .failureHandler(new LoginFailureHandler())
                 .and()
             .exceptionHandling()
                 .accessDeniedHandler(new AuthLimitHandler());
 //                .authenticationEntryPoint()登陆过期策略
         // rest 无状态 无session
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         //配置token验证过滤器
-        http.addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     /**

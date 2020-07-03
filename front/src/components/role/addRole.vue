@@ -54,6 +54,7 @@ export default {
                     //清空数据
                     this.role = this.$options.data().role
                     this.watchRole.push(true)
+                    this.$router.go(0);
                 }
             })
         }

@@ -8,7 +8,7 @@
             <el-table-column prop="equipment.brand" label="设备品牌"></el-table-column>
             <el-table-column prop="equipment.type.groupName" label="设备类型"></el-table-column>
             <el-table-column prop="equipment.part" label="设备型号"></el-table-column>
-            <el-table-column prop="statusString" label="地址"></el-table-column>
+            <el-table-column prop="statusString" label="状态"></el-table-column>
             <el-table-column prop="describe" label="描述"></el-table-column>
         </el-table>
     </div>

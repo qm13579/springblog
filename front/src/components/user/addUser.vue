@@ -47,6 +47,7 @@ export default {
             }
         }
         var checkgroupValue=(rule,value,callback) =>{
+            console.log(value)
             if (!value) {
                 callback(new Error("部门不能为空"))
             }else{
@@ -62,7 +63,7 @@ export default {
             rules:{
                 username:[{validator: checkUsername, trigger: 'blur'}],
                 name:[{validator: checkName, trigger: 'blur'}],
-                groupValue:[{validator: checkgroupValue, trigger: 'blur'}],
+                // groupValue:[{validator: checkgroupValue, trigger: 'blur'}],
             }
         }
     },
@@ -89,16 +90,16 @@ export default {
                 if (valid) {
                     this.tableData.push(this.userInfo)
                     //角色增加
-                    this.userInfo.roles=[]
+                    this.userInfo.authorities=[]
                     this.rolesValue.forEach(element => {
                         console.log(element)
-                        this.userInfo.roles.push({id:element})
+                        this.userInfo.authorities.push({id:element})
                     });
                     //部门增加
                     this.userInfo.group = {id:this.groupValue}
                     //更新页面
 
-                    this.$ajax.post("/api/user/",this.userInfo).then(res => {
+                    this.$ajax.post("/api/user/create",this.userInfo).then(res => {
                         if (res.data.code == 10000) {
                             this.open2()
                         }else{
@@ -110,6 +111,7 @@ export default {
                     this.roleName = this.$options.data().roleName     
                 }else{
                     console.log("请输入值")
+                    console.log(this.groupValue)
                 }
             } )
         },

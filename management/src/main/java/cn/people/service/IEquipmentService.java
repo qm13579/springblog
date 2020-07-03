@@ -84,4 +84,9 @@ public interface IEquipmentService {
      * @param group
      */
     void updateGroupToEquipment(GroupDict group);
+
+    /**
+     * 获取未使用的设备
+     */
+    List<Equipment> findAllEquipmentMetricsIsNot();
 }

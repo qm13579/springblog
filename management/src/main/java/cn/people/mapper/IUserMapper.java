@@ -28,7 +28,7 @@ public interface IUserMapper {
     @Results({
             @Result(property = "id",column = "id"),
             @Result(property = "group",column = "groupDict",javaType =GroupDict.class,one = @One(select = "cn.people.mapper.GroupDictMapper.findGroupById")),
-            @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "cn.people.mapper.RoleMapper.findRoleByUserId" ))
+            @Result(property = "authorities",column = "id",javaType = java.util.List.class,many = @Many(select = "cn.people.mapper.RoleMapper.findRoleByUserId" ))
     })
     List<UserInfo> findAllUser();
 
@@ -52,7 +52,7 @@ public interface IUserMapper {
     @Results({
             @Result(property = "id",column = "id"),
             @Result(property = "group",column = "groupDict",javaType =GroupDict.class,one = @One(select = "cn.people.mapper.GroupDictMapper.findGroupById")),
-            @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "cn.people.mapper.RoleMapper.findRoleByUserId" ))
+            @Result(property = "authorities",column = "id",javaType = java.util.List.class,many = @Many(select = "cn.people.mapper.RoleMapper.findRoleByUserId" ))
 
     })
     List<UserInfo> finUserByGroupiD(String gid);

@@ -44,7 +44,7 @@ export default {
         }
     },
     props:{
-        watchaddData:{
+        watchaddUser:{
             type:Array
         },
         user:{
@@ -53,7 +53,7 @@ export default {
     },
     methods:{
         back(){
-            this.watchaddData.push(true)
+            this.watchaddUser.push(true)
         },
         submit(value){
             this.useEquipment.user = {}
@@ -63,8 +63,10 @@ export default {
             this.useEquipment.equipment.id = this.value[1]
             if(value){
                 this.$ajax.post("api/useEquipment/metrics",this.useEquipment).then(res =>{
-                    console.log(res)
-                    this.watchaddUser.push(true)
+                    if (res.data.code == 10000) {
+                        this.open2();
+                        this.back();
+                    }                    // this.watchaddUser.push(true)
                     }) 
                 }else{
                 this.$ajax.post("api/useEquipment/",this.useEquipment).then(res =>{
@@ -77,6 +79,7 @@ export default {
             console.log(value);
         },
         equipemntHandle(equipemt){
+            console.log(equipemt)
             this.equipmentTypeList.forEach(element =>{
                 this.equipemtList.push({"value":element.id,"label":element.groupName,"children":[]})
             })
@@ -86,6 +89,12 @@ export default {
                         type.children.push({"value":element.id,"label":element.brand+"/"+element.part})                  
                     }
                 })
+            });
+        },
+        open2() {
+            this.$message({
+            message: '用户更新成功',
+            type: 'success'
             });
         },
         

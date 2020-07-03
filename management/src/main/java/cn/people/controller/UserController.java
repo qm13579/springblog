@@ -6,8 +6,10 @@ import cn.people.dot.UserInfoDto;
 import cn.people.service.IUserService;
 import cn.people.utils.annotation.Limit;
 import cn.people.utils.common.ExcelUtil;
+import cn.people.utils.common.ExcelUtils;
 import cn.people.utils.common.Result;
 import cn.people.utils.common.ResultCode;
+import cn.people.utils.factory.FileFactory;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -114,8 +116,10 @@ public class UserController {
     @RequestMapping(value = "/file",method = RequestMethod.GET)
     public void getUserFile(HttpServletResponse response) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, IOException {
         List<UserInfo> allUser = userService.findAllUser();
-        Workbook workbook = excelUtil.exportExcel(allUser, "user");
-        excelUtil.setHeard(workbook,response);
+//        Workbook workbook = excelUtil.exportExcel(allUser, "user");
+//        excelUtil.setHeard(workbook,response);
+        ExcelUtils excelUtils = FileFactory.getExcel();
+        excelUtils.export("user",allUser,response);
     }
     @Limit(period = 60, count = 10,name = "测试DTO",key = "updateUserInfo",prefix = "user")
     @ApiOperation(value = "测试DTO")
