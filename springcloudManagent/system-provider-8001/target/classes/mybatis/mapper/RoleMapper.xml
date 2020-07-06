@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="people.cn.dao.RoleMapper">
+
+    <insert id="insertRole"></insert>
+    <insert id="insertRoleList"></insert>
+    <insert id="addRole"></insert>
+    <update id="updateRole"></update>
+    <delete id="deleteRoleByUserId"></delete>
+    <select id="findRole" resultType="people.cn.bean.Role"></select>
+    <select id="findRoleByUserId" resultType="people.cn.bean.Role"></select>
+    <select id="findAllRoles" resultType="people.cn.bean.Role"></select>
+</mapper>

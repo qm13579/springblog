@@ -14,7 +14,7 @@
         <module>equipment-provider-8010</module>
         <module>eureka-8100</module>
         <module>eureka-8101</module>
-        <module>client-8088</module>
+        <module>system-client-8088</module>
     </modules>
 
 

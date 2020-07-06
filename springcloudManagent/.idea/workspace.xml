@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e633285b-306e-40b3-8cf9-f3cdd22cea31" name="Default Changelist" comment="" />
+    <list default="true" id="e633285b-306e-40b3-8cf9-f3cdd22cea31" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/system-client-8088/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/system-client-8088/src/main/java/config/ConfigBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/system-client-8088/src/main/java/people/cn/controller/SystemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/system-client-8088/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/people/cn/common/pdfUtil/PdfUtilAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/people/cn/common/pdfUtil/PdfUtilAbstract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/config/ConfigBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/Client8088.java" beforeDir="false" afterPath="$PROJECT_DIR$/system-client-8088/src/main/java/people/cn/SystemClient8088.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller/ContractController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller/DruidContract.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller/EquipmentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller/InfoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller/MaintenanceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller/RoleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller/UseEquipmentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-8088/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-8100/src/main/java/people/cn/Eureka8010.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-8100/src/main/java/people/cn/Eureka8100.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-8100/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-8100/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-8100/target/classes/people/cn/Eureka8010.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/classes/application.yml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +46,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -30,18 +64,20 @@
     </option>
   </component>
   <component name="ProjectId" id="1dvh7kTqOqZdjppTMrlxhgw1RJe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client-8088/src/main/java/people/cn/controller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -77,16 +113,42 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SystemProvider8001">
-    <configuration name="Eureka8010" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="eureka8100" />
+  <component name="RunManager" selected="Spring Boot.SystemProvider8001 (1)">
+    <configuration name="Eureka8100" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="eureka-8100" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="people.cn.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="people.cn.Eureka8010" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="people.cn.Eureka8100" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Eureka8100" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="eureka-8100" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="people.cn.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="people.cn.Eureka8100" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SystemProvider8001 (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="system-provider-8001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="people.cn.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="people.cn.SystemProvider8001" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -106,8 +168,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.SystemProvider8001 (1)" />
+        <item itemvalue="Spring Boot.Eureka8100" />
         <item itemvalue="Spring Boot.SystemProvider8001" />
-        <item itemvalue="Spring Boot.Eureka8010" />
+        <item itemvalue="Spring Boot.Eureka8100" />
       </list>
     </recent_temporary>
   </component>
@@ -122,10 +186,25 @@
       <option name="presentableId" value="Default" />
       <updated>1593311308692</updated>
       <workItem from="1593311311532" duration="22012000" />
+      <workItem from="1594021703591" duration="3114000" />
+      <workItem from="1594027171123" duration="249000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

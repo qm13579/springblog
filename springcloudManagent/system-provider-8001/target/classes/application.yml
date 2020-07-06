@@ -5,6 +5,8 @@ eureka:
     service-url:
       defaultZone: http://localhost:8010/eureka/
 spring:
+  application:
+    name: spring-provider-system
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/management?characterEncoding=utf8&serverTimezone=UTC&useSSL=false

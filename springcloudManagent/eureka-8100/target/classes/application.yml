@@ -1,10 +1,10 @@
 server:
-  port: 8010
+  port: 8100
 eureka:
   instance:
-    hostname: erueka8010.com
+    hostname: erueka8100.com
   client:
     service-url:
-      defaultZone: http://localhost:8010/eureka/
+      defaultZone: http://localhost:8100/eureka/
     register-with-eureka: false # 表示是否向eureka注册中心注册自己
     fetch-registry: false #fetch-registry如果为false，则表示自己为注册中心
