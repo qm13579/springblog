@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.userdetails.UserDetails;
 import people.cn.common.BaseEntity;
 import people.cn.common.annotation.Excel;
 
@@ -16,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInfo extends BaseEntity  implements UserDetails{
+public class UserInfo extends BaseEntity{
 
     public static final String KEY = "user";
     @Excel(name = "ID")
@@ -45,37 +44,31 @@ public class UserInfo extends BaseEntity  implements UserDetails{
     }
 
 
-    @Override
+
     public String getPassword(){
         return password;
     }
 
-    @Override
     public String getUsername() {
         return username;
     }
 
-    @Override
     public List<Role> getAuthorities() {
         return authorities;
     }
 
-    @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Override
     public boolean isEnabled() {
         return true;
     }

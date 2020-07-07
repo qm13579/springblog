@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Equipment extends BaseEntity implements Serializable {
+public class Equipment extends BaseEntity {
     public static final String KEY = "equipment";
     @Excel(name = "ID")
     private String id;
@@ -41,40 +41,15 @@ public class Equipment extends BaseEntity implements Serializable {
     private String mobile;
 
     private String code;
-    /**状态*/
+    /**状态 0:已启用，1：待维修，2：未启用，4：已停用*/
     private Integer status;
-    private String statusString;
     /**0:已分配 1:未分配*/
     private Integer metrics;
-    private String  metricsString;
     /**合同信息*/
     private DraftContract contract;
 
-    public String getStatusString() {
-        if(this.getStatus() == 0){
-            this.statusString = "已启用";
-        }
-        if (this.status == 1){
-            this.statusString = "待维修";
-        }
-        if (this.status == 2){
-            this.statusString = "未启用";
-        }
-        if (this.status==4){
-            this.statusString="已停用";
-        }
-        return this.statusString;
-    }
 
-    public String getMetricsString() {
 
-        if (metrics == 0){
-            return metricsString="已分配使用";
-        }
-        else {
-            return metricsString = "未分配使用";
-        }
-    }
 
     @Override
     public String toString() {
@@ -89,9 +64,7 @@ public class Equipment extends BaseEntity implements Serializable {
                 ", mobile='" + mobile + '\'' +
                 ", code='" + code + '\'' +
                 ", status=" + status +
-                ", statusString='" + statusString + '\'' +
                 ", metrics=" + metrics +
-                ", metricsString='" + metricsString + '\'' +
                 '}';
     }
 }

@@ -4,14 +4,10 @@
 
 <mapper namespace="people.cn.dao.EquipmentMapper" >
 
-<!--    <resultMap id="AllEquipment" type="people.cn.bean.Equipment">-->
-<!--        <result column="groupDict" property="type"></result>-->
-<!--    </resultMap>-->
+    <resultMap id="AllEquipment" type="people.cn.bean.Equipment">
+        <association property="type" column="type" javaType="people.cn.bean.GroupDict" select="people.cn.dao.GroupDictMapper.findGroupById"/>
+    </resultMap>
 
-<!--    <resultMap id="AllUseEquipment" type="people.cn.bean.UseEquipmentInfo">-->
-<!--        <association property="user" column="user_id" javaType="people.cn.bean.UserInfo" select="people.cn.dao.UserMapper.findUserById"></association>-->
-<!--        <association property="equipment" column="equipment_id" javaType="people.cn.bean.Equipment" select="findEquipmentById"></association>-->
-<!--    </resultMap>-->
 
 
     <insert id="saveEquipment" parameterType="people.cn.bean.Equipment">
@@ -106,7 +102,7 @@
         WHERE id= #{id}
     </update>
 
-    <select id="findAllEquipment" resultType="people.cn.bean.Equipment">
+    <select id="findAllEquipment" resultMap="AllEquipment">
         SELECT * FROM equipment
     </select>
 

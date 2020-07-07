@@ -36,10 +36,10 @@ public class EquipmentController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public Result findAllEquipment(){
-        System.out.println("equipment");
-        List<Equipment> EquipmentList = equipmentService.findAllEquipment();
+        List<Equipment> equipmentList = equipmentService.findAllEquipment();
+        System.out.println(equipmentList);
         Result result = new Result(ResultCode.SUCCESS);
-        result.setData(EquipmentList);
+        result.setData(equipmentList);
         return result;
     }
 

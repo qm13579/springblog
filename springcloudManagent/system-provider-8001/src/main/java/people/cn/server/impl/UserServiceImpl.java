@@ -2,9 +2,6 @@ package people.cn.server.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +30,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class UserServiceImpl implements IUserService, UserDetailsService {
+public class UserServiceImpl implements IUserService {
 
     @Resource
     private UserMapper userMapping;
@@ -145,8 +142,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
         userMapping.updateGroupToUser(group);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserInfo loadUserByUsername(String s)  {
         System.out.println("用户验证");
         UserInfo user = userMapping.findUserByUsername(s);
         System.out.println(user);

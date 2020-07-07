@@ -1,21 +1,17 @@
 package people.cn.dao;
 
-
-import org.apache.ibatis.annotations.Mapper;
 import people.cn.bean.GroupDict;
 
 /**
  * @author : FENGZHI
- * create at:  2020/2/15  下午3:43
- * @description: 分类查询
+ * create at:  2020/7/7  下午9:52
+ * @description:
  */
-@Mapper
 public interface GroupDictMapper {
     /**
      * id
      * @param id
      * @return
      */
-    GroupDict findGroupById(String id);
-
+    GroupDict selectGroupDictById(String id);
 }

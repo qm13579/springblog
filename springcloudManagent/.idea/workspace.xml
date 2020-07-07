@@ -2,46 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e633285b-306e-40b3-8cf9-f3cdd22cea31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/people/cn/common/interfaceBean/ObserverInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/java/people/cn/common/interfaceBean/Subject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/server/impl/MaintenanceServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/server/impl/UseEquipmentInfoServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis/mybatis-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/equipment-provider-8010/src/test/java/EquipemntTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system-provider-8001/src/test/java/SsytemTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/GroupDictMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/common/pdfUtil/PdfUtilAbstract.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/common/pdfUtil/PdfUtilAbstract.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/people/cn/bean/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/people/cn/bean/Equipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/people/cn/bean/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/people/cn/bean/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/people/cn/bean/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/people/cn/bean/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/bean/Equipment.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/bean/Equipment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/bean/QuartzJob.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/bean/QuartzJob.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/bean/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/bean/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/bean/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/bean/UserInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/bean/UserInfoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/bean/UserInfoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/common/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/common/BaseEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/common/IdWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/common/IdWorker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/people/cn/common/pdfUtil/UserPdfUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/people/cn/common/pdfUtil/UserPdfUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/EquipmentProvider8010.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/EquipmentProvider8010.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/controller/EquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/controller/EquipmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/controller/MaintenanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/controller/MaintenanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/controller/UseEquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/controller/UseEquipmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/ContractMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/ContractMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/IUseEquipmentInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/IUseEquipmentInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/InfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/InfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/MaintenanceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/dao/MaintenanceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/server/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/server/ContractService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/server/impl/EquipmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/java/people/cn/server/impl/EquipmentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis.mapper/ContractMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis/mapper/ContractMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis.mapper/EquipmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis/mapper/EquipmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis.mapper/InfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis/mapper/InfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis.mapper/MaintenanceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis/mapper/MaintenanceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis.mapper/UseEquipmentInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis/mapper/UseEquipmentInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis/mapper/EquipmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/src/main/resources/mybatis/mapper/EquipmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/target/classes/mybatis/mapper/EquipmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/target/classes/mybatis/mapper/EquipmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/target/classes/people/cn/EquipmentProvider8010.class" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/target/classes/people/cn/EquipmentProvider8010.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/target/classes/people/cn/controller/EquipmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/target/classes/people/cn/controller/EquipmentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/target/classes/people/cn/server/impl/ContractServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/target/classes/people/cn/server/impl/ContractServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment-provider-8010/target/classes/people/cn/server/impl/EquipmentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/equipment-provider-8010/target/classes/people/cn/server/impl/EquipmentServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-8100/target/classes/META-INF/eureka-8100.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/dao/GroupDictMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/dao/GroupDictMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/dao/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/dao/RoleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/dao/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/server/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/java/people/cn/server/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/resources/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/resources/mybatis/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/classes/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/classes/mybatis/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/classes/people/cn/SystemProvider8001.class" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/classes/people/cn/SystemProvider8001.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/classes/people/cn/dao/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/classes/people/cn/dao/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system-provider-8001/src/main/resources/mybatis/mapper/GroupDictMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/src/main/resources/mybatis/mapper/GroupDictMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/classes/mybatis/mapper/GroupDictMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/classes/mybatis/mapper/GroupDictMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/classes/people/cn/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/classes/people/cn/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/classes/people/cn/server/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/classes/people/cn/server/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system-provider-8001/target/test-classes/SsytemTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/system-provider-8001/target/test-classes/SsytemTest.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,14 +56,30 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="management@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="management@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="management@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="management: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -141,7 +153,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SsytemTest.test1">
+  <component name="RunManager" selected="Spring Boot.EquipmentProvider8010">
     <configuration name="EquipemntTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="equipment-provider-8010" />
       <option name="PACKAGE_NAME" value="" />
@@ -214,12 +226,27 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.EquipmentProvider8010" />
+        <item itemvalue="Spring Boot.Eureka8100" />
         <item itemvalue="JUnit.SsytemTest.test1" />
         <item itemvalue="JUnit.EquipemntTest.test2" />
         <item itemvalue="Spring Boot.SystemProvider8001 (1)" />
-        <item itemvalue="JUnit.EquipemntTest.test1" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@23f4eaea" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />

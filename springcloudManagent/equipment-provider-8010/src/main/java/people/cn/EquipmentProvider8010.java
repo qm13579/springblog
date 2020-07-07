@@ -15,9 +15,5 @@ public class EquipmentProvider8010 {
         SpringApplication.run(EquipmentProvider8010.class,args);
     }
 
-//    @Bean
-//    public IdWorker idWorker(){
-//        return new IdWorker();
-//    }
 
 }

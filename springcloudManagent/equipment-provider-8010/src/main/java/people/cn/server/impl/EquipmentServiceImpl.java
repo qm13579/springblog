@@ -46,6 +46,7 @@ public class EquipmentServiceImpl implements IEquipmentService, ObserverInfo {
 
     @Override
     public List<Equipment> findAllEquipment() {
+        System.out.println("equipment");
         return equipmentMapper.findAllEquipment();
     }
 

@@ -3,7 +3,6 @@ package people.cn.bean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
 
@@ -15,12 +14,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role  implements GrantedAuthority {
+public class Role  {
     private String id;
     private String roleName;
     private String desc;
     private List<Permission> permissions;
-    @Override
     public String getAuthority() {
         return roleName;
     }
