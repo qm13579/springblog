@@ -2,11 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="people.cn.dao.UserMapper">
-    <insert id="addUser"></insert>
-    <insert id="addGroupToUser"></insert>
-    <update id="updateUser"></update>
-    <update id="updateGroupToUser"></update>
-    <delete id="deleteUser"></delete>
+    <insert id="addUser">
+
+    </insert>
+    <insert id="addGroupToUser">
+
+    </insert>
+    <update id="updateUser">
+
+    </update>
+    <update id="updateGroupToUser">
+
+    </update>
+    <delete id="deleteUser">
+
+    </delete>
 
     <select id="findAllUser" resultType="people.cn.bean.UserInfo">
         "select * from user"
@@ -15,10 +25,17 @@
     <select id="findGroupUser" resultType="people.cn.bean.GroupDict">
 
     </select>
-    <select id="finUserByUsername" resultType="people.cn.bean.UserInfo"></select>
-    <select id="findUserById" resultType="people.cn.bean.UserInfo"></select>
-    <select id="finUserByGroupiD" resultType="people.cn.bean.UserInfo"></select>
-    <select id="findUserByUsername" resultType="people.cn.bean.UserInfo"></select>
+
+    <select id="findUserById" resultType="people.cn.bean.UserInfo">
+
+    </select>
+    <select id="finUserByGroupiD" resultType="people.cn.bean.UserInfo">
+
+    </select>
+    <select id="findUserByUsername" resultType="people.cn.bean.UserInfo">
+        SELECT * FROM user
+        WHERE username = #{username}
+    </select>
 
 
 </mapper>

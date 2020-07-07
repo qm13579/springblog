@@ -10,6 +10,7 @@ import java.util.List;
  * create at:  2020/2/15  下午8:25
  * @description: 角色相关方式
  */
+@Mapper
 public interface RoleMapper {
 
     void insertRole(String role_id, String user_id);

@@ -11,6 +11,7 @@ import people.cn.bean.UseEquipmentInfo;
 import people.cn.common.IdWorker;
 import people.cn.common.Result;
 import people.cn.common.ResultCode;
+import people.cn.common.interfaceBean.ObserverInfo;
 import people.cn.dao.EquipmentMapper;
 import people.cn.dao.IUseEquipmentInfoMapper;
 import people.cn.dao.MaintenanceMapper;
@@ -29,7 +30,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class EquipmentServiceImpl implements IEquipmentService {
+public class EquipmentServiceImpl implements IEquipmentService, ObserverInfo {
     @Resource
     private MaintenanceMapper maintenanceMapper;
     @Resource

@@ -4,14 +4,14 @@
 
 <mapper namespace="people.cn.dao.EquipmentMapper" >
 
-    <resultMap id="AllEquipment" type="people.cn.bean.Equipment">
-        <result column="groupDict" property="type"></result>
-    </resultMap>
+<!--    <resultMap id="AllEquipment" type="people.cn.bean.Equipment">-->
+<!--        <result column="groupDict" property="type"></result>-->
+<!--    </resultMap>-->
 
-    <resultMap id="AllUseEquipment" type="people.cn.bean.UseEquipmentInfo">
-        <association property="user" column="user_id" javaType="people.cn.bean.UserInfo" select="people.cn.dao.UserMapper.findUserById"></association>
-        <association property="equipment" column="equipment_id" javaType="people.cn.bean.Equipment" select="findEquipmentById"></association>
-    </resultMap>
+<!--    <resultMap id="AllUseEquipment" type="people.cn.bean.UseEquipmentInfo">-->
+<!--        <association property="user" column="user_id" javaType="people.cn.bean.UserInfo" select="people.cn.dao.UserMapper.findUserById"></association>-->
+<!--        <association property="equipment" column="equipment_id" javaType="people.cn.bean.Equipment" select="findEquipmentById"></association>-->
+<!--    </resultMap>-->
 
 
     <insert id="saveEquipment" parameterType="people.cn.bean.Equipment">
@@ -106,21 +106,21 @@
         WHERE id= #{id}
     </update>
 
-    <select id="findAllEquipment" resultMap="AllEquipment">
+    <select id="findAllEquipment" resultType="people.cn.bean.Equipment">
         SELECT * FROM equipment
     </select>
 
-    <select id="findEquipmentById" resultMap="AllEquipment" parameterType="java.lang.String">
+    <select id="findEquipmentById" resultType="people.cn.bean.Equipment">
         SELECT * FROM equipment WHERE id=#{id}
     </select>
 
     <select id="findEquipmentByGroupId" resultType="people.cn.bean.Equipment"></select>
 
-    <select id="findAllUseEquipment" resultMap="AllUseEquipment">
+    <select id="findAllUseEquipment" resultType="people.cn.bean.UseEquipmentInfo">
         SELECT * FROM use_equipment_info
     </select>
 
-    <select id="findStatusUseEquipment" resultMap="AllUseEquipment">
+    <select id="findStatusUseEquipment" resultType="people.cn.bean.UseEquipmentInfo">
         SELECT * FROM use_equipment_info
         WHERE status=#{status}
     </select>

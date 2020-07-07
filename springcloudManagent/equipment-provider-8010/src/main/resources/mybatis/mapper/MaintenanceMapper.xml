@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="people.cn.dao.MaintenanceMapper">
+    <insert id="insertMaintenance"></insert>
+    <update id="changeStatus"></update>
+
+    <select id="findAllMaintenance" resultType="people.cn.bean.Maintenance"></select>
+    <select id="findAllMaintenanceByEquipment" resultType="people.cn.bean.Maintenance"></select>
+</mapper>

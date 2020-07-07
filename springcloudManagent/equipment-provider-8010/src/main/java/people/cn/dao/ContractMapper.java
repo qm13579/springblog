@@ -14,6 +14,7 @@ import java.util.List;
  * create at:  2020/3/17  下午8:42
  * @description:
  */
+@Mapper
 public interface ContractMapper {
 
     void insertEquipmentContract(ContractEquipment contractEquipment);

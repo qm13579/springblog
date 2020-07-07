@@ -1,11 +1,11 @@
 package people.cn.controller;
 
-import cn.people.domain.UseEquipmentInfo;
-import cn.people.service.IUseEquipmentInfoService;
-import cn.people.utils.common.Result;
-import cn.people.utils.common.ResultCode;
-import io.swagger.annotations.ApiOperation;
+
 import org.springframework.web.bind.annotation.*;
+import people.cn.bean.UseEquipmentInfo;
+import people.cn.common.Result;
+import people.cn.common.ResultCode;
+import people.cn.server.IUseEquipmentInfoService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,7 +23,6 @@ public class UseEquipmentController {
     @Resource
     private IUseEquipmentInfoService useEquipmentInfoService;
 
-    @ApiOperation(value = "分配设备到用户，并变更设备使用状态")
     @RequestMapping(value = "/",method = RequestMethod.POST)
     public Result addUseEquipment(@RequestBody UseEquipmentInfo info){
         useEquipmentInfoService.addUseEquipment(info);
@@ -31,7 +30,6 @@ public class UseEquipmentController {
 
     }
 
-    @ApiOperation(value = "更新使用设备情况")
     @RequestMapping(value = "/",method = RequestMethod.PUT)
     public Result updateUseEquipment(@RequestBody UseEquipmentInfo info){
         System.out.println("this is test");
@@ -45,7 +43,6 @@ public class UseEquipmentController {
         }
     }
 
-    @ApiOperation(value = "查找当前用户的使用设备情况")
     @RequestMapping(value = "/{uid}",method = RequestMethod.GET)
     public Result findUseEquipmentByUserId(@PathVariable("uid") String uid){
         List<UseEquipmentInfo>  infoList = useEquipmentInfoService.findUseEquipmentByUserId(uid);
@@ -53,7 +50,7 @@ public class UseEquipmentController {
         result.setData(infoList);
         return result;
     }
-    @ApiOperation(value = "分配设备到用户，并变更设备使用状态及启用设备")
+
     @RequestMapping(value = "/metrics",method = RequestMethod.POST)
     public Result metricsUseEquipment(@RequestBody UseEquipmentInfo info){
         boolean b = useEquipmentInfoService.metricsUseEquipment(info);
@@ -67,7 +64,6 @@ public class UseEquipmentController {
 
     }
 
-    @ApiOperation(value = "查找历史工单")
     @RequestMapping(value = "/history",method = RequestMethod.GET)
     public Result findHistoryUseEquipment(){
 
@@ -77,7 +73,6 @@ public class UseEquipmentController {
         return result;
 
     }
-    @ApiOperation(value = "查找使用中的工单")
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public Result findAllUseEquipment(){
         List<UseEquipmentInfo> allUseEquipment = useEquipmentInfoService.findAllUseEquipment();
@@ -86,7 +81,6 @@ public class UseEquipmentController {
         return result;
     }
 
-    @ApiOperation(value = "通过设备ID获取使用信息")
     @RequestMapping(value = "/equipment/{eid}",method = RequestMethod.GET)
     public Result findUseEquipmentByEId(@PathVariable("eid") String eid){
         System.out.println("equipment/edi");

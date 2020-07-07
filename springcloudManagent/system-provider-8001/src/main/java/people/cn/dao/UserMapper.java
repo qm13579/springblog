@@ -20,7 +20,6 @@ public interface UserMapper {
 
 
 
-    UserInfo finUserByUsername(String username);
 
     UserInfo findUserById(String uid);
 
@@ -48,9 +47,9 @@ public interface UserMapper {
     void updateGroupToUser(GroupDict group);
     /**
      * 通过用户名查找用户
-     * @param s
+     * @param username
      * @return
      */
 
-    UserInfo findUserByUsername(String s);
+    UserInfo findUserByUsername(String username);
 }

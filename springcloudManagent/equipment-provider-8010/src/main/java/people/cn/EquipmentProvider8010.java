@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.context.annotation.ComponentScan;
 import people.cn.common.IdWorker;
 
 @SpringBootApplication
@@ -15,9 +15,9 @@ public class EquipmentProvider8010 {
         SpringApplication.run(EquipmentProvider8010.class,args);
     }
 
-    @Bean
-    public IdWorker idWorker(){
-        return new IdWorker();
-    }
+//    @Bean
+//    public IdWorker idWorker(){
+//        return new IdWorker();
+//    }
 
 }

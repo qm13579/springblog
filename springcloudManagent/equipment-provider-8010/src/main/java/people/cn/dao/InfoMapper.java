@@ -1,5 +1,6 @@
 package people.cn.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import people.cn.bean.EquipmentInfo;
 import people.cn.bean.InfoPojo;
 import people.cn.bean.LogPojo;
@@ -11,6 +12,7 @@ import java.util.List;
  * create at:  2020/2/22  上午10:32
  * @description: 信息持久层
  */
+@Mapper
 public interface InfoMapper {
 
     /**

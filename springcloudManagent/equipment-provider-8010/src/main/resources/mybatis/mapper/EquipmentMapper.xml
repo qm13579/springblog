@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="people.cn.dao.EquipmentMapper" >
+
+<!--    <resultMap id="AllEquipment" type="people.cn.bean.Equipment">-->
+<!--        <result column="groupDict" property="type"></result>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap id="AllUseEquipment" type="people.cn.bean.UseEquipmentInfo">-->
+<!--        <association property="user" column="user_id" javaType="people.cn.bean.UserInfo" select="people.cn.dao.UserMapper.findUserById"></association>-->
+<!--        <association property="equipment" column="equipment_id" javaType="people.cn.bean.Equipment" select="findEquipmentById"></association>-->
+<!--    </resultMap>-->
+
+
+    <insert id="saveEquipment" parameterType="people.cn.bean.Equipment">
+        INSERT INTO equipment(id,brand,part,registerDate,producers,seller,mobile,groupDict,status,metrics,code)
+        VALUES (#{id},#{brand},#{part},#{registerDate},#{producers},#{seller},#{mobile},#{type.id},#{status},#{metrics},#{code})
+    </insert>
+
+    <insert id="saveUseEquipment" parameterType="people.cn.bean.UseEquipmentInfo">
+        INSERT INTO use_equipment_info(id,user_id,equipment_id,date,status)
+        VALUES (#{id},#{user.id},#{equipment.id},#{date},#{status})
+    </insert>
+
+    <insert id="addGroupToEquipment">
+        INSERT INTO group_dict(id,groupName,gid)
+        VALUES (#{id},#{groupName},2))
+    </insert>
+
+    <update id="updateEquipment" parameterType="people.cn.bean.Equipment" >
+        UPDATE equipment
+        <set>
+            <if test="brand != null and brand != ''">
+                brand=#{brand}
+            </if>
+            <if test="code != null and code != ''">
+                code=#{code}
+            </if>
+            <if test="KEY != null and KEY != ''">
+                KEY=#{KEY}
+            </if>
+            <if test="metrics != null and metrics != ''">
+                metrics=#{metrics}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile=#{mobile}
+            </if>
+            <if test="part != null and part != ''">
+                part=#{part}
+            </if>
+            <if test="producers != null and produces != ''">
+                produces=#{producers}
+            </if>
+            <if test="registerDate != null and registerDate != ''">
+                register_date=#{registerDate}
+            </if>
+            <if test="producers != null and produces != ''">
+                produces=#{producers}
+            </if>
+            <if test="producers != null and produces != ''">
+                produces=#{producers}
+            </if>
+
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="stopUseEquipmentById" parameterType="java.lang.String">
+        UPDATE use_equipment_info
+        SET status=1
+        WHERE id=#{ueid}
+    </update>
+    <update id="updateUseEquipment" parameterType="people.cn.bean.UseEquipmentInfo">
+        UPDATE use_equipment_info SET user_id=#{user.id},equipment=#{equipment.id}
+    </update>
+
+    <update id="changeMetrics" parameterType="java.lang.String">
+        UPDATE equipment
+        SET metrics=0
+        WHERE id = #{eid}
+    </update>
+
+    <update id="changeMetricsAndStatus">
+        UPDATE equipment
+        SET metrics = 0
+        WHERE id=#{eid}
+    </update>
+
+    <update id="updateGroupToEquipment">
+        UPDATE group_dict
+        SET groupName=#{groupName}
+        WHERE id=#{id}
+    </update>
+
+    <update id="faultEquipment">
+        UPDATE equipment
+        SET status=4
+        WHERE id =#{id}
+    </update>
+
+    <update id="stopMetrics">
+        UPDATE equipment
+        SET metrics =1
+        WHERE id= #{id}
+    </update>
+
+    <select id="findAllEquipment" resultType="people.cn.bean.Equipment">
+        SELECT * FROM equipment
+    </select>
+
+    <select id="findEquipmentById" resultType="people.cn.bean.Equipment">
+        SELECT * FROM equipment WHERE id=#{id}
+    </select>
+
+    <select id="findEquipmentByGroupId" resultType="people.cn.bean.Equipment"></select>
+
+    <select id="findAllUseEquipment" resultType="people.cn.bean.UseEquipmentInfo">
+        SELECT * FROM use_equipment_info
+    </select>
+
+    <select id="findStatusUseEquipment" resultType="people.cn.bean.UseEquipmentInfo">
+        SELECT * FROM use_equipment_info
+        WHERE status=#{status}
+    </select>
+
+
+    <select id="findEquipmentGroup" resultType="people.cn.bean.GroupDict">
+        SELECT * FROM group_dict
+        WHERE gid = 2
+    </select>
+
+    <select id="likeEquepment" resultType="people.cn.bean.Equipment"></select>
+    <select id="findEquipmentByCodeAndBrand" resultType="people.cn.bean.Equipment">
+
+    </select>
+    <select id="findAllEquipmentMetricsIsNot" resultType="people.cn.bean.Equipment">
+        SELECT * FROM equipment
+        WHERE status = 2
+    </select>
+</mapper>

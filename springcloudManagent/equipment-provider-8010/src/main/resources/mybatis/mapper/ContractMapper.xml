@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="people.cn.dao.ContractMapper">
+
+    <insert id="insertEquipmentContract"></insert>
+    <insert id="insertMaintenance"></insert>
+    <insert id="insertAssignEquipment"></insert>
+    <update id="updateEquipmentContract"></update>
+    <update id="stopEquipmentContract"></update>
+    <update id="uploadEquipmentContract"></update>
+    <update id="updateMaintenance"></update>
+    <update id="stopMaintenance"></update>
+    <update id="uploadMaintenanceContract"></update>
+    <update id="uploadDraftContract"></update>
+    <delete id="deleteAssignEquipment"></delete>
+    <select id="findEquipmentContract" resultType="people.cn.bean.ContractEquipment"></select>
+    <select id="findMaintenanceContract" resultType="people.cn.bean.ContractMaintenance"></select>
+    <select id="downloadDraftContract" resultType="people.cn.bean.DraftContract"></select>
+    <select id="getDraftContractStatus" resultType="people.cn.bean.DraftContract"></select>
+    <select id="getAssignEquipment" resultType="people.cn.bean.Equipment"></select>
+</mapper>

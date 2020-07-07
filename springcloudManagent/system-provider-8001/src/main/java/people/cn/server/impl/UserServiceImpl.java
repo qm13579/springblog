@@ -59,7 +59,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
     }
     @Override
     public UserInfo findUserByUsername(String username){
-        return userMapping.finUserByUsername(username);
+        return userMapping.findUserByUsername(username);
     }
     @Override
     public UserInfo findUserById(String uid) {
@@ -147,7 +147,9 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        System.out.println("用户验证");
         UserInfo user = userMapping.findUserByUsername(s);
+        System.out.println(user);
         if (user == null){
             throw new SecurityException("用户不存在");
         }

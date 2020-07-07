@@ -1,6 +1,7 @@
 package people.cn.server;
 
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 import people.cn.bean.ContractEquipment;
 import people.cn.bean.ContractMaintenance;
@@ -16,6 +17,7 @@ import java.util.List;
  * create at:  2020/3/16  下午3:40
  * @description:
  */
+
 public interface ContractService {
 
     /**

@@ -11,6 +11,7 @@ import java.util.List;
  * create at:  2020/2/22  上午10:33
  * @description: 维保持久层
  */
+@Mapper
 public interface MaintenanceMapper {
     /**
      *

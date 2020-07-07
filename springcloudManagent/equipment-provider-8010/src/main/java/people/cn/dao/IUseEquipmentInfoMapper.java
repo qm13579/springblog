@@ -11,6 +11,7 @@ import java.util.List;
  * create at:  2020/2/21  上午10:44
  * @description: 用户设备使用信息
  */
+@Mapper
 public interface IUseEquipmentInfoMapper {
 
     /**

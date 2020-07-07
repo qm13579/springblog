@@ -1,9 +1,9 @@
 server:
-  port: 8100
+  port: 8001
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8010/eureka/
+      defaultZone: http://localhost:8100/eureka/
 spring:
   application:
     name: spring-provider-system
@@ -13,5 +13,12 @@ spring:
     username: root
     password: password
     type: com.alibaba.druid.pool.DruidDataSource
+
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    people:
+      people.cn.dao: trace
