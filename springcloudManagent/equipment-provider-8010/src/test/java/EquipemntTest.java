@@ -5,23 +5,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import people.cn.EquipmentProvider8010;
-import people.cn.controller.EquipmentController;
-import people.cn.dao.IUseEquipmentInfoMapper;
-import people.cn.server.impl.UserServiceImpl;
+import people.cn.bean.Equipment;
+import people.cn.system.server.IEquipmentService;
+import people.cn.system.server.impl.UserServiceImpl;
+
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = EquipmentProvider8010.class)
 public class EquipemntTest {
 
     @Autowired
-    private EquipmentController equipmentController;
+    private IEquipmentService equipmentService;
 
     @Autowired
     private UserServiceImpl userService;
 
     @Test
     public void test1(){
-        equipmentController.findAllEquipment();
+        List<Equipment> allEquipment = equipmentService.findAllEquipment();
+        System.out.println(allEquipment);
     }
 
     @Test

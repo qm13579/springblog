@@ -5,10 +5,13 @@
 <mapper namespace="people.cn.dao.EquipmentMapper" >
 
     <resultMap id="AllEquipment" type="people.cn.bean.Equipment">
-        <association property="type" column="type" javaType="people.cn.bean.GroupDict" select="people.cn.dao.GroupDictMapper.findGroupById"/>
+        <association property="type" column="groupDict"  select="people.cn.system.dao.GroupDictMapper.findGroupById"/>
     </resultMap>
 
-
+    <select id="findGroupByIdTest" resultType="people.cn.bean.GroupDict">
+        SELECT * FROM group_dict
+        WHERE id=#{id}
+    </select>
 
     <insert id="saveEquipment" parameterType="people.cn.bean.Equipment">
         INSERT INTO equipment(id,brand,part,registerDate,producers,seller,mobile,groupDict,status,metrics,code)

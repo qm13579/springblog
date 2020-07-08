@@ -19,19 +19,19 @@ public interface InfoMapper {
      * 查询所有信息
      * @return
      */
-    public List<InfoPojo> findAllInfo();
+    List<InfoPojo> findAllInfo();
 
     /**
      * 查询未推送的信息
      * @return
      */
-    public List<InfoPojo> findAllStatus();
+    List<InfoPojo> findAllStatus();
 
     /**
      * 插入一条新的信息
      * @param info
      */
-    public void insertInfo(InfoPojo info);
+    void insertInfo(InfoPojo info);
 
     /**
      * 插入日志

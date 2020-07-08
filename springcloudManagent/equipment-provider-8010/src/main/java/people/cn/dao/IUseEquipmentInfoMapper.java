@@ -18,7 +18,6 @@ public interface IUseEquipmentInfoMapper {
      * 查询使用信息及当前使用设备
      * @return
      */
-
     List<UseEquipmentInfo> findAllUseEquipment();
 
     /**
@@ -26,7 +25,6 @@ public interface IUseEquipmentInfoMapper {
      * @param uid
      * @return
      */
-    @Select("select * from use_equipment_info where user_id=#{uid}")
     List<UseEquipmentInfo> findAllUseEquipmentByUserId(String uid);
 
     /**
@@ -34,19 +32,18 @@ public interface IUseEquipmentInfoMapper {
      * @param info
      */
 
-    public void addUseEquipment(UseEquipmentInfo info);
+    void addUseEquipment(UseEquipmentInfo info);
 
     /**
      * 更新使用设备单
      * @param info
      */
-    public void updateUseEquipment(UseEquipmentInfo info);
+    void updateUseEquipment(UseEquipmentInfo info);
 
     /**
      * 查找历史工单
      * @return
      */
-
     List<UseEquipmentInfo> findHistoryUseEquipment();
 
     /**
@@ -54,7 +51,6 @@ public interface IUseEquipmentInfoMapper {
      * @param eid
      * @return
      */
-
     UseEquipmentInfo findUseEquipmentByEquipmentByid(String eid);
 
     /**

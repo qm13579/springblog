@@ -19,6 +19,7 @@ public interface EquipmentMapper {
      */
     List<Equipment> findAllEquipment();
 
+
     /**
      * 通过id查询设备
      * @param id

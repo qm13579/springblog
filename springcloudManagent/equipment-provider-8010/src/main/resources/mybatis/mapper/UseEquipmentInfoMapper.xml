@@ -2,13 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="people.cn.dao.IUseEquipmentInfoMapper">
-    <insert id="addUseEquipment"></insert>
-    <update id="updateUseEquipment"></update>
-    <update id="stopUseEquipmentById"></update>
-    <update id="stopUseEquipmentByEId"></update>
 
-    <select id="findAllUseEquipment" resultType="people.cn.bean.UseEquipmentInfo"></select>
-    <select id="findHistoryUseEquipment" resultType="people.cn.bean.UseEquipmentInfo"></select>
-    <select id="findUseEquipmentByEquipmentByid" resultType="people.cn.bean.UseEquipmentInfo"></select>
-    <select id="findUseEquipmentByEId" resultType="people.cn.bean.UseEquipmentInfo"></select>
+    <resultMap id="AllUserEquipment" type="people.cn.bean.UseEquipmentInfo">
+        <association property="equipment" column="equipment" select="people.cn.dao.EquipmentMapper.findEquipmentById"></association>
+        <association property="user" column="user_id" select="people.cn.system.dao.UserMapper.findUserById"></association>
+    </resultMap>
+
+    <resultMap id="AllUserEquipmentInfo" type="people.cn.bean.UseEquipmentInfo">
+        <association property="equipment" column="equipment_id" select="people.cn.dao.EquipmentMapper.findEquipmentById"></association>
+        <association property="user" column="user_id" select="people.cn.system.dao.UserMapper.findUserById"></association>
+    </resultMap>
+
+    <insert id="addUseEquipment">
+        INSERT INTO use_equipment_info(user_id,equipment_id,date,status)
+        VALUES (#{user.id},#{equipment.id},#{date},#{status})
+    </insert>
+    <update id="updateUseEquipment">
+        UPDATE use_equipment_info
+        SET user_id=#{user.id},equipment_id=#{equipment.id},date=#{date},status=#{status}
+        WHERE id =#{id}
+    </update>
+
+    <update id="stopUseEquipmentById">
+        UPDATE use_equipment_info
+        SET status=1,end_date=#{endDate}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="stopUseEquipmentByEId">
+        DELETE FROM use_equipment_info
+        WHERE equipment_id=#{eid}
+    </delete>
+
+    <select id="findAllUseEquipment" resultMap="AllUserEquipment">
+        SELECT * FROM use_equipment_info
+        WHERE status=0
+    </select>
+
+    <select id="findHistoryUseEquipment" resultMap="AllUserEquipmentInfo">
+        SELECT * FROM use_equipment_info
+        WHERE status=1
+    </select>
+
+    <select id="findUseEquipmentByEquipmentByid" resultMap="AllUserEquipmentInfo">
+        SELECT * FROM use_equipment_info
+        WHERE equipment_id=#{eid}
+        AND status=0
+    </select>
+
+    <select id="findUseEquipmentByEId" resultMap="AllUserEquipmentInfo">
+        SELECT * FROM use_equipment_info
+        WHERE equipment_id=#{eid}
+        AND status=0
+    </select>
+
+    <select id="findAllUseEquipmentByUserId" resultType="people.cn.bean.UseEquipmentInfo">
+        SELECT * FROM use_equipment_info
+        WHERE user_id=#{uid}
+    </select>
 </mapper>

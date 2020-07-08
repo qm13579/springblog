@@ -5,7 +5,7 @@
 <mapper namespace="people.cn.dao.EquipmentMapper" >
 
     <resultMap id="AllEquipment" type="people.cn.bean.Equipment">
-        <association property="type" column="type" javaType="people.cn.bean.GroupDict" select="people.cn.dao.GroupDictMapper.findGroupById"/>
+        <association property="type" column="groupDict"  select="people.cn.system.dao.GroupDictMapper.findGroupById"/>
     </resultMap>
 
 
