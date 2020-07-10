@@ -1,12 +1,16 @@
 package people.cn.common;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @author apple
  */
 @Data
-public class Result {
+@NoArgsConstructor
+public class Result implements Serializable {
     private String message;
     private Integer code;
     private Boolean success;

@@ -31,4 +31,13 @@ public class EquipemntTest {
     public void test2(){
         userService.findUserByUsername("admin");
     }
+
+    @Test
+    public void test3(){
+        String s1 = new String("hello");
+        System.out.println(s1.hashCode());
+        String s2 = "hello";
+        System.out.println(s2.hashCode());
+        new StringBuffer("a");
+    }
 }

@@ -6,17 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="system-provider-8001" />
+        <module name="equipment-provider-8010" />
         <module name="api" />
         <module name="eureka8100" />
         <module name="client8088" />
         <module name="systemclient8088" />
+        <module name="equipmentprovider8011" />
         <module name="systemprovider8001" />
         <module name="eureka-8101" />
         <module name="eureka-8100" />
         <module name="system-client-8088" />
         <module name="equipmentprovider8010" />
-        <module name="equipment-provider-8010" />
+        <module name="system-provider-8001" />
         <module name="eureka8101" />
       </profile>
     </annotationProcessing>

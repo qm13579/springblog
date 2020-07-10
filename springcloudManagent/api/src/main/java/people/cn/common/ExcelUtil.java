@@ -31,6 +31,7 @@ import java.util.Map;
  */
 @Component
 public class ExcelUtil {
+
     @Autowired
     private IdWorker idWorker;
 

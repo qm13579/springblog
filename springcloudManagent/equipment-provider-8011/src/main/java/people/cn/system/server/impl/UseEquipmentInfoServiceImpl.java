@@ -10,7 +10,6 @@ import people.cn.bean.UserInfo;
 import people.cn.common.IdWorker;
 import people.cn.dao.EquipmentMapper;
 import people.cn.dao.IUseEquipmentInfoMapper;
-
 import people.cn.system.dao.UserMapper;
 import people.cn.system.server.IInfoService;
 import people.cn.system.server.IUseEquipmentInfoService;

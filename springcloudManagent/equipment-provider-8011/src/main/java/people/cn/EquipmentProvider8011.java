@@ -8,10 +8,11 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @SpringBootApplication
 @EnableEurekaClient
 @MapperScan({"people.cn.dao","people.cn.system.dao"})
-public class EquipmentProvider8010 {
+public class EquipmentProvider8011 {
 
     public static void main(String[] args) {
-        SpringApplication.run(EquipmentProvider8010.class,args);
+        SpringApplication.run(EquipmentProvider8011.class,args);
     }
 
 }
+

@@ -1,5 +1,7 @@
 package people.cn.dao;
-import org.apache.ibatis.annotations.*;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import people.cn.bean.Equipment;
 import people.cn.bean.GroupDict;
 import people.cn.bean.UseEquipmentInfo;

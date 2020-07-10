@@ -1,7 +1,7 @@
 package people.cn.dao;
 
 
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Mapper;
 import people.cn.bean.Maintenance;
 
 import java.util.List;
