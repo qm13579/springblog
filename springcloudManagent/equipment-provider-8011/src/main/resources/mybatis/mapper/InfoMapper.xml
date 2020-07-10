@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="people.cn.dao.InfoMapper">
+    <insert id="insertInfo">
+        INSERT INTO info_pojo(id,source_info,content,status,date)
+        VALUES (#{id},#{source},#{content},#{status},#{date})
+    </insert>
+
+    <insert id="logInsert">
+        INSERT INTO log_info(id,url,time,user,date,method)
+        VALUES (#{id},#{url},#{time},#{user},#{date},#{method})
+    </insert>
+
+    <insert id="insertEquipmentInfo">
+        INSERT INTO info_pojo(id,name,equipment,operation,date)
+        VALUES (#{id},#{name},#{equipment.id},#{operation},#{date})
+    </insert>
+
+    <select id="findAllInfo" resultType="people.cn.bean.InfoPojo">
+        SELECT * FROM info_pojo
+    </select>
+
+    <select id="findAllStatus" resultType="people.cn.bean.InfoPojo">
+        SELECT * FROM info_pojo
+        WHERE status=1
+    </select>
+
+    <select id="findLog" resultType="people.cn.bean.LogPojo">
+        SELECT * FROM log_info
+    </select>
+
+    <select id="findEquipmentInfo"></select>
+
+    <select id="getEquipmentInfo" resultType="people.cn.bean.EquipmentInfo">
+        SELECT * FROM info_pojo
+        WHERE equipment=#{equipmentId}
+    </select>
+
+    <select id="getWeekNumber" resultType="java.lang.String">
+        SET COUNT (*) FROM log_info
+        WHERE date > date_sub(curdate(),interval 7 day) group by date
+    </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="people.cn.dao.MaintenanceMapper">
+
+    <resultMap id="AllMaintenance" type="people.cn.bean.Maintenance">
+        <result column="desc_info" property="describe"></result>
+        <association property="equipment" column="equipment" select="people.cn.dao.EquipmentMapper.findEquipmentById"></association>
+    </resultMap>
+
+    <insert id="insertMaintenance">
+        INSERT INTO maintenance(id,name,mobile,date,equipment,status,desc_info)
+        VALUES (#{id},#{name},#{mobile},#{date},#{equipment.id},#{status},#{describe})
+    </insert>
+
+    <update id="changeStatus">
+        UPDATE maintenance
+        SET status=0
+        WHERE equipment=#{equipmentId}
+    </update>
+
+    <select id="findAllMaintenance" resultMap="AllMaintenance">
+        SELECT * FROM maintenance
+    </select>
+
+    <select id="findAllMaintenanceByEquipment" resultMap="AllMaintenance">
+        SELECT * FROM maintenance
+        WHERE equipment = #{eid}
+    </select>
+</mapper>

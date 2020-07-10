@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="people.cn.dao.ContractMapper">
+
+    <resultMap id="AllEquipmentContract" type="people.cn.bean.ContractEquipment">
+        <result property="cid" column="e_c_id"></result>
+        <result property="contractName" column="contract_name"></result>
+        <result property="startTime" column="start_time"></result>
+        <result property="partyA" column="party_a"></result>
+        <result property="partyALegal" column="party_a_legal"></result>
+        <result property="partyALinkman" column="party_a_linkman"></result>
+        <result property="partyALinkmanMobile" column="party_a_linkman_mobile"></result>
+        <result property="partyB" column="party_b"></result>
+        <result property="partyBLegal" column="party_b_legal"></result>
+        <result property="partyBLinkman" column="party_b_linkman"></result>
+        <result property="partyBLinkmanMobile" column="party_b_linkman_mobile"></result>
+    </resultMap>
+    <resultMap id="AllMaintenanceContract" type="people.cn.bean.ContractMaintenance">
+        <result property="cid" column="e_c_id"></result>
+        <result property="contractName" column="contract_name"></result>
+        <result property="startTime" column="start_time"></result>
+        <result property="partyA" column="party_a"></result>
+        <result property="partyALegal" column="party_a_legal"></result>
+        <result property="partyALinkman" column="party_a_linkman"></result>
+        <result property="partyALinkmanMobile" column="party_a_linkman_mobile"></result>
+        <result property="partyB" column="party_b"></result>
+        <result property="partyBLegal" column="party_b_legal"></result>
+        <result property="partyBLinkman" column="party_b_linkman"></result>
+        <result property="partyBLinkmanMobile" column="party_b_linkman_mobile"></result>
+    </resultMap>
+
+    <insert id="insertEquipmentContract">
+        INSERT INTO equipment_contract(e_c_id,contract_name,start_time,status,party_a,party_a_legal,
+        party_a_linkman,party_a_linkman_mobile,party_b,party_b_legal,party_b_linkman,party_b_linkman_mobile,money)
+        VALUES (#{cid},#{contractName},#{startTime},#{status},#{partyA},#{partyALegal},#{partyALinkman},#{partyALinkmanMobile}
+        #{partyB},#{partyBLegal},#{partyBLinkman},#{partyBLinkmanMobile},#{money})
+    </insert>
+
+    <insert id="insertMaintenance">
+        INSERT INTO maintenance_contract(m_c_id,contract_name,start_time,end_time,status,party_a,party_a_legal,
+        party_a_linkman,party_a_linkman_mobile,party_b,party_b_legal,party_b_linkman,party_b_linkman_mobile,money)
+        VALUES (#{cid},#{contractName},#{startTime},#{endTime},#{status},#{partyA},#{partyALegal},#{partyALinkman},#{partyALinkmanMobile},
+        #{partyB},#{partyBLegal},#{partyBLinkman},#{partyBLinkmanMobile},#{money})
+    </insert>
+
+    <insert id="insertAssignEquipment">
+        INSERT INTO equipment_m_contract (equipment,contract)
+        VALUES (#{equipmentId},#{cid})
+    </insert>
+
+    <update id="updateEquipmentContract">
+        UPDATE equipment_contract
+        SET contract_name=#{contractName},start_time=#{startTime},party_a= #{partyA}
+        WHERE e_c_id = #{cid}
+    </update>
+
+    <update id="stopEquipmentContract">
+        UPDATE equipment_contract
+        SET status=1
+        WHERE e_c_id=#{cid}
+    </update>
+
+    <update id="uploadEquipmentContract">
+        UPDATE equipment_contract
+        SET file=#{fileId}
+        WHERE e_c_id=#{cid}
+    </update>
+
+    <update id="updateMaintenance">
+        UPDATE maintenance_contract
+        SET contract_name=#{contractName}
+        WHERE m_c_id = #{cid}
+    </update>
+
+    <update id="stopMaintenance">
+        UPDATE maintenance_contract
+        SET status=1
+        WHERE m_c_id = #{cid}
+    </update>
+
+    <update id="uploadMaintenanceContract">
+        UPDATE maintenance_contract
+        SET file=#{fileId}
+        WHERE m_c_id=#{cid}
+    </update>
+
+    <update id="uploadDraftContract">
+        INSERT INTO draft_contract (id,context,status,title)
+        VALUES (#{id},#{context},#{status},#{title})
+    </update>
+
+    <delete id="deleteAssignEquipment">
+        DELETE FROM equipment_m_contract
+        WHERE id=#{cid}
+    </delete>
+
+    <select id="findEquipmentContract" resultMap="AllEquipmentContract">
+        SELECT * FROM equipment_contract
+    </select>
+
+    <select id="findMaintenanceContract" resultMap="AllMaintenanceContract">
+        SELECT * FROM maintenance_contract
+    </select>
+
+    <select id="downloadDraftContract" resultType="people.cn.bean.DraftContract">
+        SELECT * FROM draft_contract
+        WHERE id=#{id}
+    </select>
+
+    <select id="getDraftContractStatus" resultType="people.cn.bean.DraftContract">
+        SELECT * FROM draft_contract
+        WHERE status=0
+    </select>
+    <select id="getAssignEquipment" resultType="people.cn.bean.Equipment">
+        SELECT * FROM equipment
+        WHERE id
+        IN
+        (SELECT equipment FROM equipment_m_contract WHERE contract=#{cid})
+    </select>
+</mapper>
